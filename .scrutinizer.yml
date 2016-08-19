@@ -1,0 +1,23 @@
+filter:
+    excluded_paths:
+        - vendor/*
+        - tests/*
+build:
+    environment:
+        php: 5.6
+    tests:
+        override:
+            -
+                command: 'phpunit --coverage-clover=clover.xml'
+                coverage:
+                    file: 'clover.xml'
+                    format: 'clover'
+
+    dependencies:
+        before:
+            - cp app/config/parameters.php.dist app/config/parameters.php
+
+checks:
+    php:
+        code_rating: true
+        duplication: true

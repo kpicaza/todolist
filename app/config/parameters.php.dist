@@ -1,0 +1,18 @@
+<?php
+
+$config = [];
+
+// Monolog Configs.
+$config['monolog'] = [
+    'monolog.logfile' => __DIR__ . '/../../var/logs/prod.log',
+];
+
+$config['console'] = [
+    'console.name' => 'In Framework Console Tool',
+    'console.version' => '0.1.0',
+    'console.project_directory' => __DIR__ . "/.."
+];
+
+$config['translator'] = [
+    'translator.domains' => []
+];

@@ -1,0 +1,30 @@
+#!/usr/bin/env php
+<?php
+
+use Symfony\Component\Console\Input\ArgvInput;
+
+set_time_limit(0);
+
+$loader = require __DIR__ . '/../vendor/autoload.php';
+
+$input = new ArgvInput();
+$env = $input->getParameterOption(['--env'], getenv('SILEX_ENV') ?: 'test');
+
+$env_file = sprintf('%s/app/app%s.php', dirname(__DIR__), 'prod' === $env ? '' : '_' . $env);
+
+if (!file_exists($env_file)) {
+    $formatter = new \Symfony\Component\Console\Helper\FormatterHelper();
+    $formattedBlock = $formatter->formatBlock("\n\rInvalid environment especified\n\r", 'error');
+
+    $output = new Symfony\Component\Console\Output\ConsoleOutput();
+    $output->writeln("\n\r" . $formattedBlock . "\n\r");
+    return;
+}
+
+$app = require $env_file;
+
+$console = $app["console"];
+
+require_once __DIR__ . '/../app/config/commands.php';
+
+$console->run($input);
