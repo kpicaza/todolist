@@ -24,6 +24,7 @@
         "symfony/validator": "^3.1",
         "symfony/config": "^3.1",
         "symfony/translation": "^3.1",
+        "ramsey/uuid": "^3.5",
         "doctrine/dbal": "^2.5",
         "doctrine/orm": "^2.5",
         "knplabs/console-service-provider": "^2.0",
@@ -36,7 +37,8 @@
         "memio/spec-gen": "^0.6",
         "symfony/browser-kit": "^3.1",
         "symfony/css-selector": "^3.1",
-        "fzaninotto/faker": "^1.6"
+        "fzaninotto/faker": "^1.6",
+        "silex/web-profiler": "^2.0"
     },
     "config": {
         "bin-dir": "bin"
