@@ -13,6 +13,32 @@ $config['console'] = [
     'console.project_directory' => __DIR__ . "/.."
 ];
 
+// Doctrine Configs.
+$config['doctrine'] = [
+    'dbal' => [
+        'db.options' => [
+            'driver' => 'pdo_mysql',
+            'host' => 'localhost',
+            'dbname' => 'doctrine_todolist',
+            'user' => 'root',
+            'password' => 'XXXXXX',
+            'charset' => 'utf8',
+            'driverOptions' => [1002 => 'SET NAMES utf8'],
+        ],
+    ],
+    'orm' => [
+        "orm.em.options" => [
+            "mappings" => [
+                [
+                    "type" => "yml",
+                    "namespace" => "Core\\Domain\\Infraestructure\\Doctrine\\Entity",
+                    "path" => realpath(__DIR__ . "/../../core/Domain/Infraestructure/Doctrine/Mapping"),
+                ],
+            ],
+        ],
+    ]
+];
+
 $config['translator'] = [
     'translator.domains' => []
 ];
