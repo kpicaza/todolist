@@ -7,6 +7,8 @@ Based on xp123.com [user stories examples](http://xp123.com/articles/user-story-
 
 ### Tasks basics
 
+* As a Task, I have a description.
+* As a Task, I have progress.
 * As a User, I can view all my tasks.
 * As a User, I can add new task.
 * As a User, I can Mark tasks as done.

@@ -50,3 +50,13 @@ $app['tasks.post.controller'] = function () use ($app) {
         $app['tasks.repository']
     );
 };
+
+/**
+ * Get Task Controller.
+ * @return \App\Tasks\Controller\GetController
+ */
+$app['tasks.get.controller'] = function () use ($app) {
+    return new \App\Tasks\Controller\GetController(
+        $app['tasks.repository']
+    );
+};
