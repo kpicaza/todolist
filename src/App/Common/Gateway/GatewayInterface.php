@@ -17,4 +17,13 @@ interface GatewayInterface
      * @return mixed
      */
     public function save($object);
+
+    /**
+     * @param array $criteria
+     * @param array|null $orderBy
+     * @param null $limit
+     * @param null $offset
+     * @return mixed
+     */
+    public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null);
 }

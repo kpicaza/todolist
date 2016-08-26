@@ -49,4 +49,9 @@ class TaskRepository
 
         return $task;
     }
+
+    public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+    {
+        return $this->gateway->findBy($criteria, $orderBy, $limit, $offset);
+    }
 }
