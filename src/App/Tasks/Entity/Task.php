@@ -12,7 +12,7 @@ use App\Common\Entity\ProgressInterface;
  * Class Task
  * @package App\Tasks\Entity
  */
-class Task implements TaskInterface
+class Task implements TaskInterface, \JsonSerializable
 {
     /**
      * Task unique identifier.
@@ -119,5 +119,20 @@ class Task implements TaskInterface
     public function setUpdatedAt()
     {
         $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * {inheritdoc}
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'id' => (string) $this->id,
+            'description' => $this->description,
+            'progress' => $this->progress,
+            'createdAt' => $this->createdAt,
+            'updatedAt' => $this->updatedAt
+        ];
     }
 }

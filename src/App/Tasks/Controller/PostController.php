@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
  * Class TaskController
  * @package App\Tasks\Controller
  */
-class TaskController
+class PostController
 {
     /**
      * @var EventDispatcherInterface

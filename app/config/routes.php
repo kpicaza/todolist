@@ -1,3 +1,4 @@
 <?php
 
-$app->post('/tasks', 'tasks.controller:postAction');
+$app->get('/tasks', 'tasks.index.controller:getAction');
+$app->post('/tasks', 'tasks.post.controller:postAction');

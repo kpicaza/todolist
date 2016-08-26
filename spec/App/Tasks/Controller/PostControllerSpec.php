@@ -2,7 +2,7 @@
 
 namespace spec\App\Tasks\Controller;
 
-use App\Tasks\Controller\TaskController;
+use App\Tasks\Controller\PostController;
 use App\Tasks\Entity\TaskFactory;
 use App\Tasks\Event\Events;
 use App\Tasks\Repository\TaskRepository;
@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Tests\Gateway\FakeGateway;
 
-class TaskControllerSpec extends ObjectBehavior
+class PostControllerSpec extends ObjectBehavior
 {
     const NAME = 'Some task description';
 
@@ -61,5 +61,4 @@ class TaskControllerSpec extends ObjectBehavior
 
         $response->getStatusCode()->shouldBe(400);
     }
-
 }

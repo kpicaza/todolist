@@ -96,4 +96,22 @@ class TaskSpec extends ObjectBehavior
             \InvalidArgumentException::class
         )->duringInstantiation();
     }
+
+    function it_should_be_json_serializable()
+    {
+        $this->beConstructedWith(
+            TaskId::fromString(Uuid::uuid4()),
+            new Progress(self::PROGRESS),
+            self::DESCRIPTION
+        );
+
+        $array = $this->jsonSerialize();
+
+        $this->id()->shouldBe($array['id']);
+        $this->getDescription()->shouldBe($array['description']);
+        $this->getProgress()->shouldBe($array['progress']);
+        $this->getCreatedAt()->shouldBe($array['createdAt']);
+        $this->getUpdatedAt()->shouldBe($array['updatedAt']);
+    }
+
 }

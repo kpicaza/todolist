@@ -31,11 +31,21 @@ $app['tasks.repository'] = function () use ($app) {
 };
 
 /**
- * Task Controller.
- * @return \App\Tasks\Controller\TaskController
+ * Index Tasks Controller.
+ * @return \App\Tasks\Controller\IndexController
  */
-$app['tasks.controller'] = function () use ($app) {
-    return new \App\Tasks\Controller\TaskController(
+$app['tasks.index.controller'] = function () use ($app) {
+    return new \App\Tasks\Controller\IndexController(
+        $app['tasks.repository']
+    );
+};
+
+/**
+ * Post Task Controller.
+ * @return \App\Tasks\Controller\PostController
+ */
+$app['tasks.post.controller'] = function () use ($app) {
+    return new \App\Tasks\Controller\PostController(
         $app['dispatcher'],
         $app['tasks.repository']
     );

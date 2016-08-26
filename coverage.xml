@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1472249244">
-  <project timestamp="1472249244">
+<coverage generated="1472251368">
+  <project timestamp="1472251368">
     <package name="App\Common\Entity">
       <file name="/home/kpicaza/server/todolist/crud/src/App/Common/Entity/AggregateRootId.php">
         <class name="AggregateRootId" namespace="App\Common\Entity" fullPackage="App" package="App">
           <metrics complexity="3" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="7" coveredelements="7"/>
         </class>
-        <line num="25" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="15"/>
-        <line num="27" type="stmt" count="15"/>
-        <line num="28" type="stmt" count="15"/>
-        <line num="35" type="method" name="fromString" visibility="public" complexity="1" crap="1" count="7"/>
-        <line num="37" type="stmt" count="7"/>
-        <line num="44" type="method" name="__toString" visibility="public" complexity="1" crap="1" count="2"/>
-        <line num="46" type="stmt" count="2"/>
+        <line num="25" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="16"/>
+        <line num="27" type="stmt" count="16"/>
+        <line num="28" type="stmt" count="16"/>
+        <line num="35" type="method" name="fromString" visibility="public" complexity="1" crap="1" count="8"/>
+        <line num="37" type="stmt" count="8"/>
+        <line num="44" type="method" name="__toString" visibility="public" complexity="1" crap="1" count="3"/>
+        <line num="46" type="stmt" count="3"/>
         <metrics loc="48" ncloc="24" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="7" coveredelements="7"/>
       </file>
       <file name="/home/kpicaza/server/todolist/crud/src/App/Common/Entity/Progress.php">
         <class name="Progress" namespace="App\Common\Entity" fullPackage="App" package="App">
           <metrics complexity="7" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="14" coveredelements="14"/>
         </class>
-        <line num="25" type="method" name="__construct" visibility="public" complexity="4" crap="4" count="21"/>
-        <line num="27" type="stmt" count="21"/>
+        <line num="25" type="method" name="__construct" visibility="public" complexity="4" crap="4" count="22"/>
+        <line num="27" type="stmt" count="22"/>
         <line num="28" type="stmt" count="3"/>
         <line num="30" type="stmt" count="3"/>
-        <line num="33" type="stmt" count="18"/>
-        <line num="34" type="stmt" count="18"/>
+        <line num="33" type="stmt" count="19"/>
+        <line num="34" type="stmt" count="19"/>
         <line num="40" type="method" name="isDone" visibility="public" complexity="1" crap="1" count="4"/>
         <line num="42" type="stmt" count="4"/>
         <line num="49" type="method" name="get" visibility="public" complexity="1" crap="1" count="4"/>
@@ -43,8 +43,20 @@
       <metrics loc="29" ncloc="11" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
     <package name="App\Tasks\Controller">
-      <file name="/home/kpicaza/server/todolist/crud/src/App/Tasks/Controller/TaskController.php">
-        <class name="TaskController" namespace="App\Tasks\Controller" fullPackage="App" package="App">
+      <file name="/home/kpicaza/server/todolist/crud/src/App/Tasks/Controller/IndexController.php">
+        <class name="IndexController" namespace="App\Tasks\Controller" fullPackage="App" package="App">
+          <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="6" coveredelements="6"/>
+        </class>
+        <line num="29" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="31" type="stmt" count="1"/>
+        <line num="32" type="stmt" count="1"/>
+        <line num="38" type="method" name="getAction" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="40" type="stmt" count="1"/>
+        <line num="42" type="stmt" count="1"/>
+        <metrics loc="44" ncloc="26" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="6" coveredelements="6"/>
+      </file>
+      <file name="/home/kpicaza/server/todolist/crud/src/App/Tasks/Controller/PostController.php">
+        <class name="PostController" namespace="App\Tasks\Controller" fullPackage="App" package="App">
           <metrics complexity="5" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="18" elements="20" coveredelements="20"/>
         </class>
         <line num="38" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="2"/>
@@ -73,33 +85,40 @@
     <package name="App\Tasks\Entity">
       <file name="/home/kpicaza/server/todolist/crud/src/App/Tasks/Entity/Task.php">
         <class name="Task" namespace="App\Tasks\Entity" fullPackage="App" package="App">
-          <metrics complexity="9" methods="8" coveredmethods="8" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="16" elements="24" coveredelements="24"/>
+          <metrics complexity="10" methods="9" coveredmethods="9" conditionals="0" coveredconditionals="0" statements="22" coveredstatements="22" elements="31" coveredelements="31"/>
         </class>
-        <line num="51" type="method" name="__construct" visibility="public" complexity="2" crap="2" count="14"/>
-        <line num="53" type="stmt" count="14"/>
-        <line num="54" type="stmt" count="14"/>
-        <line num="56" type="stmt" count="14"/>
+        <line num="51" type="method" name="__construct" visibility="public" complexity="2" crap="2" count="15"/>
+        <line num="53" type="stmt" count="15"/>
+        <line num="54" type="stmt" count="15"/>
+        <line num="56" type="stmt" count="15"/>
         <line num="57" type="stmt" count="1"/>
         <line num="59" type="stmt" count="1"/>
-        <line num="62" type="stmt" count="13"/>
-        <line num="63" type="stmt" count="13"/>
-        <line num="69" type="method" name="id" visibility="public" complexity="1" crap="1" count="1"/>
-        <line num="71" type="stmt" count="1"/>
-        <line num="78" type="method" name="getProgress" visibility="public" complexity="1" crap="1" count="3"/>
-        <line num="80" type="stmt" count="3"/>
-        <line num="87" type="method" name="getDescription" visibility="public" complexity="1" crap="1" count="2"/>
-        <line num="89" type="stmt" count="2"/>
-        <line num="95" type="method" name="getCreatedAt" visibility="public" complexity="1" crap="1" count="1"/>
-        <line num="97" type="stmt" count="1"/>
-        <line num="103" type="method" name="getUpdatedAt" visibility="public" complexity="1" crap="1" count="1"/>
-        <line num="105" type="stmt" count="1"/>
+        <line num="62" type="stmt" count="14"/>
+        <line num="63" type="stmt" count="14"/>
+        <line num="69" type="method" name="id" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="71" type="stmt" count="2"/>
+        <line num="78" type="method" name="getProgress" visibility="public" complexity="1" crap="1" count="4"/>
+        <line num="80" type="stmt" count="4"/>
+        <line num="87" type="method" name="getDescription" visibility="public" complexity="1" crap="1" count="3"/>
+        <line num="89" type="stmt" count="3"/>
+        <line num="95" type="method" name="getCreatedAt" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="97" type="stmt" count="2"/>
+        <line num="103" type="method" name="getUpdatedAt" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="105" type="stmt" count="2"/>
         <line num="111" type="method" name="setCreatedAt" visibility="public" complexity="1" crap="1" count="1"/>
         <line num="113" type="stmt" count="1"/>
         <line num="114" type="stmt" count="1"/>
         <line num="119" type="method" name="setUpdatedAt" visibility="public" complexity="1" crap="1" count="1"/>
         <line num="121" type="stmt" count="1"/>
         <line num="122" type="stmt" count="1"/>
-        <metrics loc="123" ncloc="68" classes="1" methods="8" coveredmethods="8" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="16" elements="24" coveredelements="24"/>
+        <line num="124" type="method" name="jsonSerialize" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="127" type="stmt" count="1"/>
+        <line num="128" type="stmt" count="1"/>
+        <line num="129" type="stmt" count="1"/>
+        <line num="130" type="stmt" count="1"/>
+        <line num="131" type="stmt" count="1"/>
+        <line num="132" type="stmt" count="1"/>
+        <metrics loc="134" ncloc="79" classes="1" methods="9" coveredmethods="9" conditionals="0" coveredconditionals="0" statements="22" coveredstatements="22" elements="31" coveredelements="31"/>
       </file>
       <file name="/home/kpicaza/server/todolist/crud/src/App/Tasks/Entity/TaskFactory.php">
         <class name="TaskFactory" namespace="App\Tasks\Entity" fullPackage="App" package="App">
@@ -174,19 +193,19 @@
         <class name="TaskRepository" namespace="App\Tasks\Repository" fullPackage="App" package="App">
           <metrics complexity="3" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="7" elements="10" coveredelements="10"/>
         </class>
-        <line num="33" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="4"/>
-        <line num="35" type="stmt" count="4"/>
-        <line num="36" type="stmt" count="4"/>
-        <line num="37" type="stmt" count="4"/>
+        <line num="33" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="5"/>
+        <line num="35" type="stmt" count="5"/>
+        <line num="36" type="stmt" count="5"/>
+        <line num="37" type="stmt" count="5"/>
         <line num="44" type="method" name="insert" visibility="public" complexity="1" crap="1" count="2"/>
         <line num="46" type="stmt" count="2"/>
         <line num="48" type="stmt" count="2"/>
         <line num="50" type="stmt" count="2"/>
-        <line num="53" type="method" name="findBy" visibility="public" complexity="1" crap="1" count="1"/>
-        <line num="55" type="stmt" count="1"/>
+        <line num="53" type="method" name="findBy" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="55" type="stmt" count="2"/>
         <metrics loc="57" ncloc="34" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="7" elements="10" coveredelements="10"/>
       </file>
     </package>
-    <metrics files="14" loc="644" ncloc="357" classes="11" methods="28" coveredmethods="27" conditionals="0" coveredconditionals="0" statements="69" coveredstatements="68" elements="97" coveredelements="95"/>
+    <metrics files="15" loc="699" ncloc="394" classes="12" methods="31" coveredmethods="30" conditionals="0" coveredconditionals="0" statements="79" coveredstatements="78" elements="110" coveredelements="108"/>
   </project>
 </coverage>
