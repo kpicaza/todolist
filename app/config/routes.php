@@ -1,3 +1,3 @@
 <?php
 
-$app->get('/', 'App\Controller\IndexController::indexAction');
+$app->post('/tasks', 'tasks.controller:postAction');

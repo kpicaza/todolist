@@ -1,0 +1,10 @@
+extensions:
+  PhpSpecCodeCoverage\CodeCoverageExtension:
+    format:
+      - html
+      - clover
+    whitelist:
+      - src/
+    output:
+      html: web/coverage
+      clover: coverage.xml

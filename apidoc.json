@@ -1,0 +1,8 @@
+{
+  "name": "Todo list Rest API Docs",
+  "version": "0.1.0",
+  "description": "Todo list Rest API Docs",
+  "apidoc": {
+    "title": "Todo list Rest"
+  }
+}

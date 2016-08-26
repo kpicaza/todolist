@@ -38,7 +38,8 @@
         "symfony/browser-kit": "^3.1",
         "symfony/css-selector": "^3.1",
         "fzaninotto/faker": "^1.6",
-        "silex/web-profiler": "^2.0"
+        "silex/web-profiler": "^2.0",
+        "henrikbjorn/phpspec-code-coverage": "^3.0"
     },
     "config": {
         "bin-dir": "bin"
