@@ -45,8 +45,7 @@ class TaskRepository
     {
         $task = $this->factory->make($description, $progress);
 
-        $this->gateway->persist($task);
-        $this->gateway->flush();
+        $this->gateway->save($task);
 
         return $task;
     }

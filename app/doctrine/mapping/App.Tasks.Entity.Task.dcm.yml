@@ -1,0 +1,20 @@
+App\Tasks\Entity\Task:
+    repositoryClass: App\Tasks\Gateway\TaskGateway
+    type: entity
+    table: Tasks
+    id:
+        id:
+            type: guid
+    fields:
+        description:
+            type: text
+        progress:
+            type: json_array
+        createdAt:
+            type: datetime
+        updatedAt:
+            type: datetime
+            nullable: true
+    lifecycleCallbacks:
+        prePersist: [ setCreatedAt ]
+        preUpdate: [ setUpdatedAt ]

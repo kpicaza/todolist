@@ -10,10 +10,13 @@ $app['tasks.factory'] = function () {
 
 /**
  * Task Gateway.
- * @return \Tests\Gateway\FakeGateway
+ * @return \App\Common\Gateway\GatewayInterface
  */
-$app['tasks.gateway'] = function () {
-    return new \Tests\Gateway\FakeGateway();
+$app['tasks.gateway'] = function () use ($app) {
+    return new \App\Tasks\Gateway\TaskGateway(
+        $app['orm.em'],
+        new \Doctrine\ORM\Mapping\ClassMetadata(\App\Tasks\Entity\Task::class)
+    );
 };
 
 /**

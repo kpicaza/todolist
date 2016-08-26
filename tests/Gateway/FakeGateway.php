@@ -15,15 +15,9 @@ class FakeGateway implements GatewayInterface
 {
     private $store = [];
 
-    public function persist($task)
+    public function save($task)
     {
         $this->store[] = $task;
-
-        return end($this->store);
     }
 
-    public function flush()
-    {
-        return end($this->store);
-    }
 }

@@ -72,4 +72,15 @@ class ProgressSpec extends ObjectBehavior
         )->duringInstantiation();
     }
 
+    function it_should_be_json_serializable()
+    {
+        $this->beConstructedWith(
+            self::PROGRESS
+        );
+
+        $array = $this->jsonSerialize();
+
+        $this->get()->shouldBe($array['progress']);
+        $this->isDone()->shouldBe($array['isDone']);
+    }
 }

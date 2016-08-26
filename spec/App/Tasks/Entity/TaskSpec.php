@@ -60,6 +60,30 @@ class TaskSpec extends ObjectBehavior
         $this->getDescription()->shouldBe(self::DESCRIPTION);
     }
 
+    function it_has_created_at_date_time()
+    {
+        $this->beConstructedWith(
+            TaskId::fromString(Uuid::uuid4()),
+            new Progress(self::PROGRESS),
+            self::DESCRIPTION
+        );
+
+        $this->setCreatedAt();
+        $this->getCreatedAt()->shouldBeAnInstanceOf(\DateTimeInterface::class);
+    }
+
+    function it_has_updated_at_date_time()
+    {
+        $this->beConstructedWith(
+            TaskId::fromString(Uuid::uuid4()),
+            new Progress(self::PROGRESS),
+            self::DESCRIPTION
+        );
+
+        $this->setUpdatedAt();
+        $this->getUpdatedAt()->shouldBeAnInstanceOf(\DateTimeInterface::class);
+    }
+
     function it_cannot_have_empty_description()
     {
         $this->beConstructedWith(

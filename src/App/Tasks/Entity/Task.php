@@ -18,7 +18,7 @@ class Task implements TaskInterface
      * Task unique identifier.
      * @var TaskId
      */
-    private $taskId;
+    private $id;
 
     /**
      * Progress.
@@ -33,6 +33,16 @@ class Task implements TaskInterface
     private $description;
 
     /**
+     * @var \DateTimeInterface
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTimeInterface
+     */
+    private $updatedAt;
+
+    /**
      * Task constructor.
      * @param TaskId $taskId
      * @param ProgressInterface $progress
@@ -40,7 +50,7 @@ class Task implements TaskInterface
      */
     public function __construct(TaskId $taskId, ProgressInterface $progress, $description)
     {
-        $this->taskId = $taskId;
+        $this->id = $taskId;
         $this->progress = $progress;
 
         if (empty($description)) {
@@ -58,7 +68,7 @@ class Task implements TaskInterface
      */
     public function id()
     {
-        return (string) $this->taskId;
+        return (string) $this->id;
     }
 
     /**
@@ -77,5 +87,37 @@ class Task implements TaskInterface
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * @return \DateTimeInterface
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @return \DateTimeInterface
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     *
+     */
+    public function setCreatedAt()
+    {
+        $this->createdAt = new \DateTime();
+    }
+
+    /**
+     *
+     */
+    public function setUpdatedAt()
+    {
+        $this->updatedAt = new \DateTime();
     }
 }

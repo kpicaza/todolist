@@ -16,10 +16,5 @@ interface GatewayInterface
      * @param $object
      * @return mixed
      */
-    public function persist($object);
-
-    /**
-     * @return mixed
-     */
-    public function flush();
+    public function save($object);
 }
