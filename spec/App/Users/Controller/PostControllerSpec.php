@@ -10,6 +10,7 @@ use Prophecy\Argument;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder;
 use Tests\Gateway\FakeGateway;
 
 class PostControllerSpec extends ObjectBehavior
@@ -26,7 +27,9 @@ class PostControllerSpec extends ObjectBehavior
     {
         $this->dispatcher = new EventDispatcher();
         $this->repository = new UserRepository(
-            new UserFactory(),
+            new UserFactory(
+                new BCryptPasswordEncoder(4)
+            ),
             new FakeGateway()
         );
     }
@@ -43,7 +46,7 @@ class PostControllerSpec extends ObjectBehavior
         $request->request->add(['email' => self::EMAIL]);
         $request->request->add(['password' => self::PASS]);
 
-        $response  =$this->postAction($request);
+        $response = $this->postAction($request);
         $response->shouldBeAnInstanceOf(JsonResponse::class);
         $response->getStatusCode()->shouldBe(204);
     }

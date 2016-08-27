@@ -11,6 +11,9 @@
 # Cache
 /var/cache/*
 
+# ssl keys
+/var/jws/*
+
 # Configuration
 /app/config/parameters.php
 /phpspec.yml

@@ -27,4 +27,11 @@ interface GatewayInterface
      * @return mixed
      */
     public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null);
+
+    /**
+     * @param array $criteria
+     *
+     * @return mixed
+     */
+    public function findOneBy(array $criteria);
 }

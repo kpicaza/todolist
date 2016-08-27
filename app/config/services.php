@@ -15,7 +15,9 @@ $app['tasks.factory'] = function () {
 $app['tasks.gateway'] = function () use ($app) {
     return new \App\Tasks\Gateway\TaskGateway(
         $app['orm.em'],
-        new \Doctrine\ORM\Mapping\ClassMetadata(\App\Tasks\Entity\Task::class)
+        new \Doctrine\ORM\Mapping\ClassMetadata(
+            \App\Tasks\Entity\Task::class
+        )
     );
 };
 
@@ -65,8 +67,10 @@ $app['tasks.get.controller'] = function () use ($app) {
  * User Factory.
  * @return \App\Users\Entity\UserFactory
  */
-$app['users.factory'] = function () {
-    return new \App\Users\Entity\UserFactory();
+$app['users.factory'] = function () use ($app) {
+    return new \App\Users\Entity\UserFactory(
+        $app['security.default_encoder']
+    );
 };
 
 /**
@@ -76,7 +80,9 @@ $app['users.factory'] = function () {
 $app['users.gateway'] = function () use ($app) {
     return new \App\Users\Gateway\UserGateway(
         $app['orm.em'],
-        new \Doctrine\ORM\Mapping\ClassMetadata(\App\Users\Entity\User::class)
+        new \Doctrine\ORM\Mapping\ClassMetadata(
+            \App\Users\Entity\User::class
+        )
     );
 };
 
@@ -91,6 +97,12 @@ $app['users.repository'] = function () use ($app) {
     );
 };
 
+$app['users.provider'] = function () use ($app) {
+    return new \App\Users\Security\Provider\UserProvider(
+        $app['users.repository']
+    );
+};
+
 /**
  * Post User Controller.
  * @return \App\Users\Controller\PostController
@@ -102,3 +114,21 @@ $app['users.post.controller'] = function () use ($app) {
     );
 };
 
+$app['jws.authenticator'] = function () use ($app, $config) {
+    return new \App\Users\Security\Authenticator\JwsAuthenticator(
+        $app['users.repository'],
+        $config['jws']['public.key.path']
+    );
+};
+
+$app['users.credentials.controller'] = function () use ($app, $config) {
+    return new \App\Users\Controller\CredentialsController(
+        $app['dispatcher'],
+        $app['users.provider'],
+        $app['security.default_encoder'],
+        [
+            'private.key.path' => $config['jws']['private.key.path'],
+            'private.key.phrase' => $config['jws']['private.key.phrase']
+        ]
+    );
+};

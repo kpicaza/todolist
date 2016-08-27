@@ -7,6 +7,7 @@ use App\Users\Repository\UserRepository;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Prophecy\Prophet;
+use Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder;
 use Tests\Gateway\FakeGateway;
 
 class UserRepositorySpec extends ObjectBehavior
@@ -22,16 +23,20 @@ class UserRepositorySpec extends ObjectBehavior
         $this->prophet = new Prophet();
     }
 
-    function it_should_persist_new_tasks()
+    function it_should_persist_new_users()
     {
         $gateway = new FakeGateway();
-        $factory = new UserFactory();
+        $factory = new UserFactory(
+            new BCryptPasswordEncoder(4)
+        );
 
         $user = $factory->make(self::NAME, self::EMAIL, self::PASS);
 
+        $fakeFactory = $this->prophet->prophesize(UserFactory::class);
+        $fakeFactory->make(self::NAME, self::EMAIL, self::PASS)->willReturn($user);
 
         $this->beConstructedWith(
-            $factory,
+            $fakeFactory,
             $gateway
         );
 

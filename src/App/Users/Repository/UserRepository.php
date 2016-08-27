@@ -48,4 +48,14 @@ class UserRepository
 
         return $user;
     }
+
+    /**
+     * @param array $criteria
+     *
+     * @return \App\Users\Entity\User
+     */
+    public function findOneBy(array $criteria = [])
+    {
+        return $this->gateway->findOneBy($criteria);
+    }
 }

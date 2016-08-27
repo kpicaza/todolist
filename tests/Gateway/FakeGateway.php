@@ -25,4 +25,11 @@ class FakeGateway implements GatewayInterface
         return $this->store;
     }
 
+    /**
+     * @param array $criteria
+     */
+    public function findOneBy(array $criteria)
+    {
+
+    }
 }

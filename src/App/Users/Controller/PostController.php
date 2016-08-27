@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * This file is part of TodoList\Users package.
+ */
+
 namespace App\Users\Controller;
 
 use App\Users\Repository\UserRepository;
@@ -21,7 +25,7 @@ class PostController
     private $repository;
 
     /**
-     * TaskController constructor.
+     * User PostController constructor.
      *
      * @param EventDispatcherInterface $eventDispatcher
      * @param UserRepository           $repository
@@ -42,10 +46,6 @@ class PostController
         $data = $request->request->all();
 
         try {
-            $required = ['username', 'email', 'password'];
-
-
-
             if (!array_key_exists('username', $data)) {
                 throw new \InvalidArgumentException(
                     'Username cannot be empty.'
