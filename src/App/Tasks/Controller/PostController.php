@@ -15,8 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class TaskController
- * @package App\Tasks\Controller
+ * Class TaskController.
  */
 class PostController
 {
@@ -32,8 +31,9 @@ class PostController
 
     /**
      * TaskController constructor.
+     *
      * @param EventDispatcherInterface $eventDispatcher
-     * @param TaskRepository $repository
+     * @param TaskRepository           $repository
      */
     public function __construct(EventDispatcherInterface $eventDispatcher, TaskRepository $repository)
     {
@@ -43,6 +43,7 @@ class PostController
 
     /**
      * @param Request $request
+     *
      * @return JsonResponse
      */
     public function postAction(Request $request)
@@ -65,7 +66,6 @@ class PostController
                 Events::ADD_TASK,
                 new TaskAdded($task, new \DateTime())
             );
-
         } catch (\InvalidArgumentException $e) {
             return new JsonResponse('', Response::HTTP_BAD_REQUEST);
         }

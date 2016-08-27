@@ -7,19 +7,20 @@
 namespace App\Common\Entity;
 
 /**
- * Class AggregateRootId
- * @package App\Common\Entity
+ * Class AggregateRootId.
  */
 class AggregateRootId
 {
     /**
      * Id.
+     *
      * @var string
      */
     private $id;
 
     /**
      * Id constructor.
+     *
      * @param $uuid
      */
     public function __construct($uuid)
@@ -29,7 +30,9 @@ class AggregateRootId
 
     /**
      * Get Id from Uuid.
+     *
      * @param string $id
+     *
      * @return static
      */
     public static function fromString($id)
@@ -39,11 +42,11 @@ class AggregateRootId
 
     /**
      * Get Id as string.
+     *
      * @return string
      */
     public function __toString()
     {
         return (string) $this->id;
     }
-
 }

@@ -10,14 +10,14 @@ use App\Common\Entity\Progress;
 use Ramsey\Uuid\Uuid;
 
 /**
- * Class TaskFactory
- * @package App\Tasks\Entity
+ * Class TaskFactory.
  */
 class TaskFactory
 {
     /**
      * @param $name
      * @param int $progress
+     *
      * @return Task
      */
     public function make($name, $progress = 0)

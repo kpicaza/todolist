@@ -9,8 +9,7 @@ namespace App\Tasks\Entity;
 use App\Common\Entity\AggregateRootId;
 
 /**
- * Class TaskId
- * @package App\Tasks\Entity
+ * Class TaskId.
  */
 class TaskId extends AggregateRootId
 {

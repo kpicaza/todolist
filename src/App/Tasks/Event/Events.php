@@ -7,8 +7,7 @@
 namespace App\Tasks\Event;
 
 /**
- * Class Events
- * @package App\Tasks\Event
+ * Class Events.
  */
 class Events
 {

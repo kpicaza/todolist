@@ -12,13 +12,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class GetController
- * @package App\Tasks\Controller
+ * Class GetController.
  */
 class GetController
 {
     /**
      * GetController constructor.
+     *
      * @param TaskRepository $repository
      */
     public function __construct(TaskRepository $repository)
@@ -29,6 +29,7 @@ class GetController
     /**
      * @param Request $request
      * @param $id
+     *
      * @return JsonResponse
      */
     public function getAction(Request $request, $id)

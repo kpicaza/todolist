@@ -9,8 +9,7 @@ namespace App\Users\Entity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Class User
- * @package App\Users\Entity
+ * Class User.
  */
 class User implements UserInterface
 {
@@ -56,12 +55,13 @@ class User implements UserInterface
 
     /**
      * User constructor.
+     *
      * @param UserId $id
      * @param $username
      * @param $email
-     * @param null $pass
+     * @param null  $pass
      * @param array $roles
-     * @param null $salt
+     * @param null  $salt
      */
     public function __construct(UserId $id, $username, $email, $pass = null, array $roles = array(), $salt = null)
     {

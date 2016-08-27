@@ -10,8 +10,7 @@ use App\Tasks\Entity\TaskInterface;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
- * Class TaskAdded
- * @package App\Tasks\Event
+ * Class TaskAdded.
  */
 class TaskAdded extends Event
 {
@@ -27,7 +26,8 @@ class TaskAdded extends Event
 
     /**
      * TaskAdded constructor.
-     * @param TaskInterface $task
+     *
+     * @param TaskInterface      $task
      * @param \DateTimeInterface $receivedAt
      */
     public function __construct(TaskInterface $task, \DateTimeInterface $receivedAt)

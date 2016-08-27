@@ -12,8 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class IndexController
- * @package App\Tasks\Controller
+ * Class IndexController.
  */
 class IndexController
 {
@@ -24,6 +23,7 @@ class IndexController
 
     /**
      * IndexController constructor.
+     *
      * @param TaskRepository $repository
      */
     public function __construct(TaskRepository $repository)
@@ -33,6 +33,7 @@ class IndexController
 
     /**
      * @param Request $request
+     *
      * @return JsonResponse
      */
     public function getAction(Request $request)

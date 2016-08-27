@@ -9,8 +9,7 @@ namespace App\Users\Entity;
 use App\Common\Entity\AggregateRootId;
 
 /**
- * Class UserId
- * @package App\Users\Entity
+ * Class UserId.
  */
 class UserId extends AggregateRootId
 {

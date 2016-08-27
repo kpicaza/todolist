@@ -7,8 +7,7 @@
 namespace App\Tasks\EventListener;
 
 /**
- * Class TaskPersistedListener
- * @package App\Tasks\EventListener
+ * Class TaskPersistedListener.
  */
 class TaskPersistedListener
 {

@@ -9,25 +9,27 @@ namespace App\Tasks\Entity;
 use App\Common\Entity\ProgressInterface;
 
 /**
- * Class Task
- * @package App\Tasks\Entity
+ * Class Task.
  */
 class Task implements TaskInterface, \JsonSerializable
 {
     /**
      * Task unique identifier.
+     *
      * @var TaskId
      */
     private $id;
 
     /**
      * Progress.
+     *
      * @var ProgressInterface
      */
     private $progress;
 
     /**
-     * Description
+     * Description.
+     *
      * @var string
      */
     private $description;
@@ -44,7 +46,8 @@ class Task implements TaskInterface, \JsonSerializable
 
     /**
      * Task constructor.
-     * @param TaskId $taskId
+     *
+     * @param TaskId            $taskId
      * @param ProgressInterface $progress
      * @param $description
      */
@@ -64,6 +67,7 @@ class Task implements TaskInterface, \JsonSerializable
 
     /**
      * Task id.
+     *
      * @return string
      */
     public function id()
@@ -73,6 +77,7 @@ class Task implements TaskInterface, \JsonSerializable
 
     /**
      * Get Task Progress count.
+     *
      * @return ProgressInterface
      */
     public function getProgress()
@@ -82,6 +87,7 @@ class Task implements TaskInterface, \JsonSerializable
 
     /**
      * Get Task Description.
+     *
      * @return string
      */
     public function getDescription()
@@ -122,7 +128,8 @@ class Task implements TaskInterface, \JsonSerializable
     }
 
     /**
-     * {inheritdoc}
+     * {inheritdoc}.
+     *
      * @return array
      */
     public function jsonSerialize()
@@ -132,7 +139,7 @@ class Task implements TaskInterface, \JsonSerializable
             'description' => $this->description,
             'progress' => $this->progress,
             'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt
+            'updatedAt' => $this->updatedAt,
         ];
     }
 }

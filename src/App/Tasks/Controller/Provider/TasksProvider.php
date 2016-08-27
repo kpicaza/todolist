@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the InCrm package.
+ * This file is part of TodoList\tasks package.
  */
 
 namespace App\Tasks\Controller\Provider;
@@ -11,12 +11,10 @@ use Silex\Application;
 use Silex\ControllerCollection;
 
 /**
- * Class OrganizationProvider
- * @package InCRM\App\Controller\Provider
+ * Class OrganizationProvider.
  */
 class TasksProvider implements ControllerProviderInterface
 {
-
     /**
      * Returns routes to connect to the given application.
      *

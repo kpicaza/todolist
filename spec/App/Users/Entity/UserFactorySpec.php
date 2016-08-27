@@ -30,13 +30,14 @@ class UserFactorySpec extends ObjectBehavior
         );
 
         $new = $this->make(
-            $uuid,
             self::USERNAME,
             self::EMAIL,
             self::PASS
         );
 
-        $new->id()->shouldBe($user->id());
+        $new->shouldBeAnInstanceOf(User::class);
+
+        $new->getUsername()->shouldBe($user->getUsername());
 
     }
 }

@@ -7,19 +7,20 @@
 namespace App\Common\Entity;
 
 /**
- * Class Progress
- * @package App\Common\Entity
+ * Class Progress.
  */
 class Progress implements ProgressInterface, \JsonSerializable
 {
     /**
      * Progress.
+     *
      * @var int
      */
     private $progress;
 
     /**
      * Progress constructor.
+     *
      * @param $progress
      */
     public function __construct($progress)
@@ -35,6 +36,7 @@ class Progress implements ProgressInterface, \JsonSerializable
 
     /**
      * Check if progress is complete or not.
+     *
      * @return bool
      */
     public function isDone()
@@ -44,6 +46,7 @@ class Progress implements ProgressInterface, \JsonSerializable
 
     /**
      * Get progress count.
+     *
      * @return int
      */
     public function get()
@@ -52,17 +55,20 @@ class Progress implements ProgressInterface, \JsonSerializable
     }
 
     /**
-     * Specify data which should be serialized to JSON
+     * Specify data which should be serialized to JSON.
+     *
      * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     *
      * @return mixed data which can be serialized by <b>json_encode</b>,
-     * which is a value of any type other than a resource.
+     *               which is a value of any type other than a resource.
+     *
      * @since 5.4.0
      */
     public function jsonSerialize()
     {
         return [
             'progress' => $this->progress,
-            'isDone' => $this->isDone()
+            'isDone' => $this->isDone(),
         ];
     }
 }

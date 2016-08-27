@@ -10,8 +10,7 @@ use App\Common\Gateway\GatewayInterface;
 use App\Tasks\Entity\TaskFactory;
 
 /**
- * Class TaskRepository
- * @package App\Tasks\Repository
+ * Class TaskRepository.
  */
 class TaskRepository
 {
@@ -27,7 +26,8 @@ class TaskRepository
 
     /**
      * TaskRepository constructor.
-     * @param TaskFactory $factory
+     *
+     * @param TaskFactory      $factory
      * @param GatewayInterface $gateway
      */
     public function __construct(TaskFactory $factory, GatewayInterface $gateway)
@@ -38,7 +38,8 @@ class TaskRepository
 
     /**
      * @param string $description
-     * @param int $progress
+     * @param int    $progress
+     *
      * @return \App\Tasks\Entity\TaskInterface
      */
     public function insert($description, $progress = 0)

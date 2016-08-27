@@ -60,3 +60,45 @@ $app['tasks.get.controller'] = function () use ($app) {
         $app['tasks.repository']
     );
 };
+
+/**
+ * User Factory.
+ * @return \App\Users\Entity\UserFactory
+ */
+$app['users.factory'] = function () {
+    return new \App\Users\Entity\UserFactory();
+};
+
+/**
+ * User Gateway.
+ * @return \App\Common\Gateway\GatewayInterface
+ */
+$app['users.gateway'] = function () use ($app) {
+    return new \App\Users\Gateway\UserGateway(
+        $app['orm.em'],
+        new \Doctrine\ORM\Mapping\ClassMetadata(\App\Users\Entity\User::class)
+    );
+};
+
+/**
+ * User Repository.
+ * @return \App\Users\Repository\UserRepository
+ */
+$app['users.repository'] = function () use ($app) {
+    return new \App\Users\Repository\UserRepository(
+        $app['users.factory'],
+        $app['users.gateway']
+    );
+};
+
+/**
+ * Post User Controller.
+ * @return \App\Users\Controller\PostController
+ */
+$app['users.post.controller'] = function () use ($app) {
+    return new \App\Users\Controller\PostController(
+        $app['dispatcher'],
+        $app['users.repository']
+    );
+};
+
