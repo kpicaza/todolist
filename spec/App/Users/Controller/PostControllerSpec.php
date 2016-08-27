@@ -48,4 +48,58 @@ class PostControllerSpec extends ObjectBehavior
         $response->getStatusCode()->shouldBe(204);
     }
 
+    function it_must_have_username()
+    {
+        $this->beConstructedWith(
+            $this->dispatcher,
+            $this->repository
+        );
+
+        $request = new Request();
+        $request->request->add(['email' => self::EMAIL]);
+        $request->request->add(['password' => self::PASS]);
+
+        $this->postAction($request)->shouldBeAnInstanceOf(JsonResponse::class);
+
+        $response = $this->postAction($request);
+
+        $response->getStatusCode()->shouldBe(400);
+    }
+
+    function it_must_have_email()
+    {
+        $this->beConstructedWith(
+            $this->dispatcher,
+            $this->repository
+        );
+
+        $request = new Request();
+        $request->request->add(['username' => self::NAME]);
+        $request->request->add(['password' => self::PASS]);
+
+        $this->postAction($request)->shouldBeAnInstanceOf(JsonResponse::class);
+
+        $response = $this->postAction($request);
+
+        $response->getStatusCode()->shouldBe(400);
+    }
+
+
+    function it_must_have_password()
+    {
+        $this->beConstructedWith(
+            $this->dispatcher,
+            $this->repository
+        );
+
+        $request = new Request();
+        $request->request->add(['username' => self::NAME]);
+        $request->request->add(['email' => self::EMAIL]);
+
+        $this->postAction($request)->shouldBeAnInstanceOf(JsonResponse::class);
+
+        $response = $this->postAction($request);
+
+        $response->getStatusCode()->shouldBe(400);
+    }
 }
