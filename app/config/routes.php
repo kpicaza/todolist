@@ -1,5 +1,5 @@
 <?php
 
-$app->get('/tasks', 'tasks.index.controller:getAction');
-$app->post('/tasks', 'tasks.post.controller:postAction');
-$app->get('/tasks/{id}', 'tasks.get.controller:getAction');
+use App\Tasks\Controller\Provider\TasksProvider;
+
+$app->mount('/api/v1/tasks', new TasksProvider());
