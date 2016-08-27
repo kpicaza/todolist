@@ -45,6 +45,16 @@ class User implements UserInterface
     private $password;
 
     /**
+     * @var \DateTimeInterface
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTimeInterface
+     */
+    private $updatedAt;
+
+    /**
      * User constructor.
      * @param UserId $id
      * @param $username
@@ -130,5 +140,37 @@ class User implements UserInterface
      */
     public function eraseCredentials()
     {
+    }
+
+    /**
+     * @return \DateTimeInterface
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @return \DateTimeInterface
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     *
+     */
+    public function setCreatedAt()
+    {
+        $this->createdAt = new \DateTime();
+    }
+
+    /**
+     *
+     */
+    public function setUpdatedAt()
+    {
+        $this->updatedAt = new \DateTime();
     }
 }

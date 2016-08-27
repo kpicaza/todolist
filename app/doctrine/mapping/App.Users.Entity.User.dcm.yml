@@ -1,0 +1,24 @@
+App\Users\Entity\User:
+    repositoryClass: App\Users\Gateway\UserGateway
+    type: entity
+    table: Users
+    id:
+        id:
+            type: guid
+    fields:
+        username:
+            type: string
+        email:
+            type: string
+        password:
+            type: string
+        roles:
+            type: json_array
+        createdAt:
+            type: datetime
+        updatedAt:
+            type: datetime
+            nullable: true
+    lifecycleCallbacks:
+        prePersist: [ setCreatedAt ]
+        preUpdate: [ setUpdatedAt ]

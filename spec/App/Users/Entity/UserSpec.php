@@ -137,4 +137,32 @@ class UserSpec extends ObjectBehavior
         $this->getSalt()->shouldBe(self::SALT);
     }
 
+    function it_has_created_at_date_time()
+    {
+        $uuid = \App\Users\Entity\UserId::fromString(Uuid::uuid4());
+
+        $this->beConstructedWith(
+            $uuid,
+            self::USERNAME,
+            self::EMAIL
+        );
+
+        $this->setCreatedAt();
+        $this->getCreatedAt()->shouldBeAnInstanceOf(\DateTimeInterface::class);
+    }
+
+    function it_has_updated_at_date_time()
+    {
+        $uuid = \App\Users\Entity\UserId::fromString(Uuid::uuid4());
+
+        $this->beConstructedWith(
+            $uuid,
+            self::USERNAME,
+            self::EMAIL
+        );
+
+        $this->setUpdatedAt();
+        $this->getUpdatedAt()->shouldBeAnInstanceOf(\DateTimeInterface::class);
+    }
+
 }
