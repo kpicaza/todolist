@@ -71,5 +71,6 @@ class PostController
             return new JsonResponse(null, Response::HTTP_BAD_REQUEST);
         }
 
-        return new JsonResponse(null, Response::HTTP_NO_CONTENT);    }
+        return new JsonResponse(null, Response::HTTP_NO_CONTENT);
+    }
 }

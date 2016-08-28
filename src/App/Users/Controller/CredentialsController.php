@@ -6,7 +6,6 @@
 
 namespace App\Users\Controller;
 
-use App\Users\Repository\UserRepository;
 use App\Users\Security\Provider\JwsProvider;
 use App\Users\Security\Provider\UserProvider;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -18,8 +17,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 
 /**
- * Class CredentialsController
- * @package App\Users\Controller
+ * Class CredentialsController.
  */
 class CredentialsController
 {
@@ -46,8 +44,8 @@ class CredentialsController
     /**
      * User CredentialsController constructor.
      *
-     * @param EventDispatcherInterface $eventDispatcher
-     * @param UserProviderInterface $provider
+     * @param EventDispatcherInterface     $eventDispatcher
+     * @param UserProviderInterface        $provider
      * @param UserPasswordEncoderInterface $encoder
      */
     public function __construct(
@@ -55,8 +53,7 @@ class CredentialsController
         UserProviderInterface $provider,
         PasswordEncoderInterface $encoder,
         array $options
-    )
-    {
+    ) {
         $this->dispatcher = $eventDispatcher;
         $this->provider = $provider;
         $this->encoder = $encoder;
@@ -89,12 +86,12 @@ class CredentialsController
 
             $authorizationProvider = new JwsProvider(
                 $this->provider,
-                'file://' . $this->options['private.key.path'],
+                'file://'.$this->options['private.key.path'],
                 $this->options['private.key.phrase']
             );
 
             $response = new JsonResponse([
-                'access_token' => $authorizationProvider->createToken($user)
+                'access_token' => $authorizationProvider->createToken($user),
             ], Response::HTTP_OK);
         } catch (\RuntimeException $e) {
             return new JsonResponse('', Response::HTTP_UNAUTHORIZED);

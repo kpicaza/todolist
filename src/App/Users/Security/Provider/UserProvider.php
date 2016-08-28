@@ -13,8 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 
 /**
- * Class UserProvider
- * @package App\Users\Security\Provider
+ * Class UserProvider.
  */
 class UserProvider implements UserProviderInterface
 {
@@ -65,7 +64,7 @@ class UserProvider implements UserProviderInterface
     public function supportsClass($class)
     {
         return in_array($class, [
-            User::class
+            User::class,
         ], true);
     }
 }

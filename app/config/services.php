@@ -132,3 +132,9 @@ $app['users.credentials.controller'] = function () use ($app, $config) {
         ]
     );
 };
+
+$app['front.index.controller'] = function () use ($app) {
+    return new \App\Front\Controller\IndexController(
+        $app['twig']
+    );
+};

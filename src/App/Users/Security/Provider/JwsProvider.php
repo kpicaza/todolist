@@ -6,14 +6,12 @@
 
 namespace App\Users\Security\Provider;
 
-
 use Namshi\JOSE\SimpleJWS;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 
 /**
- * Class JwsProvider
- * @package App\Users\Security\Provider
+ * Class JwsProvider.
  */
 class JwsProvider
 {
@@ -38,6 +36,7 @@ class JwsProvider
 
     /**
      * JwsProvider constructor.
+     *
      * @param UserProviderInterface $provider
      */
     public function __construct(UserProviderInterface $provider, $path, $phrase)
@@ -49,18 +48,19 @@ class JwsProvider
 
     /**
      * @param $username
+     *
      * @return string
      */
     public function createToken(UserInterface $user)
     {
         $jws = new SimpleJWS([
-            'alg' => 'RS256'
+            'alg' => 'RS256',
         ]);
 
         $date = new \DateTime('tomorrow');
 
         $jws->setPayload([
-            'uid' => (string)$user->id(),
+            'uid' => (string) $user->id(),
             'exp' => $date->format('U'),
         ]);
 

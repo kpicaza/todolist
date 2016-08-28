@@ -3,11 +3,10 @@
  * Created by PhpStorm.
  * User: kpicaza
  * Date: 27/08/16
- * Time: 20:30
+ * Time: 20:30.
  */
 
 namespace App\Users\Security\Authenticator;
-
 
 use App\Users\Repository\UserRepository;
 use Namshi\JOSE\SimpleJWS;
@@ -34,6 +33,7 @@ class JwsAuthenticator extends AbstractGuardAuthenticator
 
     /**
      * JwsAuthenticator constructor.
+     *
      * @param UserRepository $repository
      * @param $path
      */
@@ -50,7 +50,7 @@ class JwsAuthenticator extends AbstractGuardAuthenticator
     {
         $data = [
             // you might translate this message
-            'message' => 'Authentication Required'
+            'message' => 'Authentication Required',
         ];
 
         return new JsonResponse($data, Response::HTTP_UNAUTHORIZED);
@@ -77,7 +77,7 @@ class JwsAuthenticator extends AbstractGuardAuthenticator
      */
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
-        $public_key = openssl_pkey_get_public('file://' . $this->path);
+        $public_key = openssl_pkey_get_public('file://'.$this->path);
 
         try {
             $credentials['jws'] = SimpleJWS::load($credentials['token']);
@@ -87,7 +87,6 @@ class JwsAuthenticator extends AbstractGuardAuthenticator
             }
 
             $payload = $credentials['jws']->getPayload();
-
         } catch (\InvalidArgumentException $e) {
             return;
         }
@@ -111,7 +110,7 @@ class JwsAuthenticator extends AbstractGuardAuthenticator
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
         $data = [
-            'message' => 'Authentication Required'
+            'message' => 'Authentication Required',
 
             // or to translate this message
             // $this->translator->trans($exception->getMessageKey(), $exception->getMessageData())
@@ -126,7 +125,7 @@ class JwsAuthenticator extends AbstractGuardAuthenticator
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
         // on success, let the request continue
-        return null;
+        return;
     }
 
     /**
