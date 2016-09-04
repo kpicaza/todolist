@@ -1,11 +1,11 @@
 <?php
 
-namespace spec\App\Users\Controller;
+namespace spec\App\Security\Controller;
 
-use App\Users\Controller\CredentialsController;
+use App\Security\Controller\CredentialsController;
 use App\Users\Entity\UserFactory;
 use App\Users\Repository\UserRepository;
-use App\Users\Security\Provider\UserProvider;
+use App\Security\Provider\UserProvider;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Prophecy\Prophet;

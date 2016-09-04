@@ -6,7 +6,7 @@
  * Time: 20:30.
  */
 
-namespace App\Users\Security\Authenticator;
+namespace App\Security\Authenticator;
 
 use App\Users\Repository\UserRepository;
 use Namshi\JOSE\SimpleJWS;
@@ -61,6 +61,8 @@ class JwsAuthenticator extends AbstractGuardAuthenticator
      */
     public function getCredentials(Request $request)
     {
+//        var_dump($token);
+
         if (!$token = $request->headers->get('Authorization')) {
             // no token? Return null and no other methods will be called
             return;
@@ -81,6 +83,8 @@ class JwsAuthenticator extends AbstractGuardAuthenticator
 
         try {
             $credentials['jws'] = SimpleJWS::load($credentials['token']);
+
+//            var_dump($credentials);die();
 
             if (!$credentials['jws']->isValid($public_key)) {
                 throw new \InvalidArgumentException();

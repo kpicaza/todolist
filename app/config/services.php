@@ -98,7 +98,18 @@ $app['users.repository'] = function () use ($app) {
 };
 
 $app['users.provider'] = function () use ($app) {
-    return new \App\Users\Security\Provider\UserProvider(
+    return new \App\Security\Provider\UserProvider(
+        $app['users.repository']
+    );
+};
+
+/**
+ * Get User Controller.
+ * @return \App\Users\Controller\GetController
+ */
+$app['users.get.controller'] = function () use ($app) {
+    return new \App\Users\Controller\GetController(
+        $app['dispatcher'],
         $app['users.repository']
     );
 };
@@ -114,15 +125,18 @@ $app['users.post.controller'] = function () use ($app) {
     );
 };
 
+/**
+ * @return \App\Security\Authenticator\JwsAuthenticator
+ */
 $app['jws.authenticator'] = function () use ($app, $config) {
-    return new \App\Users\Security\Authenticator\JwsAuthenticator(
+    return new \App\Security\Authenticator\JwsAuthenticator(
         $app['users.repository'],
         $config['jws']['public.key.path']
     );
 };
 
 $app['users.credentials.controller'] = function () use ($app, $config) {
-    return new \App\Users\Controller\CredentialsController(
+    return new \App\Security\Controller\CredentialsController(
         $app['dispatcher'],
         $app['users.provider'],
         $app['security.default_encoder'],
@@ -130,11 +144,5 @@ $app['users.credentials.controller'] = function () use ($app, $config) {
             'private.key.path' => $config['jws']['private.key.path'],
             'private.key.phrase' => $config['jws']['private.key.phrase']
         ]
-    );
-};
-
-$app['front.index.controller'] = function () use ($app) {
-    return new \App\Front\Controller\IndexController(
-        $app['twig']
     );
 };

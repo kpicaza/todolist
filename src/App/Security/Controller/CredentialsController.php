@@ -4,10 +4,10 @@
  * This file is part of TodoList\Users package.
  */
 
-namespace App\Users\Controller;
+namespace App\Security\Controller;
 
-use App\Users\Security\Provider\JwsProvider;
-use App\Users\Security\Provider\UserProvider;
+use App\Security\Provider\JwsProvider;
+use App\Security\Provider\UserProvider;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -92,6 +92,7 @@ class CredentialsController
 
             $response = new JsonResponse([
                 'access_token' => $authorizationProvider->createToken($user),
+                'uuid' => $user->id()
             ], Response::HTTP_OK);
         } catch (\RuntimeException $e) {
             return new JsonResponse('', Response::HTTP_UNAUTHORIZED);

@@ -4,7 +4,7 @@
  * This file is part of TodoList\Users package.
  */
 
-namespace App\Users\Security\Provider;
+namespace App\Security\Provider;
 
 use App\Users\Entity\User;
 use App\Users\Repository\UserRepository;
@@ -35,7 +35,7 @@ class UserProvider implements UserProviderInterface
     /**
      * @param $username
      *
-     * @return mixed
+     * @return UserInterface
      */
     public function loadUserByUsername($username)
     {
@@ -49,6 +49,11 @@ class UserProvider implements UserProviderInterface
         return $user;
     }
 
+    /**
+     * @param UserInterface $user
+     *
+     * @return UserInterface
+     */
     public function refreshUser(UserInterface $user)
     {
         return $this->loadUserByUsername($user->getUsername());

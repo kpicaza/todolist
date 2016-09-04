@@ -1,12 +1,12 @@
 <?php
 
-namespace spec\App\Users\Security\Provider;
+namespace spec\App\Security\Provider;
 
 use App\Users\Entity\User;
 use App\Users\Entity\UserFactory;
 use App\Users\Gateway\UserGateway;
 use App\Users\Repository\UserRepository;
-use App\Users\Security\Provider\UserProvider;
+use App\Security\Provider\UserProvider;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Prophecy\Prophet;

@@ -4,7 +4,7 @@
  * This file is part of TodoList\Users package.
  */
 
-namespace App\Users\Security\Provider;
+namespace App\Security\Provider;
 
 use Namshi\JOSE\SimpleJWS;
 use Symfony\Component\Security\Core\User\UserInterface;
