@@ -17,7 +17,7 @@ abstract class Gateway extends EntityRepository implements GatewayInterface
      * TaskGateway constructor.
      *
      * @param \Doctrine\ORM\EntityManager $em
-     * @param ClassMetadata               $class
+     * @param ClassMetadata $class
      */
     public function __construct($em, ClassMetadata $class)
     {
@@ -31,9 +31,22 @@ abstract class Gateway extends EntityRepository implements GatewayInterface
      */
     public function save($object)
     {
-        $this->_em->persist($object);
-        $this->_em->flush();
+        $this->_em->transactional(function () use ($object) {
+            $this->_em->persist($object);
+            $this->_em->flush($object);
+        });
 
         return $object;
+    }
+
+    public function update($object)
+    {
+        $this->_em->transactional(function () use ($object) {
+            $this->_em->merge($object);
+            $this->_em->flush();
+        });
+
+        return $object;
+
     }
 }

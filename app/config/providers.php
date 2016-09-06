@@ -12,6 +12,6 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), $security);
 $app->register(new JDesrosiers\Silex\Provider\CorsServiceProvider(), array(
     "cors.allowOrigin" => "*",
     "cors.allowCredentials" => true,
-    "cors.allowMethods" => "OPTIONS, PUT, POST, GET, DELETE, PATCH",
+    "cors.allowMethods" => "OPTIONS, PUT, POST, PATCH, GET, DELETE, PATCH",
     "cors.exposeHeaders" => ""
 ));

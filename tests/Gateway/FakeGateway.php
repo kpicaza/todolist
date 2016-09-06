@@ -20,6 +20,16 @@ class FakeGateway implements GatewayInterface
         $this->store[] = $task;
     }
 
+    /**
+     * @param $object
+     *
+     * @return mixed
+     */
+    public function update($task)
+    {
+        $this->store[] = $task;
+    }
+
     public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
     {
         return $this->store;

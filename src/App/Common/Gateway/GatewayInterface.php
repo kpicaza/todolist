@@ -17,6 +17,13 @@ interface GatewayInterface
      * @return mixed
      */
     public function save($object);
+    
+    /**
+     * @param $object
+     *
+     * @return mixed
+     */
+    public function update($object);
 
     /**
      * @param array      $criteria

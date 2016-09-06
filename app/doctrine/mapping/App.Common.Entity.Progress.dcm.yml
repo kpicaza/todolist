@@ -1,0 +1,7 @@
+App\Common\Entity\Progress:
+    type: embeddable
+    fields:
+        progress:
+            type: integer
+
+

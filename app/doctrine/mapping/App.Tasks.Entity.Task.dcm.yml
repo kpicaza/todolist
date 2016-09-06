@@ -8,13 +8,15 @@ App\Tasks\Entity\Task:
     fields:
         description:
             type: text
-        progress:
-            type: json_array
         createdAt:
             type: datetime
         updatedAt:
             type: datetime
             nullable: true
+    embedded:
+        progress:
+            class: App\Common\Entity\Progress
+            columnPrefix: false
     lifecycleCallbacks:
         prePersist: [ setCreatedAt ]
         preUpdate: [ setUpdatedAt ]
