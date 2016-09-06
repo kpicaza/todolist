@@ -29,7 +29,7 @@ class GetControllerSpec extends ObjectBehavior
 
     function it_can_retrieve_a_certain_task()
     {
-        $task = (new TaskFactory())->make('Hola mundo');
+        $task = (new TaskFactory())->make(null, 'Hola mundo');
 
         $repository = $this->prophet->prophesize(TaskRepository::class);
         $repository
@@ -50,7 +50,7 @@ class GetControllerSpec extends ObjectBehavior
 
     function it_should_response_with_not_found_http_error_if_task_not_exist()
     {
-        $task = (new TaskFactory())->make('Hola mundo');
+        $task = (new TaskFactory())->make(null, 'Hola mundo');
 
         $this->beConstructedWith(
             $this->repository

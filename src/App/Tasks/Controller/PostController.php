@@ -33,7 +33,7 @@ class PostController
      * TaskController constructor.
      *
      * @param EventDispatcherInterface $eventDispatcher
-     * @param TaskRepository           $repository
+     * @param TaskRepository $repository
      */
     public function __construct(EventDispatcherInterface $eventDispatcher, TaskRepository $repository)
     {
@@ -57,9 +57,11 @@ class PostController
                 );
             }
 
-            $task = $this->repository->insert(
-                $data['description'],
-                array_key_exists('progress', $data) ?: 0
+            $task = $this->repository->save(
+                $this->repository->nextIdentity(
+                    $data['description'],
+                    array_key_exists('progress', $data) ?: 0
+                )
             );
 
             $this->dispatcher->dispatch(

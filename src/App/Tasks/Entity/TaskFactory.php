@@ -20,9 +20,9 @@ class TaskFactory
      *
      * @return Task
      */
-    public function make($name, $progress = 0)
+    public function make($taskId, $name, $progress = 0)
     {
-        $taskId = new TaskId(Uuid::uuid4());
+        $taskId = new TaskId($taskId ?: Uuid::uuid4());
 
         return new Task($taskId, new Progress($progress), $name);
     }

@@ -30,6 +30,6 @@ class FakeGateway implements GatewayInterface
      */
     public function findOneBy(array $criteria)
     {
-
+        return array_key_exists(0, $this->store) ? $this->store[0] : null;
     }
 }

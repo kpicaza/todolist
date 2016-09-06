@@ -25,7 +25,7 @@ class TaskGatewaySpec extends ObjectBehavior
             new \Doctrine\ORM\Mapping\ClassMetadata(\App\Tasks\Entity\Task::class)
         );
 
-        $task = (new TaskFactory())->make('hola mundo');
+        $task = (new TaskFactory())->make(null, 'hola mundo');
 
         $this->save($task)->shouldBe($task);
     }

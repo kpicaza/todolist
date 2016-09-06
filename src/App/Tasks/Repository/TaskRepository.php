@@ -8,6 +8,7 @@ namespace App\Tasks\Repository;
 
 use App\Common\Gateway\GatewayInterface;
 use App\Tasks\Entity\TaskFactory;
+use App\Tasks\Entity\TaskInterface;
 
 /**
  * Class TaskRepository.
@@ -27,7 +28,7 @@ class TaskRepository
     /**
      * TaskRepository constructor.
      *
-     * @param TaskFactory      $factory
+     * @param TaskFactory $factory
      * @param GatewayInterface $gateway
      */
     public function __construct(TaskFactory $factory, GatewayInterface $gateway)
@@ -37,22 +38,73 @@ class TaskRepository
     }
 
     /**
-     * @param string $description
-     * @param int    $progress
-     *
+     * @param array $criteria
+     * @param array|null $orderBy
+     * @param null $limit
+     * @param null $offset
+     * @return mixed
+     */
+    public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+    {
+        return $this->gateway->findBy($criteria, $orderBy, $limit, $offset);
+    }
+
+    /**
+     * @param $description
+     * @param int $progress
      * @return \App\Tasks\Entity\TaskInterface
      */
-    public function insert($description, $progress = 0)
+    public function nextIdentity($description, $progress = 0)
     {
-        $task = $this->factory->make($description, $progress);
+        return $this->factory->make(null, $description, $progress);
+    }
+
+    /**
+     * @param TaskInterface $task
+     * @return TaskInterface
+     */
+    public function save(TaskInterface $task)
+    {
+        $this->gateway->save($task);
+
+        return $task;
+    }
+
+    /**
+     * @param TaskInterface $task
+     * @param string $description
+     * @return TaskInterface
+     */
+    public function saveDescription(TaskInterface $task, $description)
+    {
+        $task = $this->factory->make(
+            $task->id(),
+            $description,
+            $task->getProgress()->get()
+        );
 
         $this->gateway->save($task);
 
         return $task;
     }
 
-    public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+    /**
+     * @param TaskInterface $task
+     * @param int $progress
+     * @return TaskInterface
+     */
+    public function saveProgress(TaskInterface $task, $progress)
     {
-        return $this->gateway->findBy($criteria, $orderBy, $limit, $offset);
+        $task = $this->factory->make(
+            $task->id(),
+            $task->getDescription(),
+            $progress
+        );
+
+
+        $this->gateway->save($task);
+
+        return $task;
     }
+
 }
