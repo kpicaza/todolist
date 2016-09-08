@@ -77,13 +77,15 @@ class TaskRepository
      */
     public function saveDescription(TaskInterface $task, $description)
     {
+        $progress = $task->getProgress();
+
         $task = $this->factory->make(
             $task->id(),
             $description,
-            $task->getProgress()->get()
+            $progress->get()
         );
 
-        $this->gateway->save($task);
+        $this->gateway->update($task);
 
         return $task;
     }
@@ -98,11 +100,11 @@ class TaskRepository
         $task = $this->factory->make(
             $task->id(),
             $task->getDescription(),
-            $progress
+            (int)$progress
         );
 
 
-        $this->gateway->save($task);
+        $this->gateway->update($task);
 
         return $task;
     }

@@ -29,6 +29,7 @@ class TasksProvider implements ControllerProviderInterface
         $task->get('/', 'tasks.index.controller:getAction');
         $task->post('/', 'tasks.post.controller:postAction');
         $task->get('/{id}', 'tasks.get.controller:getAction');
+        $task->patch('/{id}', 'tasks.patch.controller:patchAction');
 
         return $task;
     }

@@ -54,6 +54,17 @@ $app['tasks.post.controller'] = function () use ($app) {
 };
 
 /**
+ * Patch Task Controller.
+ * @return \App\Tasks\Controller\PatchController
+ */
+$app['tasks.patch.controller'] = function () use ($app) {
+    return new \App\Tasks\Controller\PatchController(
+        $app['dispatcher'],
+        $app['tasks.repository']
+    );
+};
+
+/**
  * Get Task Controller.
  * @return \App\Tasks\Controller\GetController
  */
