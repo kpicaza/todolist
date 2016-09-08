@@ -47,7 +47,7 @@ $config['translator'] = [
 
 $config['jws'] = [
     'private.key.path' => __DIR__ . '/../../var/jws/private.pem',
-    'private.key.phrase' => 'farsa',
+    'private.key.phrase' => 'foobar',
     'public.key.path' => __DIR__ . '/../../var/jws/public.pem',
     'ttl' => 86400
 ];
