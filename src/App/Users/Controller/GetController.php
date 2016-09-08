@@ -7,7 +7,6 @@
 namespace App\Users\Controller;
 
 use App\Users\Repository\UserRepository;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

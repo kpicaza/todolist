@@ -20,7 +20,7 @@ class PatchControllerSpec extends ObjectBehavior
     const DESCRIPTION = 'Some task description';
     const PROGRESS = 57;
 
-    const VALID_COMMANdS = PatchController::VALID_COMMANdS;
+    const VALID_COMMANdS = PatchController::VALID_COMMANDS;
 
     private $prophet;
 

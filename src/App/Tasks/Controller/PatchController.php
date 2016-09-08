@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class PatchController
 {
-    const VALID_COMMANdS = [
+    const VALID_COMMANDS = [
         'saveDescription',
         'saveProgress'
     ];
@@ -59,9 +59,9 @@ class PatchController
 
             $command = sprintf('save%s', ucfirst($data['replace']));
 
-            if (!in_array($command, self::VALID_COMMANdS, true)) {
+            if (!in_array($command, self::VALID_COMMANDS, true)) {
                 throw new \InvalidArgumentException(
-                    'replace command must be one of .' . implode(',', self::VALID_COMMANdS)
+                    'replace command must be one of .' . implode(',', self::VALID_COMMANDS)
                 );
             }
 

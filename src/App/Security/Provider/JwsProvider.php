@@ -8,7 +8,6 @@ namespace App\Security\Provider;
 
 use Namshi\JOSE\SimpleJWS;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\User\UserProviderInterface;
 
 /**
  * Class JwsProvider.
