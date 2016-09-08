@@ -16,11 +16,6 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 class JwsProvider
 {
     /**
-     * @var UserProviderInterface
-     */
-    private $provider;
-
-    /**
      * Private key path.
      *
      * @var string
@@ -37,11 +32,11 @@ class JwsProvider
     /**
      * JwsProvider constructor.
      *
-     * @param UserProviderInterface $provider
+     * @param $path
+     * @param $phrase
      */
-    public function __construct(UserProviderInterface $provider, $path, $phrase)
+    public function __construct($path, $phrase)
     {
-        $this->provider = $provider;
         $this->path = $path;
         $this->phrase = $phrase;
     }

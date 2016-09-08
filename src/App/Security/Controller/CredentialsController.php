@@ -85,7 +85,6 @@ class CredentialsController
             }
 
             $authorizationProvider = new JwsProvider(
-                $this->provider,
                 'file://'.$this->options['private.key.path'],
                 $this->options['private.key.phrase']
             );
