@@ -55,3 +55,10 @@ $config['jws'] = [
 $config['twig'] = [
     'twig.path' => __DIR__.'/../resources/views'
 ];
+
+$config['cors'] = [
+    "cors.allowOrigin" => "*",
+    "cors.allowCredentials" => true,
+    "cors.allowMethods" => "OPTIONS, PUT, POST, PATCH, GET, DELETE, PATCH",
+    "cors.exposeHeaders" => ""
+];

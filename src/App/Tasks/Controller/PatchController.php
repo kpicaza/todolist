@@ -41,6 +41,11 @@ class PatchController
         $this->repository = $repository;
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return JsonResponse
+     */
     public function patchAction(Request $request, $id)
     {
         $data = $request->request->all();

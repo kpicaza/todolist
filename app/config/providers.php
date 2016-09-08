@@ -9,9 +9,4 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), $config['doctrine']
 $app->register(new \Knp\Provider\ConsoleServiceProvider(), $config['console']);
 $app->register(new \Dflydev\Provider\DoctrineOrm\DoctrineOrmServiceProvider(), $config['doctrine']['orm']);
 $app->register(new Silex\Provider\SecurityServiceProvider(), $security);
-$app->register(new JDesrosiers\Silex\Provider\CorsServiceProvider(), array(
-    "cors.allowOrigin" => "*",
-    "cors.allowCredentials" => true,
-    "cors.allowMethods" => "OPTIONS, PUT, POST, PATCH, GET, DELETE, PATCH",
-    "cors.exposeHeaders" => ""
-));
+$app->register(new JDesrosiers\Silex\Provider\CorsServiceProvider(), $config['cors']);
