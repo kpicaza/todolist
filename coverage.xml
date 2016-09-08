@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1473363235">
-  <project timestamp="1473363235">
+<coverage generated="1473364088">
+  <project timestamp="1473364088">
     <package name="App\Common\Entity">
       <file name="/home/kpicaza/server/todolist/crud/src/App/Common/Entity/AggregateRootId.php">
         <class name="AggregateRootId" namespace="App\Common\Entity">
