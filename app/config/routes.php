@@ -1,6 +1,5 @@
 <?php
 
-//$app->options('/api/v1/users/credentials', 'users.options.controller:optionsAction');
 $app->get('/api/v1/users/{id}', 'users.get.controller:getAction');
 $app->post('/api/v1/users', 'users.post.controller:postAction');
 $app->post('/api/v1/users/credentials', 'users.credentials.controller:postAction');

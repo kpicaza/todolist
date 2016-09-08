@@ -33,7 +33,7 @@ class GetControllerSpec extends ObjectBehavior
 
         $repository = $this->prophet->prophesize(TaskRepository::class);
         $repository
-            ->findBy(['id' => (string)$task->id()], null, null, null)
+            ->findBy(['id' => $task->id()], null, null, null)
             ->willReturn([$task])
         ;
 

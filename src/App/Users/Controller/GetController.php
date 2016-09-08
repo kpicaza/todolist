@@ -15,11 +15,6 @@ use Symfony\Component\HttpFoundation\Response;
 class GetController
 {
     /**
-     * @var EventDispatcherInterface
-     */
-    private $dispatcher;
-
-    /**
      * @var UserRepository
      */
     private $repository;
@@ -27,12 +22,10 @@ class GetController
     /**
      * User PostController constructor.
      *
-     * @param EventDispatcherInterface $eventDispatcher
      * @param UserRepository $repository
      */
-    public function __construct(EventDispatcherInterface $eventDispatcher, UserRepository $repository)
+    public function __construct(UserRepository $repository)
     {
-        $this->dispatcher = $eventDispatcher;
         $this->repository = $repository;
     }
 

@@ -62,7 +62,7 @@ class PostController
                 );
             }
 
-            $user = $this->repository->insert(
+            $this->repository->insert(
                 $data['username'],
                 $data['email'],
                 $data['password']

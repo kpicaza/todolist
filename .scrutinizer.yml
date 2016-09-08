@@ -2,6 +2,7 @@ filter:
     excluded_paths:
         - vendor/*
         - tests/*
+        - spec/*
 build:
     environment:
         php: 5.6

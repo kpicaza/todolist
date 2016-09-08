@@ -8,7 +8,6 @@ namespace App\Tasks\Controller;
 
 use App\Tasks\Repository\TaskRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -32,11 +31,9 @@ class IndexController
     }
 
     /**
-     * @param Request $request
-     *
      * @return JsonResponse
      */
-    public function getAction(Request $request)
+    public function getAction()
     {
         $tasks = $this->repository->findBy([]);
 

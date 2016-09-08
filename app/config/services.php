@@ -120,7 +120,6 @@ $app['users.provider'] = function () use ($app) {
  */
 $app['users.get.controller'] = function () use ($app) {
     return new \App\Users\Controller\GetController(
-        $app['dispatcher'],
         $app['users.repository']
     );
 };
