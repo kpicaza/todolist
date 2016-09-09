@@ -1,9 +1,7 @@
 <?php
+
 /**
- * Created by PhpStorm.
- * User: kpicaza
- * Date: 27/08/16
- * Time: 20:30.
+ * This file is part of TodoList\Users package.
  */
 
 namespace App\Security\Authenticator;
@@ -19,15 +17,23 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 
+/**
+ * Class JwsAuthenticator
+ * @package App\Security\Authenticator
+ */
 class JwsAuthenticator extends AbstractGuardAuthenticator
 {
     /**
+     * User Repository.
+     *
      * @var UserRepository
      */
     private $repository;
 
     /**
-     * @var string Public Key
+     * Public Key path.
+     *
+     * @var string
      */
     private $path;
 
@@ -45,6 +51,11 @@ class JwsAuthenticator extends AbstractGuardAuthenticator
 
     /**
      * {@inheritdoc}
+     *
+     * @param Request $request
+     * @param AuthenticationException|null $authException
+     *
+     * @return JsonResponse
      */
     public function start(Request $request, AuthenticationException $authException = null)
     {
@@ -58,6 +69,10 @@ class JwsAuthenticator extends AbstractGuardAuthenticator
 
     /**
      * {@inheritdoc}
+     *
+     * @param Request $request
+     *
+     * @return array|void
      */
     public function getCredentials(Request $request)
     {
@@ -74,6 +89,11 @@ class JwsAuthenticator extends AbstractGuardAuthenticator
 
     /**
      * {@inheritdoc}
+     *
+     * @param mixed $credentials
+     * @param UserProviderInterface $userProvider
+     *
+     * @return \App\Users\Entity\User|void
      */
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
@@ -98,6 +118,11 @@ class JwsAuthenticator extends AbstractGuardAuthenticator
 
     /**
      * {@inheritdoc}
+     *
+     * @param mixed $credentials
+     * @param UserInterface $user
+     *
+     * @return bool
      */
     public function checkCredentials($credentials, UserInterface $user)
     {
@@ -106,6 +131,11 @@ class JwsAuthenticator extends AbstractGuardAuthenticator
 
     /**
      * {@inheritdoc}
+     *
+     * @param Request $request
+     * @param AuthenticationException $exception
+     *
+     * @return JsonResponse
      */
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
@@ -121,6 +151,11 @@ class JwsAuthenticator extends AbstractGuardAuthenticator
 
     /**
      * {@inheritdoc}
+     *
+     * @param Request $request
+     * @param TokenInterface $token
+     *
+     * @param string $providerKey
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
@@ -130,6 +165,8 @@ class JwsAuthenticator extends AbstractGuardAuthenticator
 
     /**
      * {@inheritdoc}
+     *
+     * @return bool
      */
     public function supportsRememberMe()
     {

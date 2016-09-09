@@ -13,11 +13,14 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 
 /**
- * Class UserProvider.
+ * Class UserProvider
+ * @package App\Security\Provider
  */
 class UserProvider implements UserProviderInterface
 {
     /**
+     * User repository.
+     *
      * @var UserRepository
      */
     private $repository;
@@ -33,6 +36,8 @@ class UserProvider implements UserProviderInterface
     }
 
     /**
+     * Load User by username.
+     *
      * @param $username
      *
      * @return UserInterface
@@ -50,6 +55,8 @@ class UserProvider implements UserProviderInterface
     }
 
     /**
+     * Refresh a User.
+     *
      * @param UserInterface $user
      *
      * @return UserInterface

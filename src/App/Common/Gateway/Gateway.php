@@ -11,6 +11,10 @@ namespace App\Common\Gateway;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping\ClassMetadata;
 
+/**
+ * Class Gateway
+ * @package App\Common\Gateway
+ */
 abstract class Gateway extends EntityRepository implements GatewayInterface
 {
     /**
@@ -25,6 +29,8 @@ abstract class Gateway extends EntityRepository implements GatewayInterface
     }
 
     /**
+     * {@inheritdoc}
+     *
      * @param $object
      *
      * @return mixed
@@ -40,7 +46,10 @@ abstract class Gateway extends EntityRepository implements GatewayInterface
     }
 
     /**
+     * {@inheritdoc}
+     *
      * @param $object
+     *
      * @return mixed
      */
     public function update($object)

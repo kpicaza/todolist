@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * This file is part of TodoList\tasks package.
+ */
+
 namespace App\Tasks\Controller;
 
 use App\Tasks\Repository\TaskRepository;
@@ -20,11 +24,15 @@ class PatchController
     ];
 
     /**
+     * Event dispatcher.
+     *
      * @var EventDispatcherInterface
      */
     private $dispatcher;
 
     /**
+     * Task repository.
+     *
      * @var TaskRepository
      */
     private $repository;
@@ -42,8 +50,11 @@ class PatchController
     }
 
     /**
+     * Update a Task.
+     *
      * @param Request $request
      * @param $id
+     *
      * @return JsonResponse
      */
     public function patchAction(Request $request, $id)

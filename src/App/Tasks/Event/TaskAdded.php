@@ -10,16 +10,21 @@ use App\Tasks\Entity\TaskInterface;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
- * Class TaskAdded.
+ * Class TaskAdded
+ * @package App\Tasks\Event
  */
 class TaskAdded extends Event
 {
     /**
+     * A Task.
+     *
      * @var TaskInterface
      */
     private $task;
 
     /**
+     * Event received at datetime.
+     *
      * @var \DateTimeInterface
      */
     private $receivedAt;
@@ -37,6 +42,8 @@ class TaskAdded extends Event
     }
 
     /**
+     * Get Event name.
+     *
      * @return string
      */
     public function getName()
@@ -45,6 +52,8 @@ class TaskAdded extends Event
     }
 
     /**
+     * Get Task.
+     *
      * @return TaskInterface
      */
     public function getTask()
@@ -53,6 +62,8 @@ class TaskAdded extends Event
     }
 
     /**
+     * Get Event received at datetime.
+     *
      * @return \DateTimeInterface
      */
     public function getReceivedAt()

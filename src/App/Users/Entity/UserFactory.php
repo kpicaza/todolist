@@ -10,11 +10,14 @@ use Ramsey\Uuid\Uuid;
 use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 
 /**
- * Class UserFactory.
+ * Class UserFactory
+ * @package App\Users\Entity
  */
 class UserFactory
 {
     /**
+     * Password encoder.
+     *
      * @var PasswordEncoderInterface
      */
     private $encoder;
@@ -30,6 +33,8 @@ class UserFactory
     }
 
     /**
+     * Create a User.
+     *
      * @param $username
      * @param $email
      * @param $password

@@ -11,11 +11,14 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class IndexController.
+ * Class IndexController
+ * @package App\Tasks\Controller
  */
 class IndexController
 {
     /**
+     * Task repository.
+     *
      * @var TaskRepository
      */
     private $repository;
@@ -31,6 +34,8 @@ class IndexController
     }
 
     /**
+     * Get list of Tasks.
+     *
      * @return JsonResponse
      */
     public function getAction()

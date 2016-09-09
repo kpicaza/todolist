@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * This file is part of TodoList\Users package.
+ */
+
 namespace App\Users\Gateway;
 
 use App\Common\Gateway\Gateway;

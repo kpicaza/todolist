@@ -9,7 +9,8 @@ namespace App\Tasks\Entity;
 use App\Common\Entity\ProgressInterface;
 
 /**
- * Class Task.
+ * Class Task
+ * @package App\Tasks\Entity
  */
 class Task implements TaskInterface, \JsonSerializable
 {
@@ -35,11 +36,15 @@ class Task implements TaskInterface, \JsonSerializable
     private $description;
 
     /**
+     * Created at.
+     *
      * @var \DateTimeInterface
      */
     private $createdAt;
 
     /**
+     * Updated at.
+     *
      * @var \DateTimeInterface
      */
     private $updatedAt;
@@ -96,6 +101,8 @@ class Task implements TaskInterface, \JsonSerializable
     }
 
     /**
+     * Task created datetime.
+     *
      * @return \DateTimeInterface
      */
     public function getCreatedAt()
@@ -104,6 +111,8 @@ class Task implements TaskInterface, \JsonSerializable
     }
 
     /**
+     * Task updated datetime.
+     *
      * @return \DateTimeInterface
      */
     public function getUpdatedAt()
@@ -112,7 +121,7 @@ class Task implements TaskInterface, \JsonSerializable
     }
 
     /**
-     *
+     * Set Task created datetime.
      */
     public function setCreatedAt()
     {
@@ -120,7 +129,7 @@ class Task implements TaskInterface, \JsonSerializable
     }
 
     /**
-     *
+     * Sey Task updated datetime.
      */
     public function setUpdatedAt()
     {

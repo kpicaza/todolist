@@ -12,7 +12,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class GetController.
+ * Class GetController
+ * @package App\Tasks\Controller
  */
 class GetController
 {
@@ -27,6 +28,8 @@ class GetController
     }
 
     /**
+     * Get a Task.
+     *
      * @param Request $request
      * @param $id
      *

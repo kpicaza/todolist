@@ -10,7 +10,8 @@ use Namshi\JOSE\SimpleJWS;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Class JwsProvider.
+ * Class JwsProvider
+ * @package App\Security\Provider
  */
 class JwsProvider
 {
@@ -41,7 +42,9 @@ class JwsProvider
     }
 
     /**
-     * @param $username
+     * Crete authentication token.
+     *
+     * @param UserInterface $user
      *
      * @return string
      */

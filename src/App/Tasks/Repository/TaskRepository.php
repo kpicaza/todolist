@@ -11,16 +11,21 @@ use App\Tasks\Entity\TaskFactory;
 use App\Tasks\Entity\TaskInterface;
 
 /**
- * Class TaskRepository.
+ * Class TaskRepository
+ * @package App\Tasks\Repository
  */
 class TaskRepository
 {
     /**
+     * Task factory.
+     *
      * @var TaskFactory
      */
     private $factory;
 
     /**
+     * Task gateway.
+     *
      * @var GatewayInterface
      */
     private $gateway;
@@ -38,10 +43,13 @@ class TaskRepository
     }
 
     /**
+     * Find list of Tasks.
+     *
      * @param array $criteria
      * @param array|null $orderBy
      * @param null $limit
      * @param null $offset
+     *
      * @return mixed
      */
     public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
@@ -50,8 +58,11 @@ class TaskRepository
     }
 
     /**
+     * Get next new Task.
+     *
      * @param $description
      * @param int $progress
+     *
      * @return \App\Tasks\Entity\TaskInterface
      */
     public function nextIdentity($description, $progress = 0)
@@ -60,7 +71,10 @@ class TaskRepository
     }
 
     /**
+     * Persist new Task.
+     *
      * @param TaskInterface $task
+     *
      * @return TaskInterface
      */
     public function save(TaskInterface $task)
@@ -71,8 +85,11 @@ class TaskRepository
     }
 
     /**
+     * Save Task description.
+     *
      * @param TaskInterface $task
      * @param string $description
+     *
      * @return TaskInterface
      */
     public function saveDescription(TaskInterface $task, $description)
@@ -91,8 +108,11 @@ class TaskRepository
     }
 
     /**
+     * Save Task progress.
+     *
      * @param TaskInterface $task
      * @param int $progress
+     *
      * @return TaskInterface
      */
     public function saveProgress(TaskInterface $task, $progress)

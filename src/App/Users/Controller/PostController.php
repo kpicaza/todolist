@@ -12,14 +12,22 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class PostController
+ * @package App\Users\Controller
+ */
 class PostController
 {
     /**
+     * Event dispatcher.
+     *
      * @var EventDispatcherInterface
      */
     private $dispatcher;
 
     /**
+     * User Repository.
+     *
      * @var UserRepository
      */
     private $repository;
@@ -37,6 +45,8 @@ class PostController
     }
 
     /**
+     * Create new user.
+     *
      * @param Request $request
      *
      * @return JsonResponse

@@ -7,11 +7,14 @@
 namespace App\Common\Gateway;
 
 /**
- * Interface GatewayInterface.
+ * Interface GatewayInterface
+ * @package App\Common\Gateway
  */
 interface GatewayInterface
 {
     /**
+     * Save an entity.
+     *
      * @param $object
      *
      * @return mixed
@@ -19,6 +22,8 @@ interface GatewayInterface
     public function save($object);
     
     /**
+     * Update an entity.
+     *
      * @param $object
      *
      * @return mixed
@@ -26,6 +31,8 @@ interface GatewayInterface
     public function update($object);
 
     /**
+     * Find entity collection.
+     *
      * @param array      $criteria
      * @param array|null $orderBy
      * @param null       $limit
@@ -36,6 +43,8 @@ interface GatewayInterface
     public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null);
 
     /**
+     * Find an entity.
+     *
      * @param array $criteria
      *
      * @return mixed

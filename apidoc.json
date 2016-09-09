@@ -1,8 +1,17 @@
 {
-  "name": "Todo list Rest API Docs",
+  "name": "Todo List API Docs",
   "version": "0.1.0",
-  "description": "Todo list Rest API Docs",
+  "description": "Todo List API Docs",
   "apidoc": {
-    "title": "Todo list Rest"
+    "title": "Todo List"
+  },
+  "order": [
+    "Security",
+    "User",
+    "Task"
+  ],
+  "template": {
+    "forceLanguage": "en",
+    "withCompare": false
   }
 }

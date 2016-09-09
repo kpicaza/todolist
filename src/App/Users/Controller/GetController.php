@@ -11,9 +11,15 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class GetController
+ * @package App\Users\Controller
+ */
 class GetController
 {
     /**
+     * User repository.
+     *
      * @var UserRepository
      */
     private $repository;
@@ -29,7 +35,10 @@ class GetController
     }
 
     /**
+     * Get a User.
+     *
      * @param Request $request
+     * @param $id
      *
      * @return JsonResponse
      */

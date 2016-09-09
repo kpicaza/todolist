@@ -9,20 +9,28 @@ namespace App\Users\Repository;
 use App\Common\Gateway\GatewayInterface;
 use App\Users\Entity\UserFactory;
 
+/**
+ * Class UserRepository
+ * @package App\Users\Repository
+ */
 class UserRepository
 {
     /**
+     * User factory.
+     *
      * @var UserFactory
      */
     private $factory;
 
     /**
+     * User gateway.
+     *
      * @var GatewayInterface
      */
     private $gateway;
 
     /**
-     * TaskRepository constructor.
+     * UserRepository constructor.
      *
      * @param UserFactory      $factory
      * @param GatewayInterface $gateway
@@ -34,6 +42,8 @@ class UserRepository
     }
 
     /**
+     * Insert new User.
+     *
      * @param $username
      * @param $email
      * @param $pass
@@ -50,6 +60,8 @@ class UserRepository
     }
 
     /**
+     * Find a  User.
+     *
      * @param array $criteria
      *
      * @return \App\Users\Entity\User

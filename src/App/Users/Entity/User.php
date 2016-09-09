@@ -9,46 +9,63 @@ namespace App\Users\Entity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Class User.
+ * Class User
+ * @package App\Users\Entity
  */
 class User implements UserInterface, \JsonSerializable
 {
     /**
+     * User id.
+     *
      * @var UserId
      */
     private $id;
 
     /**
+     * User name.
+     *
      * @var string
      */
     private $username;
 
     /**
+     * User email.
+     *
      * @var string
      */
     private $email;
 
     /**
+     * User roles.
+     *
      * @var array
      */
     private $roles;
 
     /**
+     * Password salt.
+     *
      * @var null
      */
     private $salt;
 
-    /***
+    /**
+     * User password.
+     *
      * @var null
      */
     private $password;
 
     /**
+     * User created at.
+     *
      * @var \DateTimeInterface
      */
     private $createdAt;
 
     /**
+     * User updated at.
+     *
      * @var \DateTimeInterface
      */
     private $updatedAt;
@@ -88,6 +105,8 @@ class User implements UserInterface, \JsonSerializable
     }
 
     /**
+     * Get User id.
+     *
      * @return UserId
      */
     public function id()
@@ -104,6 +123,8 @@ class User implements UserInterface, \JsonSerializable
     }
 
     /**
+     * Get User email
+     *
      * @return mixed
      */
     public function getEmail()
@@ -143,6 +164,8 @@ class User implements UserInterface, \JsonSerializable
     }
 
     /**
+     * Get created at.
+     *
      * @return \DateTimeInterface
      */
     public function getCreatedAt()
@@ -151,6 +174,8 @@ class User implements UserInterface, \JsonSerializable
     }
 
     /**
+     * Get updated at.
+     *
      * @return \DateTimeInterface
      */
     public function getUpdatedAt()
@@ -159,7 +184,7 @@ class User implements UserInterface, \JsonSerializable
     }
 
     /**
-     *
+     *  Set created at.
      */
     public function setCreatedAt()
     {
@@ -167,7 +192,7 @@ class User implements UserInterface, \JsonSerializable
     }
 
     /**
-     *
+     * Set updated at.
      */
     public function setUpdatedAt()
     {

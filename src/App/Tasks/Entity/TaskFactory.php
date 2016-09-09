@@ -10,11 +10,15 @@ use App\Common\Entity\Progress;
 use Ramsey\Uuid\Uuid;
 
 /**
- * Class TaskFactory.
+ * Class TaskFactory
+ * @package App\Tasks\Entity
  */
 class TaskFactory
 {
     /**
+     * Create Tasks.
+     *
+     * @param $taskId
      * @param $name
      * @param int $progress
      *

@@ -15,16 +15,21 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class TaskController.
+ * Class PostController
+ * @package App\Tasks\Controller
  */
 class PostController
 {
     /**
+     * Event dispatcher.
+     *
      * @var EventDispatcherInterface
      */
     private $dispatcher;
 
     /**
+     * Task repository.
+     *
      * @var TaskRepository
      */
     private $repository;
@@ -42,6 +47,8 @@ class PostController
     }
 
     /**
+     * Create new Task.
+     *
      * @param Request $request
      *
      * @return JsonResponse

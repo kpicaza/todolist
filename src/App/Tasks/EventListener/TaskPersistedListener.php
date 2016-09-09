@@ -7,11 +7,14 @@
 namespace App\Tasks\EventListener;
 
 /**
- * Class TaskPersistedListener.
+ * Class TaskPersistedListener
+ * @package App\Tasks\EventListener
  */
 class TaskPersistedListener
 {
     /**
+     * Task  added Event Listener.
+     *
      * @return bool
      */
     public function onTaskPersisted()
