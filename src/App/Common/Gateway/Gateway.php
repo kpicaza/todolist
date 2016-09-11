@@ -39,7 +39,6 @@ abstract class Gateway extends EntityRepository implements GatewayInterface
     {
         $this->_em->transactional(function () use ($object) {
             $this->_em->persist($object);
-            $this->_em->flush();
         });
 
         return $object;
@@ -56,10 +55,20 @@ abstract class Gateway extends EntityRepository implements GatewayInterface
     {
         $this->_em->transactional(function () use ($object) {
             $this->_em->merge($object);
-            $this->_em->flush();
         });
 
         return $object;
+    }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @param $object
+     */
+    public function delete($object)
+    {
+        $this->_em->transactional(function () use ($object) {
+            $this->_em->remove($object);
+        });
     }
 }

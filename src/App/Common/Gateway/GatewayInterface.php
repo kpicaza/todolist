@@ -31,6 +31,15 @@ interface GatewayInterface
     public function update($object);
 
     /**
+     * Delete an entity.
+     *
+     * @param $object
+     *
+     * @return mixed
+     */
+    public function delete($object);
+
+    /**
      * Find entity collection.
      *
      * @param array      $criteria

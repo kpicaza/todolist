@@ -18,6 +18,8 @@ class FakeGateway implements GatewayInterface
     public function save($task)
     {
         $this->store[] = $task;
+
+        return $task;
     }
 
     /**
@@ -28,6 +30,20 @@ class FakeGateway implements GatewayInterface
     public function update($task)
     {
         $this->store[] = $task;
+
+        return $task;
+    }
+
+    /**
+     * Delete an entity.
+     *
+     * @param $object
+     *
+     * @return mixed
+     */
+    public function delete($object)
+    {
+
     }
 
     public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)

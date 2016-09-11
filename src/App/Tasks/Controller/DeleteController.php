@@ -9,21 +9,22 @@ namespace App\Tasks\Controller;
 use App\Tasks\Repository\TaskRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class GetController
+ * Class DeleteController
  * @package App\Tasks\Controller
  */
-class GetController
+class DeleteController
 {
     /**
+     * Task repository.
+     *
      * @var TaskRepository
      */
     private $repository;
 
     /**
-     * GetController constructor.
+     * DeleteController constructor.
      *
      * @param TaskRepository $repository
      */
@@ -33,21 +34,24 @@ class GetController
     }
 
     /**
-     * Get a Task.
+     * Delete a Task.
      *
      * @param Request $request
      * @param $id
-     *
      * @return JsonResponse
      */
-    public function getAction(Request $request, $id)
+    public function deleteAction(Request $request, $id)
     {
-        $tasks = $this->repository->findBy(['id' => $id]);
+        try {
 
-        if (!$tasks) {
-            return new JsonResponse('', Response::HTTP_NOT_FOUND);
+            if (false === $this->repository->delete($id)) {
+                throw new \InvalidArgumentException();
+            }
+
+        } catch (\InvalidArgumentException $e) {
+            return new JsonResponse('', 404);
         }
 
-        return new JsonResponse($tasks[0], Response::HTTP_OK);
+        return new JsonResponse('', 204);
     }
 }
