@@ -67,7 +67,7 @@ class PostController
             $task = $this->repository->save(
                 $this->repository->nextIdentity(
                     $data['description'],
-                    array_key_exists('progress', $data) ?: 0
+                    array_key_exists('progress', $data) ? $data['progress'] : 0
                 )
             );
 

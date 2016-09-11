@@ -161,3 +161,19 @@
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 400 Bad request
  */
+
+/**
+ * @api {delete} /api/v1/tasks/{id} Delete a Task
+ * @apiParam {string} uuid Task unique ID.
+ * @apiName DeleteTask
+ * @apiGroup Task
+ * @apiHeader {String} authorization Authorization value.
+ * @apiHeaderExample {json} Header-Example:
+ *     {
+ *       "Authorization": "Bearer JWT-token"
+ *     }
+ * @apiSuccessExample Success-Response:
+ *     HTTP/1.1 204 No Content
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 Not Found
+ */

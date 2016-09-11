@@ -118,4 +118,49 @@ class TaskRepositorySpec extends ObjectBehavior
         $fakeTask->getDescription()->shouldBe($task->getDescription());
         $fakeTask->getProgress()->get()->shouldBe(self::PROGREES2);
     }
+
+    function it_should_return_true_if_it_can_delete_task()
+    {
+        $factory = new TaskFactory();
+
+        $task = $factory->make(null, self::NAME, self::PROGRESS);
+
+        $id = $task->id();
+
+        $gateway = $this->prophet->prophesize(TaskGateway::class);
+        $gateway
+            ->findBy(['id' => $id])
+            ->willReturn([$task]);
+        $gateway->delete($task)->willReturn();
+
+        $this->beConstructedWith(
+            $factory,
+            $gateway
+        );
+
+        $this->delete($id)->shouldBe(true);
+    }
+
+    function it_should_return_false_if_it_can_not_delete_task()
+    {
+        $factory = new TaskFactory();
+
+        $task = $factory->make(null, self::NAME, self::PROGRESS);
+
+        $id = $task->id();
+
+        $gateway = $this->prophet->prophesize(TaskGateway::class);
+        $gateway
+            ->findBy(['id' => $id])
+            ->willReturn([]);
+        $gateway->delete($task)->willReturn();
+
+        $this->beConstructedWith(
+            $factory,
+            $gateway
+        );
+
+        $this->delete($id)->shouldBe(false);
+    }
+
 }

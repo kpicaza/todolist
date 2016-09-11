@@ -129,4 +129,23 @@ class TaskRepository
         return $task;
     }
 
+    /**
+     * Delete a Task.
+     *
+     * @param $id
+     *
+     * @return bool
+     */
+    public function delete($id)
+    {
+        $tasks = $this->gateway->findBy(['id' => $id]);
+
+        if (!array_key_exists(0, $tasks)) {
+            return false;
+        }
+
+        $this->gateway->delete($tasks[0]);
+
+        return true;
+    }
 }

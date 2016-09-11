@@ -75,6 +75,16 @@ $app['tasks.get.controller'] = function () use ($app) {
 };
 
 /**
+ * Delete Task Controller.
+ * @return \App\Tasks\Controller\DeleteController
+ */
+$app['tasks.delete.controller'] = function () use ($app) {
+    return new \App\Tasks\Controller\DeleteController(
+        $app['tasks.repository']
+    );
+};
+
+/**
  * User Factory.
  * @return \App\Users\Entity\UserFactory
  */
