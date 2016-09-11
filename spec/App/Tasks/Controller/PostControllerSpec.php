@@ -6,12 +6,16 @@ use App\Tasks\Controller\PostController;
 use App\Tasks\Entity\TaskFactory;
 use App\Tasks\Event\Events;
 use App\Tasks\Repository\TaskRepository;
+use App\Users\Entity\User;
+use App\Users\Entity\UserId;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Prophecy\Prophet;
+use Ramsey\Uuid\Uuid;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Guard\Token\PostAuthenticationGuardToken;
 use Tests\Gateway\FakeGateway;
 
 class PostControllerSpec extends ObjectBehavior
@@ -22,8 +26,11 @@ class PostControllerSpec extends ObjectBehavior
 
     private $repository;
 
+    private $prophet;
+
     function let()
     {
+        $this->prophet = new Prophet();
         $this->dispatcher = new EventDispatcher();
         $this->repository = new TaskRepository(
             new TaskFactory(),
@@ -33,9 +40,15 @@ class PostControllerSpec extends ObjectBehavior
 
     function it_can_create_new_task_giving_a_description()
     {
+        $security = $this->prophet->prophesize(PostAuthenticationGuardToken::class);
+        $security->getUser()->willReturn(
+            new User(UserId::fromString(Uuid::uuid4()), 'paco', 'test@test.mail')
+        );
+
         $this->beConstructedWith(
             $this->dispatcher,
-            $this->repository
+            $this->repository,
+            $security
         );
 
         $request = new Request();
@@ -48,9 +61,15 @@ class PostControllerSpec extends ObjectBehavior
 
     function it_must_have_description()
     {
+        $security = $this->prophet->prophesize(PostAuthenticationGuardToken::class);
+        $security->getUser()->willReturn(
+            new User(UserId::fromString(Uuid::uuid4()), 'paco', 'test@test.mail')
+        );
+
         $this->beConstructedWith(
             $this->dispatcher,
-            $this->repository
+            $this->repository,
+            $security
         );
 
         $request = new Request();

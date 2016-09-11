@@ -7,6 +7,8 @@
 namespace App\Tasks\Entity;
 
 use App\Common\Entity\ProgressInterface;
+use App\Users\Entity\User;
+use App\Users\Entity\UserId;
 
 /**
  * Class Task
@@ -36,6 +38,13 @@ class Task implements TaskInterface, \JsonSerializable
     private $description;
 
     /**
+     * Task Author Id.
+     *
+     * @var UserId
+     */
+    private $authorId;
+
+    /**
      * Created at.
      *
      * @var \DateTimeInterface
@@ -52,13 +61,15 @@ class Task implements TaskInterface, \JsonSerializable
     /**
      * Task constructor.
      *
-     * @param TaskId            $taskId
+     * @param TaskId $taskId
+     * @param UserId $authorId
      * @param ProgressInterface $progress
      * @param $description
      */
-    public function __construct(TaskId $taskId, ProgressInterface $progress, $description)
+    public function __construct(TaskId $taskId, UserId $authorId, ProgressInterface $progress, $description)
     {
         $this->id = $taskId;
+        $this->authorId = $authorId;
         $this->progress = $progress;
 
         if (empty($description)) {
@@ -78,6 +89,16 @@ class Task implements TaskInterface, \JsonSerializable
     public function id()
     {
         return (string) $this->id;
+    }
+
+    /**
+     * Get Author id
+     *
+     * @return string
+     */
+    public function authorId()
+    {
+        return (string) $this->authorId;
     }
 
     /**
@@ -145,6 +166,7 @@ class Task implements TaskInterface, \JsonSerializable
     {
         return [
             'id' => (string) $this->id,
+            'authorId' => (string) $this->authorId,
             'description' => $this->description,
             'progress' => $this->progress,
             'createdAt' => $this->createdAt,

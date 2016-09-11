@@ -5,10 +5,12 @@ namespace spec\App\Tasks\Repository;
 use App\Tasks\Entity\Task;
 use App\Tasks\Entity\TaskFactory;
 use App\Tasks\Gateway\TaskGateway;
+use App\Users\Entity\UserId;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Prophet;
+use Ramsey\Uuid\Uuid;
 use Tests\Gateway\FakeGateway;
 
 class TaskRepositorySpec extends ObjectBehavior
@@ -31,14 +33,15 @@ class TaskRepositorySpec extends ObjectBehavior
         $gateway = new FakeGateway();
         $factory = new TaskFactory();
 
-        $task = $factory->make(null, self::NAME, self::PROGRESS);
+        $userId = UserId::fromString(Uuid::uuid4());
+        $task = $factory->make(null, $userId, self::NAME, self::PROGRESS);
 
         $this->beConstructedWith(
             $factory,
             $gateway
         );
 
-        $fakeTask = $this->nextIdentity(self::NAME, self::PROGRESS);
+        $fakeTask = $this->nextIdentity($userId, self::NAME, self::PROGRESS);
 
         $fakeTask->getDescription()->shouldBe($task->getDescription());
         $fakeTask->getProgress()->get()->shouldBe($task->getProgress()->get());
@@ -49,7 +52,7 @@ class TaskRepositorySpec extends ObjectBehavior
         $gateway = new FakeGateway();
         $factory = new TaskFactory();
 
-        $task = $factory->make(null, self::NAME, self::PROGRESS);
+        $task = $factory->make(null, UserId::fromString(Uuid::uuid4()),  self::NAME, self::PROGRESS);
 
         $this->beConstructedWith(
             $factory,
@@ -65,7 +68,7 @@ class TaskRepositorySpec extends ObjectBehavior
     {
         $factory = new TaskFactory();
 
-        $task = $factory->make(null, self::NAME, self::PROGRESS);
+        $task = $factory->make(null, UserId::fromString(Uuid::uuid4()), self::NAME, self::PROGRESS);
 
         $gateway = $this->prophet->prophesize(TaskGateway::class);
         $gateway
@@ -85,7 +88,7 @@ class TaskRepositorySpec extends ObjectBehavior
         $factory = new TaskFactory();
         $gateway = new FakeGateway();
 
-        $task = $factory->make(null, self::NAME, self::PROGRESS);
+        $task = $factory->make(null, UserId::fromString(Uuid::uuid4()), self::NAME, self::PROGRESS);
 
         $this->beConstructedWith(
             $factory,
@@ -105,7 +108,7 @@ class TaskRepositorySpec extends ObjectBehavior
         $factory = new TaskFactory();
         $gateway = new FakeGateway();
 
-        $task = $factory->make(null, self::NAME, self::PROGRESS);
+        $task = $factory->make(null, UserId::fromString(Uuid::uuid4()), self::NAME, self::PROGRESS);
 
         $this->beConstructedWith(
             $factory,
@@ -123,7 +126,7 @@ class TaskRepositorySpec extends ObjectBehavior
     {
         $factory = new TaskFactory();
 
-        $task = $factory->make(null, self::NAME, self::PROGRESS);
+        $task = $factory->make(null, UserId::fromString(Uuid::uuid4()), self::NAME, self::PROGRESS);
 
         $id = $task->id();
 
@@ -145,7 +148,7 @@ class TaskRepositorySpec extends ObjectBehavior
     {
         $factory = new TaskFactory();
 
-        $task = $factory->make(null, self::NAME, self::PROGRESS);
+        $task = $factory->make(null, UserId::fromString(Uuid::uuid4()), self::NAME, self::PROGRESS);
 
         $id = $task->id();
 

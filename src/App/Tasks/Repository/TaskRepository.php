@@ -9,6 +9,7 @@ namespace App\Tasks\Repository;
 use App\Common\Gateway\GatewayInterface;
 use App\Tasks\Entity\TaskFactory;
 use App\Tasks\Entity\TaskInterface;
+use App\Users\Entity\UserId;
 
 /**
  * Class TaskRepository
@@ -60,14 +61,14 @@ class TaskRepository
     /**
      * Get next new Task.
      *
+     * @param UserId $userId
      * @param $description
      * @param int $progress
-     *
      * @return \App\Tasks\Entity\TaskInterface
      */
-    public function nextIdentity($description, $progress = 0)
+    public function nextIdentity($userId, $description, $progress = 0)
     {
-        return $this->factory->make(null, $description, $progress);
+        return $this->factory->make(null, $userId, $description, $progress);
     }
 
     /**
@@ -98,6 +99,7 @@ class TaskRepository
 
         $task = $this->factory->make(
             $task->id(),
+            $task->authorId(),
             $description,
             $progress->get()
         );
@@ -119,6 +121,7 @@ class TaskRepository
     {
         $task = $this->factory->make(
             $task->id(),
+            $task->authorId(),
             $task->getDescription(),
             (int)$progress
         );

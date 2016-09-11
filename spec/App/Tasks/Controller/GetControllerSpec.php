@@ -5,9 +5,11 @@ namespace spec\App\Tasks\Controller;
 use App\Tasks\Controller\GetController;
 use App\Tasks\Entity\TaskFactory;
 use App\Tasks\Repository\TaskRepository;
+use App\Users\Entity\UserId;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Prophecy\Prophet;
+use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Tests\Gateway\FakeGateway;
@@ -29,7 +31,7 @@ class GetControllerSpec extends ObjectBehavior
 
     function it_can_retrieve_a_certain_task()
     {
-        $task = (new TaskFactory())->make(null, 'Hola mundo');
+        $task = (new TaskFactory())->make(null, UserId::fromString(Uuid::uuid4()), 'Hola mundo');
 
         $repository = $this->prophet->prophesize(TaskRepository::class);
         $repository
@@ -50,7 +52,7 @@ class GetControllerSpec extends ObjectBehavior
 
     function it_should_response_with_not_found_http_error_if_task_not_exist()
     {
-        $task = (new TaskFactory())->make(null, 'Hola mundo');
+        $task = (new TaskFactory())->make(null, UserId::fromString(Uuid::uuid4()), 'Hola mundo');
 
         $this->beConstructedWith(
             $this->repository

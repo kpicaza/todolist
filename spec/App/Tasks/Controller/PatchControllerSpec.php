@@ -5,9 +5,11 @@ namespace spec\App\Tasks\Controller;
 use App\Tasks\Controller\PatchController;
 use App\Tasks\Entity\TaskFactory;
 use App\Tasks\Repository\TaskRepository;
+use App\Users\Entity\UserId;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Prophecy\Prophet;
+use Ramsey\Uuid\Uuid;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,7 +44,7 @@ class PatchControllerSpec extends ObjectBehavior
 
     function it_should_replace_description()
     {
-        $task = (new TaskFactory())->make(self::ID, 'Hola mundo');
+        $task = (new TaskFactory())->make(self::ID, UserId::fromString(Uuid::uuid4()), 'Hola mundo');
 
         $this->repository->save($task);
 
@@ -61,7 +63,7 @@ class PatchControllerSpec extends ObjectBehavior
 
     function it_should_replace_progress()
     {
-        $task = (new TaskFactory())->make(self::ID, 'Hola mundo');
+        $task = (new TaskFactory())->make(self::ID, UserId::fromString(Uuid::uuid4()), 'Hola mundo');
 
         $this->repository->save($task);
 

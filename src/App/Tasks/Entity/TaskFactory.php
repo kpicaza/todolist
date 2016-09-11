@@ -7,6 +7,7 @@
 namespace App\Tasks\Entity;
 
 use App\Common\Entity\Progress;
+use App\Users\Entity\UserId;
 use Ramsey\Uuid\Uuid;
 
 /**
@@ -24,10 +25,12 @@ class TaskFactory
      *
      * @return Task
      */
-    public function make($taskId, $name, $progress = 0)
+    public function make($taskId, $userId, $name, $progress = 0)
     {
         $taskId = new TaskId($taskId ?: Uuid::uuid4());
 
-        return new Task($taskId, new Progress($progress), $name);
+        $userId = is_string($userId) ? new UserId($userId) : $userId;
+
+        return new Task($taskId, $userId, new Progress($progress), $name);
     }
 }

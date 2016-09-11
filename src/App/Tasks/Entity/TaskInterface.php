@@ -19,6 +19,13 @@ interface TaskInterface
     public function id();
 
     /**
+     * TAsk Author Id.
+     *
+     * @return mixed
+     */
+    public function authorId();
+
+    /**
      * Get Task Progress count.
      *
      * @return mixed

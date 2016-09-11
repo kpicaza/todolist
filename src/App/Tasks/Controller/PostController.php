@@ -13,6 +13,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Guard\Token\PostAuthenticationGuardToken;
 
 /**
  * Class PostController
@@ -35,15 +36,27 @@ class PostController
     private $repository;
 
     /**
+     * Post-Authentication Token.
+     *
+     * @var PostAuthenticationGuardToken
+     */
+    private $security;
+
+    /**
      * TaskController constructor.
      *
      * @param EventDispatcherInterface $eventDispatcher
      * @param TaskRepository $repository
      */
-    public function __construct(EventDispatcherInterface $eventDispatcher, TaskRepository $repository)
+    public function __construct(
+        EventDispatcherInterface $eventDispatcher,
+        TaskRepository $repository,
+        PostAuthenticationGuardToken $security
+    )
     {
         $this->dispatcher = $eventDispatcher;
         $this->repository = $repository;
+        $this->security = $security;
     }
 
     /**
@@ -66,6 +79,7 @@ class PostController
 
             $task = $this->repository->save(
                 $this->repository->nextIdentity(
+                    $this->security->getUser()->id(),
                     $data['description'],
                     array_key_exists('progress', $data) ? $data['progress'] : 0
                 )

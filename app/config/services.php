@@ -49,7 +49,8 @@ $app['tasks.index.controller'] = function () use ($app) {
 $app['tasks.post.controller'] = function () use ($app) {
     return new \App\Tasks\Controller\PostController(
         $app['dispatcher'],
-        $app['tasks.repository']
+        $app['tasks.repository'],
+        $app['security.token_storage']->getToken()
     );
 };
 

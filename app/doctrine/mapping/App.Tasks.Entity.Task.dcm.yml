@@ -6,6 +6,8 @@ App\Tasks\Entity\Task:
         id:
             type: guid
     fields:
+        authorId:
+            type: guid
         description:
             type: text
         createdAt:
