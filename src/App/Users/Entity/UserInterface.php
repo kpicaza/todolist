@@ -6,6 +6,7 @@
 
 namespace App\Users\Entity;
 
+use App\Organizations\Entity\OrganizationInterface;
 use Symfony\Component\Security\Core\User\UserInterface as BaseUser;
 
 /**
@@ -15,5 +16,17 @@ use Symfony\Component\Security\Core\User\UserInterface as BaseUser;
  */
 interface UserInterface extends BaseUser
 {
+    /**
+     * Get User id.
+     *
+     * @return mixed
+     */
+    public function id();
 
+    /**
+     * Get User Organization.
+     *
+     * @return OrganizationInterface
+     */
+    public function getOrganization();
 }

@@ -5,12 +5,14 @@
  */
 
 namespace App\Users\Entity;
+use App\Common\Entity\AggregateRoot;
+use App\Organizations\Entity\OrganizationInterface;
 
 /**
  * Class User
  * @package App\Users\Entity
  */
-class User implements UserInterface, \JsonSerializable
+class User extends AggregateRoot implements UserInterface
 {
     /**
      * User id.
@@ -55,6 +57,13 @@ class User implements UserInterface, \JsonSerializable
     private $password;
 
     /**
+     * User Organization.
+     *
+     * @var OrganizationInterface
+     */
+    private $organization;
+
+    /**
      * User created at.
      *
      * @var \DateTimeInterface
@@ -74,11 +83,20 @@ class User implements UserInterface, \JsonSerializable
      * @param UserId $id
      * @param $username
      * @param $email
-     * @param null  $pass
+     * @param null $pass
      * @param array $roles
-     * @param null  $salt
+     * @param null $salt
+     * @param OrganizationInterface|null $organization
      */
-    public function __construct(UserId $id, $username, $email, $pass = null, array $roles = array(), $salt = null)
+    public function __construct(
+        UserId $id,
+        $username,
+        $email,
+        $pass = null,
+        array $roles = [],
+        $salt = null,
+        OrganizationInterface $organization = null
+    )
     {
         $this->id = $id;
 
@@ -100,6 +118,7 @@ class User implements UserInterface, \JsonSerializable
         $this->password = $pass;
         $this->roles = $roles;
         $this->salt = $salt;
+        $this->organization = $organization;
     }
 
     /**
@@ -155,46 +174,20 @@ class User implements UserInterface, \JsonSerializable
     }
 
     /**
+     * Get User Organization.
+     *
+     * @return OrganizationInterface
+     */
+    public function getOrganization()
+    {
+        return $this->organization;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function eraseCredentials()
     {
-    }
-
-    /**
-     * Get created at.
-     *
-     * @return \DateTimeInterface
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * Get updated at.
-     *
-     * @return \DateTimeInterface
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     *  Set created at.
-     */
-    public function setCreatedAt()
-    {
-        $this->createdAt = new \DateTime();
-    }
-
-    /**
-     * Set updated at.
-     */
-    public function setUpdatedAt()
-    {
-        $this->updatedAt = new \DateTime();
     }
 
     /**

@@ -19,6 +19,12 @@ App\Users\Entity\User:
         updatedAt:
             type: datetime
             nullable: true
+    manyToOne:
+        organization:
+            targetEntity: App\Organizations\Entity\Organization
+            joinColumn:
+                name: organization_id
+                referencedColumnName: id
     lifecycleCallbacks:
         prePersist: [ setCreatedAt ]
         preUpdate: [ setUpdatedAt ]

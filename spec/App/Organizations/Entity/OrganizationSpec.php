@@ -4,8 +4,10 @@ namespace spec\App\Organizations\Entity;
 
 use App\Organizations\Entity\Organization;
 use App\Organizations\Entity\OrganizationId;
+use App\Users\Entity\UserInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Prophecy\Prophet;
 use Ramsey\Uuid\Uuid;
 
 class OrganizationSpec extends ObjectBehavior
@@ -31,5 +33,17 @@ class OrganizationSpec extends ObjectBehavior
         );
 
         $this->getName()->shouldBe(self::NAME);
+    }
+
+    function it_should_be_json_serializable()
+    {
+        $this->beConstructedWith(
+            OrganizationId::fromString(Uuid::uuid4()),
+            self::NAME
+        );
+
+        $array = $this->jsonSerialize();
+        $this->id()->shouldBe($array['id']);
+        $this->getName()->shouldBe($array['name']);
     }
 }

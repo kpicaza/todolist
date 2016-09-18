@@ -2,6 +2,8 @@
 
 namespace spec\App\Users\Entity;
 
+use App\Organizations\Entity\OrganizationFactory;
+use App\Organizations\Entity\OrganizationId;
 use App\Users\Entity\User;
 use App\Users\Entity\UserId;
 use PhpSpec\ObjectBehavior;
@@ -135,6 +137,25 @@ class UserSpec extends ObjectBehavior
         );
 
         $this->getSalt()->shouldBe(self::SALT);
+    }
+
+    function it_should_have_organization()
+    {
+        $uuid = \App\Users\Entity\UserId::fromString(Uuid::uuid4());
+        $organization = (new OrganizationFactory())->make(OrganizationId::fromString(Uuid::uuid4()), 'company name');
+
+
+        $this->beConstructedWith(
+            $uuid,
+            self::USERNAME,
+            self::EMAIL,
+            self::PASS,
+            [],
+            self::SALT,
+            $organization
+        );
+
+        $this->getOrganization()->shouldBe($organization);
     }
 
     function it_has_created_at_date_time()
