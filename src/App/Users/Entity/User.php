@@ -6,8 +6,6 @@
 
 namespace App\Users\Entity;
 
-use Symfony\Component\Security\Core\User\UserInterface;
-
 /**
  * Class User
  * @package App\Users\Entity

@@ -8,7 +8,7 @@ namespace App\Users\Repository;
 
 use App\Common\Gateway\GatewayInterface;
 use App\Users\Entity\UserFactory;
-use Symfony\Component\Security\Core\User\UserInterface;
+use App\Users\Entity\UserInterface;
 
 /**
  * Class UserRepository

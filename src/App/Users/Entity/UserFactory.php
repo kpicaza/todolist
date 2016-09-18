@@ -8,7 +8,6 @@ namespace App\Users\Entity;
 
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class UserFactory
