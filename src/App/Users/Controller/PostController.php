@@ -72,11 +72,13 @@ class PostController
                 );
             }
 
-            $this->repository->insert(
+            $user = $this->repository->nextIdentity(
                 $data['username'],
                 $data['email'],
                 $data['password']
             );
+
+            $this->repository->save($user);
         } catch (\InvalidArgumentException $e) {
             return new JsonResponse(null, Response::HTTP_BAD_REQUEST);
         }

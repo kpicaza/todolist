@@ -44,12 +44,15 @@ class UserProviderSpec extends ObjectBehavior
             $gateway->reveal()
         );
 
-        $user = $repository->insert(
+        $user = $repository->nextIdentity(
             self::USERNAME,
             self::EMAIL,
             self::PASS
         );
-        $gateway->findOneBy(['username'=>self::USERNAME])->willReturn($user);
+
+        $user = $repository->save($user);
+
+        $gateway->findOneBy(['username' => self::USERNAME])->willReturn($user);
 
         $this->beConstructedWith(
             $repository
@@ -85,12 +88,15 @@ class UserProviderSpec extends ObjectBehavior
             $gateway->reveal()
         );
 
-        $user = $repository->insert(
+        $user = $repository->nextIdentity(
             self::USERNAME,
             self::EMAIL,
             self::PASS
         );
-        $gateway->findOneBy(['username'=>self::USERNAME])->willReturn($user);
+
+        $user = $repository->save($user);
+
+        $gateway->findOneBy(['username' => self::USERNAME])->willReturn($user);
 
         $this->beConstructedWith(
             $repository
@@ -108,12 +114,14 @@ class UserProviderSpec extends ObjectBehavior
             $gateway->reveal()
         );
 
-        $user = $repository->insert(
+        $user = $repository->nextIdentity(
             self::USERNAME,
             self::EMAIL,
             self::PASS
         );
-        $gateway->findOneBy(['username'=>self::USERNAME])->willReturn($user);
+
+        $user = $repository->save($user);
+        $gateway->findOneBy(['username' => self::USERNAME])->willReturn($user);
 
         $this->beConstructedWith(
             $repository

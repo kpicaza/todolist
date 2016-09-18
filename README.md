@@ -5,3 +5,23 @@ Todo List API
 [![Build Status](https://travis-ci.org/kpicaza/todolist.svg?branch=master)](https://travis-ci.org/kpicaza/todolist)
 [![Code Coverage](https://scrutinizer-ci.com/g/kpicaza/todolist/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/kpicaza/todolist/?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/kpicaza/todolist/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/kpicaza/todolist/?branch=master)
+
+## Installation
+
+
+
+### API reference
+
+You can generate API reference docs by [ApidocJs](http://apidocjs.com/#install).
+
+```
+apidoc -i app/resources/docs/ -o web/apidoc/ 
+```
+
+### Code reference
+
+### Tests
+
+#### Unit tests
+
+#### Functional tests

@@ -46,8 +46,15 @@ class GetController
     {
         try {
             $user = $this->repository->findOneBy(['id' => $id]);
+
+            if (null === $user) {
+                throw new \InvalidArgumentException(
+                    'User does not exist'
+                );
+            }
+
         } catch (\InvalidArgumentException $e) {
-            return new JsonResponse(null, Response::HTTP_BAD_REQUEST);
+            return new JsonResponse(null, Response::HTTP_NOT_FOUND);
         }
 
         return new JsonResponse($user, Response::HTTP_OK);

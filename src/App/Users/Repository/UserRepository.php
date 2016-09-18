@@ -8,6 +8,7 @@ namespace App\Users\Repository;
 
 use App\Common\Gateway\GatewayInterface;
 use App\Users\Entity\UserFactory;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class UserRepository
@@ -42,18 +43,29 @@ class UserRepository
     }
 
     /**
-     * Insert new User.
+     * Get net User identity.
      *
      * @param $username
      * @param $email
      * @param $pass
+     * @param array $roles
      *
-     * @return \App\Users\Entity\User
+     * @return UserInterface
      */
-    public function insert($username, $email, $pass)
+    public function nextIdentity($username, $email, $pass, array $roles = [])
     {
-        $user = $this->factory->make($username, $email, $pass);
+        return $this->factory->make(null, $username, $email, $pass, $roles);
+    }
 
+    /**
+     * Save an User.
+     *
+     * @param UserInterface $user
+     *
+     * @return UserInterface
+     */
+    public function save(UserInterface $user)
+    {
         $this->gateway->save($user);
 
         return $user;
@@ -64,7 +76,7 @@ class UserRepository
      *
      * @param array $criteria
      *
-     * @return \App\Users\Entity\User
+     * @return UserInterface
      */
     public function findOneBy(array $criteria = [])
     {

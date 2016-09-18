@@ -31,10 +31,12 @@ class UserFactorySpec extends ObjectBehavior
             $uuid,
             self::USERNAME,
             self::EMAIL,
-            self::PASS
+            self::PASS,
+            self::ROLES
         );
 
         $new = $this->make(
+            null,
             self::USERNAME,
             self::EMAIL,
             self::PASS
@@ -52,9 +54,11 @@ class UserFactorySpec extends ObjectBehavior
         );
 
         $new = $this->make(
+            null,
             self::USERNAME,
             self::EMAIL,
-            self::PASS
+            self::PASS,
+            self::ROLES
         );
 
         $new->getPassword()->shouldNotBe(self::PASS);

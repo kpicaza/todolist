@@ -8,6 +8,7 @@ namespace App\Users\Entity;
 
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class UserFactory
@@ -35,24 +36,24 @@ class UserFactory
     /**
      * Create a User.
      *
+     * @param $id
      * @param $username
      * @param $email
      * @param $password
+     * @param array $roles
      *
-     * @return User
+     * @return UserInterface
      */
-    public function make($username, $email, $password)
+    public function make($id, $username, $email, $password, array $roles = array())
     {
-        $id = new UserId(Uuid::uuid4());
+        $id = new UserId(null === $id ? $id : Uuid::uuid4());
 
         return new User(
             $id,
             $username,
             $email,
-            $this->encoder->encodePassword(
-                $password,
-                ''
-            )
+            $this->encoder->encodePassword($password, ''),
+            $roles
         );
     }
 }

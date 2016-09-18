@@ -10,6 +10,7 @@ use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Prophecy\Prophet;
 use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder;
@@ -39,17 +40,19 @@ class CredentialsControllerSpec extends ObjectBehavior
             ),
             new FakeGateway()
         );
-        require_once __DIR__ . '/../../../../app/config/parameters.php';
+        include __DIR__ . '/../../../../app/config/parameters.php';
         $this->config = $config;
     }
 
     function it_should_return_a_valid_authentication_bearer()
     {
-        $user = $this->repository->insert(
+        $user = $this->repository->nextIdentity(
             self::NAME,
             self::EMAIL,
             self::PASS
         );
+
+        $this->repository->save($user);
 
         $provider = $this->prophet->prophesize(UserProvider::class);
         $provider->loadUserByUsername(self::NAME)->willReturn($user);
@@ -71,5 +74,97 @@ class CredentialsControllerSpec extends ObjectBehavior
         $response = $this->postAction($request);
         $response->shouldBeAnInstanceOf(Response::class);
         $response->getStatusCode()->shouldBe(Response::HTTP_OK);
+    }
+
+    function it_must_have_username_or_thrown_unauthorzed_exception()
+    {
+        $user = $this->repository->nextIdentity(
+            self::NAME,
+            self::EMAIL,
+            self::PASS
+        );
+
+        $provider = $this->prophet->prophesize(UserProvider::class);
+        $provider->loadUserByUsername(self::NAME)->willReturn($user);
+
+        $this->beConstructedWith(
+            $this->dispatcher,
+            $provider,
+            new BCryptPasswordEncoder(4),
+            [
+                'private.key.path' => $this->config['jws']['private.key.path'],
+                'private.key.phrase' => $this->config['jws']['private.key.phrase']
+            ]
+        );
+
+        $request = new Request();
+        $request->request->add(['password' => self::PASS]);
+
+        $this->postAction($request)->shouldBeAnInstanceOf(JsonResponse::class);
+
+        $response = $this->postAction($request);
+
+        $response->getStatusCode()->shouldBe(Response::HTTP_UNAUTHORIZED);
+    }
+
+    function it_must_have_password_or_thrown_unauthorzed_exception()
+    {
+        $user = $this->repository->nextIdentity(
+            self::NAME,
+            self::EMAIL,
+            self::PASS
+        );
+
+        $provider = $this->prophet->prophesize(UserProvider::class);
+        $provider->loadUserByUsername(self::NAME)->willReturn($user);
+
+        $this->beConstructedWith(
+            $this->dispatcher,
+            $provider,
+            new BCryptPasswordEncoder(4),
+            [
+                'private.key.path' => $this->config['jws']['private.key.path'],
+                'private.key.phrase' => $this->config['jws']['private.key.phrase']
+            ]
+        );
+
+        $request = new Request();
+        $request->request->add(['username' => self::NAME]);
+
+        $this->postAction($request)->shouldBeAnInstanceOf(JsonResponse::class);
+
+        $response = $this->postAction($request);
+
+        $response->getStatusCode()->shouldBe(Response::HTTP_UNAUTHORIZED);
+    }
+
+    function it_must_have_valid_username_and_password_or_thrown_unauthorzed_exception()
+    {
+        $user = $this->repository->nextIdentity(
+            self::NAME,
+            self::EMAIL,
+            self::PASS
+        );
+
+        $provider = $this->prophet->prophesize(UserProvider::class);
+        $provider->loadUserByUsername(self::NAME)->willReturn($user);
+
+        $this->beConstructedWith(
+            $this->dispatcher,
+            $provider,
+            new BCryptPasswordEncoder(4),
+            [
+                'private.key.path' => $this->config['jws']['private.key.path'],
+                'private.key.phrase' => $this->config['jws']['private.key.phrase']
+            ]
+        );
+
+        $request = new Request();
+        $request->request->add(['username' => self::NAME]);
+        $request->request->add(['password' => 'Some invalid pass']);
+
+        $response = $this->postAction($request);
+        $response->shouldBeAnInstanceOf(Response::class);
+        $response->getStatusCode()->shouldBe(Response::HTTP_UNAUTHORIZED);
     }
 }
