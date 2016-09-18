@@ -5,12 +5,13 @@
  */
 
 namespace App\Organizations\Entity;
+use App\Common\Entity\AggregateRoot;
 
 /**
  * Class Organization
  * @package App\Organizations\Entity
  */
-class Organization implements OrganizationInterface
+class Organization extends AggregateRoot implements OrganizationInterface
 {
     /**
      * Organization unique identifier.
@@ -25,6 +26,20 @@ class Organization implements OrganizationInterface
      * @var string
      */
     private $name;
+
+    /**
+     * Created at.
+     *
+     * @var \DateTimeInterface
+     */
+    private $createdAt;
+
+    /**
+     * Updated at.
+     *
+     * @var \DateTimeInterface
+     */
+    private $updatedAt;
 
     /**
      * Organization constructor.
@@ -56,5 +71,20 @@ class Organization implements OrganizationInterface
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'id' => (string) $this->id,
+            'name' => $this->name
+        ];
     }
 }

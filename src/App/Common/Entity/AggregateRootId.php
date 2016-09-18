@@ -7,9 +7,11 @@
 namespace App\Common\Entity;
 
 /**
- * Class AggregateRootId.
+ * Class AggregateRootId
+ *
+ * @package App\Common\Entity
  */
-class AggregateRootId
+abstract class AggregateRootId
 {
     /**
      * Id.

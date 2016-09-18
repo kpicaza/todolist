@@ -6,6 +6,7 @@
 
 namespace App\Tasks\Entity;
 
+use App\Common\Entity\AggregateRoot;
 use App\Common\Entity\ProgressInterface;
 use App\Users\Entity\User;
 use App\Users\Entity\UserId;
@@ -14,7 +15,7 @@ use App\Users\Entity\UserId;
  * Class Task
  * @package App\Tasks\Entity
  */
-class Task implements TaskInterface, \JsonSerializable
+class Task extends AggregateRoot implements TaskInterface
 {
     /**
      * Task unique identifier.
@@ -119,42 +120,6 @@ class Task implements TaskInterface, \JsonSerializable
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Task created datetime.
-     *
-     * @return \DateTimeInterface
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * Task updated datetime.
-     *
-     * @return \DateTimeInterface
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * Set Task created datetime.
-     */
-    public function setCreatedAt()
-    {
-        $this->createdAt = new \DateTime();
-    }
-
-    /**
-     * Sey Task updated datetime.
-     */
-    public function setUpdatedAt()
-    {
-        $this->updatedAt = new \DateTime();
     }
 
     /**
