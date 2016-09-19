@@ -6,6 +6,8 @@
 
 namespace App\Users\Controller;
 
+use App\Organizations\Entity\OrganizationFactory;
+use App\Organizations\Entity\OrganizationFactoryInterface;
 use App\Users\Repository\UserRepository;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -33,15 +35,28 @@ class PostController
     private $repository;
 
     /**
-     * User PostController constructor.
+     * Organization Factory
+     *
+     * @var OrganizationFactoryInterface
+     */
+    private $organizationFactory;
+
+    /**
+     * PostController constructor.
      *
      * @param EventDispatcherInterface $eventDispatcher
-     * @param UserRepository           $repository
+     * @param UserRepository $repository
+     * @param OrganizationFactoryInterface $organizationFactory
      */
-    public function __construct(EventDispatcherInterface $eventDispatcher, UserRepository $repository)
+    public function __construct(
+        EventDispatcherInterface $eventDispatcher,
+        UserRepository $repository,
+        OrganizationFactoryInterface $organizationFactory
+    )
     {
         $this->dispatcher = $eventDispatcher;
         $this->repository = $repository;
+        $this->organizationFactory = $organizationFactory;
     }
 
     /**
@@ -71,8 +86,14 @@ class PostController
                     'Password cannot be empty.'
                 );
             }
+            if (!array_key_exists('organization', $data)) {
+                throw new \InvalidArgumentException(
+                    'Organization cannot be empty.'
+                );
+            }
 
             $user = $this->repository->nextIdentity(
+                $this->organizationFactory->make(null, $data['organization']),
                 $data['username'],
                 $data['email'],
                 $data['password']

@@ -2,6 +2,9 @@
 
 namespace spec\App\Users\Repository;
 
+use App\Organizations\Entity\Organization;
+use App\Organizations\Entity\OrganizationFactory;
+use App\Organizations\Entity\OrganizationId;
 use App\Users\Entity\UserFactory;
 use App\Users\Entity\UserId;
 use App\Users\Repository\UserRepository;
@@ -14,6 +17,7 @@ use Tests\Gateway\FakeGateway;
 
 class UserRepositorySpec extends ObjectBehavior
 {
+    const ORGANIZATION = 'my Organization';
     const NAME = 'foo';
     const EMAIL = 'foo@bar.mail';
     const PASS = 'fooBar.43';
@@ -32,23 +36,29 @@ class UserRepositorySpec extends ObjectBehavior
     {
         $gateway = new FakeGateway();
         $factory = new UserFactory(
-            new BCryptPasswordEncoder(4)
+            new BCryptPasswordEncoder(4),
+            new OrganizationFactory()
         );
 
-        $user = $factory->make(null, self::NAME, self::EMAIL, self::PASS, self::ROLES);
+        $organization = new Organization(
+            OrganizationId::fromString(Uuid::uuid4()),
+            self::ORGANIZATION
+        );
+
+        $user = $factory->make(null, $organization, self::NAME, self::EMAIL, self::PASS, self::ROLES);
 
         $this->beConstructedWith(
             $factory,
             $gateway
         );
 
-        $fakeUser = $this->nextIdentity(self::NAME, self::EMAIL, self::PASS, self::ROLES);
+        $fakeUser = $this->nextIdentity($organization, self::NAME, self::EMAIL, self::PASS, self::ROLES);
         $fakeUser = $this->save($fakeUser);
 
 
         $fakeUser->getUsername()->shouldBe($user->getUsername());
         $fakeUser->getEmail()->shouldBe($user->getEmail());
-      //  $fakeUser->getPassword()->shouldBe($user->getPassword());
+        //  $fakeUser->getPassword()->shouldBe($user->getPassword());
         $fakeUser->getRoles()->shouldBe($user->getRoles());
     }
 
@@ -56,22 +66,29 @@ class UserRepositorySpec extends ObjectBehavior
     {
         $gateway = new FakeGateway();
         $factory = new UserFactory(
-            new BCryptPasswordEncoder(4)
+            new BCryptPasswordEncoder(4),
+            new OrganizationFactory()
         );
 
-        $user = $factory->make(null, self::NAME, self::EMAIL, self::PASS, self::ROLES);
+        $organization = new Organization(
+            OrganizationId::fromString(Uuid::uuid4()),
+            self::ORGANIZATION
+        );
+
+        $user = $factory->make(null, $organization, self::NAME, self::EMAIL, self::PASS, self::ROLES);
 
         $fakeFactory = $this->prophet->prophesize(UserFactory::class);
-        $fakeFactory->make(null, self::NAME, self::EMAIL, self::PASS, self::ROLES)->willReturn($user);
+        $fakeFactory->make(null, $organization, self::NAME, self::EMAIL, self::PASS, self::ROLES)->willReturn($user);
 
         $this->beConstructedWith(
             $fakeFactory,
             $gateway
         );
 
-        $fakeUser = $this->nextIdentity(self::NAME, self::EMAIL, self::PASS, self::ROLES);
+        $fakeUser = $this->nextIdentity($organization, self::NAME, self::EMAIL, self::PASS, self::ROLES);
         $fakeUser = $this->save($fakeUser);
 
+        $fakeUser->getOrganization()->shouldBe($organization);
         $fakeUser->getUsername()->shouldBe($user->getUsername());
         $fakeUser->getEmail()->shouldBe($user->getEmail());
         $fakeUser->getPassword()->shouldBe($user->getPassword());

@@ -2,6 +2,9 @@
 
 namespace spec\App\Security\Provider;
 
+use App\Organizations\Entity\Organization;
+use App\Organizations\Entity\OrganizationFactory;
+use App\Organizations\Entity\OrganizationId;
 use App\Users\Entity\User;
 use App\Users\Entity\UserFactory;
 use App\Users\Gateway\UserGateway;
@@ -10,12 +13,14 @@ use App\Security\Provider\UserProvider;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Prophecy\Prophet;
+use Ramsey\Uuid\Uuid;
 use Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Tests\Gateway\FakeGateway;
 
 class UserProviderSpec extends ObjectBehavior
 {
+    const ORGANIZATION = 'Foo Bar';
     const USERNAME = 'foo';
     const EMAIL = 'foo@bar.mail';
     const PASS = 'fooBar.43';
@@ -24,14 +29,21 @@ class UserProviderSpec extends ObjectBehavior
 
     private $factory;
 
+    private $organization;
+
     function let()
     {
         $this->prophet = new Prophet();
 
         $this->factory = new UserFactory(
-            new BCryptPasswordEncoder(4)
+            new BCryptPasswordEncoder(4),
+            new OrganizationFactory()
         );
 
+        $this->organization = new Organization(
+            OrganizationId::fromString(Uuid::uuid4()),
+            self::ORGANIZATION
+        );
     }
 
 
@@ -45,6 +57,7 @@ class UserProviderSpec extends ObjectBehavior
         );
 
         $user = $repository->nextIdentity(
+            $this->organization,
             self::USERNAME,
             self::EMAIL,
             self::PASS
@@ -89,6 +102,7 @@ class UserProviderSpec extends ObjectBehavior
         );
 
         $user = $repository->nextIdentity(
+            $this->organization,
             self::USERNAME,
             self::EMAIL,
             self::PASS
@@ -115,6 +129,7 @@ class UserProviderSpec extends ObjectBehavior
         );
 
         $user = $repository->nextIdentity(
+            $this->organization,
             self::USERNAME,
             self::EMAIL,
             self::PASS

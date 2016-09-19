@@ -81,21 +81,21 @@ class User extends AggregateRoot implements UserInterface
      * User constructor.
      *
      * @param UserId $id
+     * @param OrganizationInterface $organization
      * @param $username
      * @param $email
      * @param null $pass
      * @param array $roles
      * @param null $salt
-     * @param OrganizationInterface|null $organization
      */
     public function __construct(
         UserId $id,
+        OrganizationInterface $organization,
         $username,
         $email,
         $pass = null,
         array $roles = [],
-        $salt = null,
-        OrganizationInterface $organization = null
+        $salt = null
     )
     {
         $this->id = $id;
@@ -106,6 +106,7 @@ class User extends AggregateRoot implements UserInterface
             );
         }
 
+        $this->organization = $organization;
         $this->username = $username;
 
         if (empty($email)) {
@@ -118,7 +119,6 @@ class User extends AggregateRoot implements UserInterface
         $this->password = $pass;
         $this->roles = $roles;
         $this->salt = $salt;
-        $this->organization = $organization;
     }
 
     /**

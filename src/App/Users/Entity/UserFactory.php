@@ -6,6 +6,8 @@
 
 namespace App\Users\Entity;
 
+use App\Organizations\Entity\OrganizationFactoryInterface;
+use App\Organizations\Entity\OrganizationInterface;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 
@@ -22,14 +24,17 @@ class UserFactory
      */
     private $encoder;
 
+    private $organizationFactory;
+
     /**
      * UserFactory constructor.
      *
      * @param PasswordEncoderInterface $encoder
      */
-    public function __construct(PasswordEncoderInterface $encoder)
+    public function __construct(PasswordEncoderInterface $encoder, OrganizationFactoryInterface $organizationFactory)
     {
         $this->encoder = $encoder;
+        $this->organizationFactory = $organizationFactory;
     }
 
     /**
@@ -43,12 +48,13 @@ class UserFactory
      *
      * @return UserInterface
      */
-    public function make($id, $username, $email, $password, array $roles = array())
+    public function make($id, OrganizationInterface $organization, $username, $email, $password, array $roles = array())
     {
-        $id = new UserId(null === $id ? $id : Uuid::uuid4());
+        $id = new UserId(null === $id ? Uuid::uuid4() : $id);
 
         return new User(
             $id,
+            $organization,
             $username,
             $email,
             $this->encoder->encodePassword($password, ''),

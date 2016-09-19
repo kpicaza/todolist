@@ -7,6 +7,7 @@
 namespace App\Users\Repository;
 
 use App\Common\Gateway\GatewayInterface;
+use App\Organizations\Entity\OrganizationInterface;
 use App\Users\Entity\UserFactory;
 use App\Users\Entity\UserInterface;
 
@@ -52,9 +53,9 @@ class UserRepository
      *
      * @return UserInterface
      */
-    public function nextIdentity($username, $email, $pass, array $roles = [])
+    public function nextIdentity(OrganizationInterface $organization, $username, $email, $pass, array $roles = [])
     {
-        return $this->factory->make(null, $username, $email, $pass, $roles);
+        return $this->factory->make(null, $organization, $username, $email, $pass, $roles);
     }
 
     /**

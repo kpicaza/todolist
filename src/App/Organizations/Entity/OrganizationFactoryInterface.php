@@ -16,10 +16,10 @@ interface OrganizationFactoryInterface
     /**
      * Create new instances of OrganizationInterface.
      *
-     * @param OrganizationId $id
+     * @param string $id
      * @param $name
      *
      * @return OrganizationInterface
      */
-    public function make(OrganizationId $id, $name);
+    public function make($id, $name);
 }

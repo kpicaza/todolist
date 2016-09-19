@@ -5,6 +5,7 @@
  */
 
 namespace App\Organizations\Entity;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Class OrganizationFactory
@@ -16,13 +17,15 @@ class OrganizationFactory implements OrganizationFactoryInterface
     /**
      * Create new instances of OrganizationInterface.
      *
-     * @param OrganizationId $id
+     * @param string $id
      * @param string $name
      *
      * @return OrganizationInterface
      */
-    public function make(OrganizationId $id, $name)
+    public function make($id, $name)
     {
+        $id = new OrganizationId(null === $id ? Uuid::uuid4() : $id);
+
         return new Organization($id, $name);
     }
 }

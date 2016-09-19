@@ -23,9 +23,14 @@ class UserSpec extends ObjectBehavior
     function it_has_random_unique_Identifier()
     {
         $uuid = \App\Users\Entity\UserId::fromString(Uuid::uuid4());
+        $organization = (new OrganizationFactory())->make(
+            OrganizationId::fromString(Uuid::uuid4()),
+            'company name'
+        );
 
         $this->beConstructedWith(
             $uuid,
+            $organization,
             self::USERNAME,
             self::EMAIL,
             self::PASS
@@ -37,9 +42,14 @@ class UserSpec extends ObjectBehavior
     function it_should_have_username()
     {
         $uuid = \App\Users\Entity\UserId::fromString(Uuid::uuid4());
+        $organization = (new OrganizationFactory())->make(
+            OrganizationId::fromString(Uuid::uuid4()),
+            'company name'
+        );
 
         $this->beConstructedWith(
             $uuid,
+            $organization,
             self::USERNAME,
             self::EMAIL,
             self::PASS
@@ -51,9 +61,14 @@ class UserSpec extends ObjectBehavior
     function it_cannot_have_empty_username()
     {
         $uuid = \App\Users\Entity\UserId::fromString(Uuid::uuid4());
+        $organization = (new OrganizationFactory())->make(
+            OrganizationId::fromString(Uuid::uuid4()),
+            'company name'
+        );
 
         $this->beConstructedWith(
             $uuid,
+            $organization,
             '',
             self::EMAIL,
             self::PASS
@@ -67,9 +82,14 @@ class UserSpec extends ObjectBehavior
     function it_should_have_email()
     {
         $uuid = \App\Users\Entity\UserId::fromString(Uuid::uuid4());
+        $organization = (new OrganizationFactory())->make(
+            OrganizationId::fromString(Uuid::uuid4()),
+            'company name'
+        );
 
         $this->beConstructedWith(
             $uuid,
+            $organization,
             self::USERNAME,
             self::EMAIL,
             self::PASS
@@ -81,9 +101,14 @@ class UserSpec extends ObjectBehavior
     function it_cannot_have_empty_email()
     {
         $uuid = \App\Users\Entity\UserId::fromString(Uuid::uuid4());
+        $organization = (new OrganizationFactory())->make(
+            OrganizationId::fromString(Uuid::uuid4()),
+            'company name'
+        );
 
         $this->beConstructedWith(
             $uuid,
+            $organization,
             self::USERNAME,
             '',
             self::PASS
@@ -97,9 +122,14 @@ class UserSpec extends ObjectBehavior
     function it_should_have_password()
     {
         $uuid = \App\Users\Entity\UserId::fromString(Uuid::uuid4());
+        $organization = (new OrganizationFactory())->make(
+            OrganizationId::fromString(Uuid::uuid4()),
+            'company name'
+        );
 
         $this->beConstructedWith(
             $uuid,
+            $organization,
             self::USERNAME,
             self::EMAIL,
             self::PASS
@@ -111,9 +141,14 @@ class UserSpec extends ObjectBehavior
     function it_should_have_roles()
     {
         $uuid = \App\Users\Entity\UserId::fromString(Uuid::uuid4());
+        $organization = (new OrganizationFactory())->make(
+            OrganizationId::fromString(Uuid::uuid4()),
+            'company name'
+        );
 
         $this->beConstructedWith(
             $uuid,
+            $organization,
             self::USERNAME,
             self::EMAIL,
             self::PASS,
@@ -126,9 +161,14 @@ class UserSpec extends ObjectBehavior
     function it_should_have_salt()
     {
         $uuid = \App\Users\Entity\UserId::fromString(Uuid::uuid4());
+        $organization = (new OrganizationFactory())->make(
+            OrganizationId::fromString(Uuid::uuid4()),
+            'company name'
+        );
 
         $this->beConstructedWith(
             $uuid,
+            $organization,
             self::USERNAME,
             self::EMAIL,
             self::PASS,
@@ -142,17 +182,19 @@ class UserSpec extends ObjectBehavior
     function it_should_have_organization()
     {
         $uuid = \App\Users\Entity\UserId::fromString(Uuid::uuid4());
-        $organization = (new OrganizationFactory())->make(OrganizationId::fromString(Uuid::uuid4()), 'company name');
-
+        $organization = (new OrganizationFactory())->make(
+            OrganizationId::fromString(Uuid::uuid4()),
+            'company name'
+        );
 
         $this->beConstructedWith(
             $uuid,
+            $organization,
             self::USERNAME,
             self::EMAIL,
             self::PASS,
             [],
-            self::SALT,
-            $organization
+            self::SALT
         );
 
         $this->getOrganization()->shouldBe($organization);
@@ -161,9 +203,14 @@ class UserSpec extends ObjectBehavior
     function it_has_created_at_date_time()
     {
         $uuid = \App\Users\Entity\UserId::fromString(Uuid::uuid4());
+        $organization = (new OrganizationFactory())->make(
+            OrganizationId::fromString(Uuid::uuid4()),
+            'company name'
+        );
 
         $this->beConstructedWith(
             $uuid,
+            $organization,
             self::USERNAME,
             self::EMAIL
         );
@@ -175,9 +222,14 @@ class UserSpec extends ObjectBehavior
     function it_has_updated_at_date_time()
     {
         $uuid = \App\Users\Entity\UserId::fromString(Uuid::uuid4());
+        $organization = (new OrganizationFactory())->make(
+            OrganizationId::fromString(Uuid::uuid4()),
+            'company name'
+        );
 
         $this->beConstructedWith(
             $uuid,
+            $organization,
             self::USERNAME,
             self::EMAIL
         );
