@@ -1,2 +1,11 @@
 extensions:
-        Memio\SpecGen\MemioSpecGenExtension: ~
+  Memio\SpecGen\MemioSpecGenExtension: ~
+  PhpSpecCodeCoverage\CodeCoverageExtension:
+    format:
+      - html
+      - clover
+    whitelist:
+      - src/
+    output:
+      html: ../../web/packages/file/coverage/
+      clover: coverage.clover
