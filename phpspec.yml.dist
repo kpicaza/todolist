@@ -1,8 +1,21 @@
 extensions:
+  Memio\SpecGen\MemioSpecGenExtension: ~
   PhpSpecCodeCoverage\CodeCoverageExtension:
     format:
+      - html
       - clover
     whitelist:
       - src/
+      - packages/
     output:
-      clover: coverage.xml
+      html: web/coverage
+      clover: coverage.clover
+
+suites:
+
+    default: ~
+
+    file:
+        namespace: 'InFw\File'
+        src_path: packages/file/src
+        spec_path: packages/file
