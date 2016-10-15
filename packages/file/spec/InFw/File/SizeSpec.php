@@ -2,9 +2,8 @@
 
 namespace spec\InFw\File;
 
-use InFw\File\Size;
+use InFw\Range\BaseRange;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class SizeSpec extends ObjectBehavior
 {
@@ -14,45 +13,42 @@ class SizeSpec extends ObjectBehavior
     const INVALID_SIZE = 25;
     const STRING_SIZE = 'fghjfjhgfj';
 
+    protected $range;
+
+    function let()
+    {
+        $this->range = new BaseRange(
+            self::MIN_SIZE,
+            self::MAX_SIZE
+        );
+    }
+
     function it_must_have_size_between_max_and_min_sizes()
     {
         $this->beConstructedWith(
             self::SIZE,
-            self::MIN_SIZE,
-            self::MAX_SIZE
+            $this->range
         );
 
         $this->get()->shouldBe(self::SIZE);
     }
 
-    function it_must_have_min_size()
+    function it_must_have_min_and_max_size_range()
     {
         $this->beConstructedWith(
             self::SIZE,
-            self::MIN_SIZE,
-            self::MAX_SIZE
+            $this->range
         );
 
-        $this->getMin()->shouldBe(self::MIN_SIZE);
-    }
+        $this->getRange()->shouldBe($this->range);
 
-    function it_must_have_max_size()
-    {
-        $this->beConstructedWith(
-            self::SIZE,
-            self::MIN_SIZE,
-            self::MAX_SIZE
-        );
-
-        $this->getMax()->shouldBe(self::MAX_SIZE);
     }
 
     function it_must_thrown_an_exception_when_file_size_is_not_valid()
     {
         $this->beConstructedWith(
             self::INVALID_SIZE,
-            self::MIN_SIZE,
-            self::MAX_SIZE
+            $this->range
         );
 
         $this->shouldThrow(
@@ -64,38 +60,11 @@ class SizeSpec extends ObjectBehavior
     {
         $this->beConstructedWith(
             self::STRING_SIZE,
-            self::MIN_SIZE,
-            self::MAX_SIZE
+            $this->range
         );
 
         $this->shouldThrow(
             \InvalidArgumentException::class
         )->duringInstantiation();
-    }
-
-    function it_must_thrown_an_exception_when_file_min_size_not_an_integer()
-    {
-        $this->beConstructedWith(
-            self::SIZE,
-            self::STRING_SIZE,
-            self::MAX_SIZE
-        );
-
-        $this->shouldThrow(
-            \InvalidArgumentException::class
-        )->duringInstantiation();
-    }
-
-    function it_must_thrown_an_exception_when_file_max_size_not_an_integer()
-    {
-        $this->beConstructedWith(
-            self::SIZE,
-            self::MIN_SIZE,
-            self::STRING_SIZE
-        );
-
-        $this->shouldThrow(
-            \InvalidArgumentException::class
-        );
     }
 }

@@ -4,7 +4,7 @@ namespace spec\InFw\Range;
 
 use PhpSpec\ObjectBehavior;
 
-class RangeSpec extends ObjectBehavior
+class BaseRangeSpec extends ObjectBehavior
 {
     const MIN_SIZE = 230;
     const MAX_SIZE = 74000;
@@ -31,7 +31,7 @@ class RangeSpec extends ObjectBehavior
         $this->getMax()->shouldBe(self::MAX_SIZE);
     }
 
-    function it_must_thrown_an_exception_when_file_min_size_not_an_integer()
+    function it_must_thrown_an_exception_when_min_is_not_an_integer()
     {
         $this->beConstructedWith(
             self::STRING_SIZE,
@@ -43,7 +43,7 @@ class RangeSpec extends ObjectBehavior
         )->duringInstantiation();
     }
 
-    function it_must_thrown_an_exception_when_file_max_size_not_an_integer()
+    function it_must_thrown_an_exception_when_max_is_not_an_integer()
     {
         $this->beConstructedWith(
             self::MIN_SIZE,

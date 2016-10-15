@@ -8,12 +8,19 @@
   "license": "MIT",
   "type": "library",
   "description": "File Object for In Framework",
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../*"
+    }
+  ],
   "autoload": {
     "psr-4": {
       "InFw\\File\\": "src/InFw/File"
     }
   },
   "require": {
+    "infw/range": "@dev",
     "php": "^5.6"
   },
   "require-dev": {

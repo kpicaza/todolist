@@ -5,6 +5,7 @@
  */
 
 namespace InFw\File;
+use InFw\Range\Range;
 
 /**
  * Class Size.
@@ -17,14 +18,9 @@ class Size
     private $size;
 
     /**
-     * @var int
+     * @var Range
      */
-    private $min;
-
-    /**
-     * @var int
-     */
-    private $max;
+    private $range;
 
     /**
      * Size constructor.
@@ -33,26 +29,19 @@ class Size
      * @param int $min
      * @param int $max
      */
-    public function __construct($size, $min, $max)
+    public function __construct($size, Range $range)
     {
+        $this->range = $range;
+
         if (
-            3 !== count(array_filter([$size, $min, $max], function ($value) {
-                return true === is_int($value);
-            }))
+            false === is_int($size)
+            || $size < $this->range->getMin()
+            || $size > $this->range->getMax()
         ) {
-            throw new \InvalidArgumentException(
-                'All parameters at Size object must be integers.'
-            );
-        }
-
-        $this->min = $min;
-        $this->max = $max;
-
-        if ($size > $this->max || $size < $this->min) {
             throw new \InvalidArgumentException(sprintf(
                 'Size must be between %s and %s.',
-                $this->min,
-                $this->max
+                $this->range->getMin(),
+                $this->range->getMax()
             ));
         }
 
@@ -68,18 +57,10 @@ class Size
     }
 
     /**
-     * @return int
+     * @return Range
      */
-    public function getMin()
+    public function getRange()
     {
-        return $this->min;
-    }
-
-    /**
-     * @return int
-     */
-    public function getMax()
-    {
-        return $this->max;
+        return $this->range;
     }
 }

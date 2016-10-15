@@ -3,6 +3,7 @@
 namespace spec\InFw\File;
 
 use InFw\File\Size;
+use InFw\Range\BaseRange;
 use PhpSpec\ObjectBehavior;
 
 class GenericFileSpec extends ObjectBehavior
@@ -26,8 +27,10 @@ class GenericFileSpec extends ObjectBehavior
     {
         $this->size = new Size(
             self::SIZE,
-            self::MIN_SIZE,
-            self::MAX_SIZE
+            new BaseRange(
+                self::MIN_SIZE,
+                self::MAX_SIZE
+            )
         );
     }
 
