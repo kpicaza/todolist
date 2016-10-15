@@ -12,22 +12,30 @@ namespace InFw\File;
 interface File extends \JsonSerializable
 {
     /**
-     * @return mixed
-     */
-    public function getSize();
-
-    /**
-     * @return mixed
+     * Obtain File name.
+     *
+     * @return string
      */
     public function getName();
 
     /**
-     * @return mixed
-     */
-    public function getTmpName();
-
-    /**
-     * @return mixed
+     * Obtain File mime type.
+     *
+     * @return string
      */
     public function getMimeType();
+
+    /**
+     * Obtain File size in kb.
+     *
+     * @return int
+     */
+    public function getSize();
+
+    /**
+     * Obtain File tmp path name.
+     *
+     * @return string
+     */
+    public function getTmpName();
 }

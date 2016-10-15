@@ -5,7 +5,7 @@ namespace spec\InFw\File;
 use InFw\Range\BaseRange;
 use PhpSpec\ObjectBehavior;
 
-class SizeSpec extends ObjectBehavior
+class BaseSizeSpec extends ObjectBehavior
 {
     const SIZE = 14048;
     const MIN_SIZE = 230;

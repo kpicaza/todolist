@@ -12,42 +12,59 @@ namespace InFw\File;
 abstract class AbstractFile implements File
 {
     /**
+     * File name.
+     *
      * @var string
      */
     private $name;
 
     /**
-     * @var string
+     * File mime type.
+     *
+     * @var MimeType
      */
     private $mimeType;
 
     /**
+     * File size.
+     *
      * @var Size
      */
     private $size;
 
     /**
+     * File tmp path name.
+     *
      * @var string
      */
     private $tmpName;
 
     /**
-     * GenericFile constructor.
+     * AbstractFile constructor.
      *
      * @param string $name
-     * @param string $mimeType
+     * @param MimeType $mimeType
      * @param Size   $size
      * @param string $tmpName
      */
-    public function __construct($name, $mimeType, Size $size, $tmpName)
+    public function __construct($name, MimeType $mimeType, Size $size, $tmpName)
     {
         $this->name = $name;
         $this->mimeType = $mimeType;
         $this->size = $size;
+
+        if (false === file_exists($tmpName)) {
+            throw new \InvalidArgumentException(
+                'File ' . $tmpName . ' does not exists.'
+            );
+        }
+
         $this->tmpName = $tmpName;
     }
 
     /**
+     * Obtain File name.
+     *
      * @return string
      */
     public function getName()
@@ -56,14 +73,18 @@ abstract class AbstractFile implements File
     }
 
     /**
+     * Obtain File mime type.
+     *
      * @return string
      */
     public function getMimeType()
     {
-        return $this->mimeType;
+        return $this->mimeType->get();
     }
 
     /**
+     * Obtain File size in kb.
+     *
      * @return int
      */
     public function getSize()
@@ -72,6 +93,8 @@ abstract class AbstractFile implements File
     }
 
     /**
+     * Obtain File tmp path name.
+     *
      * @return string
      */
     public function getTmpName()
@@ -93,7 +116,7 @@ abstract class AbstractFile implements File
     {
         return [
             'name' => $this->name,
-            'mimeType' => $this->mimeType,
+            'mimeType' => $this->mimeType->get(),
             'size' => $this->size->get(),
         ];
     }
