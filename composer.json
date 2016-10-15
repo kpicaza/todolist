@@ -41,6 +41,7 @@
         "symfony/twig-bridge": "^3.1",
         "symfony/asset": "^3.1",
         "jdesrosiers/silex-cors-provider": "~1.0",
+        "infw/range": "@dev",
         "infw/file": "@dev"
     },
     "require-dev": {

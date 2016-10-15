@@ -12,10 +12,14 @@ extensions:
       clover: coverage.clover
 
 suites:
-
     default: ~
 
     file:
         namespace: 'InFw\File'
         src_path: packages/file/src
         spec_path: packages/file
+
+    range:
+        namespace: 'InFw\Range'
+        src_path: packages/range/src
+        spec_path: packages/range
