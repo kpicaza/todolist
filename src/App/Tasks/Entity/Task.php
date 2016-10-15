@@ -6,16 +6,13 @@
 
 namespace App\Tasks\Entity;
 
-use App\Common\Entity\AggregateRoot;
 use App\Common\Entity\ProgressInterface;
-use App\Users\Entity\User;
 use App\Users\Entity\UserId;
 
 /**
- * Class Task
- * @package App\Tasks\Entity
+ * Class Task.
  */
-class Task extends AggregateRoot implements TaskInterface
+class Task implements TaskInterface, \JsonSerializable
 {
     /**
      * Task unique identifier.
@@ -62,8 +59,8 @@ class Task extends AggregateRoot implements TaskInterface
     /**
      * Task constructor.
      *
-     * @param TaskId $taskId
-     * @param UserId $authorId
+     * @param TaskId            $taskId
+     * @param UserId            $authorId
      * @param ProgressInterface $progress
      * @param $description
      */
@@ -93,7 +90,7 @@ class Task extends AggregateRoot implements TaskInterface
     }
 
     /**
-     * Get Author id
+     * Get Author id.
      *
      * @return string
      */
@@ -120,6 +117,42 @@ class Task extends AggregateRoot implements TaskInterface
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Task created datetime.
+     *
+     * @return \DateTimeInterface
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Task updated datetime.
+     *
+     * @return \DateTimeInterface
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     *  Set created at.
+     */
+    public function setCreatedAt()
+    {
+        $this->createdAt = new \DateTime();
+    }
+
+    /**
+     * Set updated at.
+     */
+    public function setUpdatedAt()
+    {
+        $this->updatedAt = new \DateTime();
     }
 
     /**

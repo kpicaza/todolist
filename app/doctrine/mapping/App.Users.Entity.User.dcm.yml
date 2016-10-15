@@ -22,6 +22,7 @@ App\Users\Entity\User:
     manyToOne:
         organization:
             targetEntity: App\Organizations\Entity\Organization
+            cascade: [ "persist" ]
             joinColumn:
                 name: organization_id
                 referencedColumnName: id

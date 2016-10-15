@@ -12,8 +12,7 @@ use App\Tasks\Entity\TaskInterface;
 use App\Users\Entity\UserId;
 
 /**
- * Class TaskRepository
- * @package App\Tasks\Repository
+ * Class TaskRepository.
  */
 class TaskRepository
 {
@@ -34,7 +33,7 @@ class TaskRepository
     /**
      * TaskRepository constructor.
      *
-     * @param TaskFactory $factory
+     * @param TaskFactory      $factory
      * @param GatewayInterface $gateway
      */
     public function __construct(TaskFactory $factory, GatewayInterface $gateway)
@@ -46,10 +45,10 @@ class TaskRepository
     /**
      * Find list of Tasks.
      *
-     * @param array $criteria
+     * @param array      $criteria
      * @param array|null $orderBy
-     * @param null $limit
-     * @param null $offset
+     * @param null       $limit
+     * @param null       $offset
      *
      * @return mixed
      */
@@ -64,6 +63,7 @@ class TaskRepository
      * @param UserId $userId
      * @param $description
      * @param int $progress
+     *
      * @return \App\Tasks\Entity\TaskInterface
      */
     public function nextIdentity($userId, $description, $progress = 0)
@@ -89,7 +89,7 @@ class TaskRepository
      * Save Task description.
      *
      * @param TaskInterface $task
-     * @param string $description
+     * @param string        $description
      *
      * @return TaskInterface
      */
@@ -113,7 +113,7 @@ class TaskRepository
      * Save Task progress.
      *
      * @param TaskInterface $task
-     * @param int $progress
+     * @param int           $progress
      *
      * @return TaskInterface
      */
@@ -123,9 +123,8 @@ class TaskRepository
             $task->id(),
             $task->authorId(),
             $task->getDescription(),
-            (int)$progress
+            (int) $progress
         );
-
 
         $this->gateway->update($task);
 

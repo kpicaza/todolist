@@ -12,8 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class GetController
- * @package App\Users\Controller
+ * Class GetController.
  */
 class GetController
 {
@@ -52,7 +51,6 @@ class GetController
                     'User does not exist'
                 );
             }
-
         } catch (\InvalidArgumentException $e) {
             return new JsonResponse(null, Response::HTTP_NOT_FOUND);
         }

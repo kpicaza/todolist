@@ -13,8 +13,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 
 /**
- * Class UserProvider
- * @package App\Security\Provider
+ * Class UserProvider.
  */
 class UserProvider implements UserProviderInterface
 {

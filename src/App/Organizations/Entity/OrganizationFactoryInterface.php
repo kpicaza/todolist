@@ -7,9 +7,7 @@
 namespace App\Organizations\Entity;
 
 /**
- * Interface OrganizationFactoryInterface
- *
- * @package App\Organizations\Entity
+ * Interface OrganizationFactoryInterface.
  */
 interface OrganizationFactoryInterface
 {

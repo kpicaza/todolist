@@ -7,8 +7,7 @@
 namespace App\Common\Gateway;
 
 /**
- * Interface GatewayInterface
- * @package App\Common\Gateway
+ * Interface GatewayInterface.
  */
 interface GatewayInterface
 {
@@ -20,7 +19,7 @@ interface GatewayInterface
      * @return mixed
      */
     public function save($object);
-    
+
     /**
      * Update an entity.
      *

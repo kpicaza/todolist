@@ -12,8 +12,7 @@ use App\Users\Entity\UserFactory;
 use App\Users\Entity\UserInterface;
 
 /**
- * Class UserRepository
- * @package App\Users\Repository
+ * Class UserRepository.
  */
 class UserRepository
 {
@@ -53,8 +52,13 @@ class UserRepository
      *
      * @return UserInterface
      */
-    public function nextIdentity(OrganizationInterface $organization, $username, $email, $pass, array $roles = [])
-    {
+    public function nextIdentity(
+        OrganizationInterface $organization,
+        $username,
+        $email,
+        $pass,
+        array $roles = ['ROLE_USER']
+    ) {
         return $this->factory->make(null, $organization, $username, $email, $pass, $roles);
     }
 

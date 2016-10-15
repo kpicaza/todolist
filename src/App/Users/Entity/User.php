@@ -5,14 +5,13 @@
  */
 
 namespace App\Users\Entity;
-use App\Common\Entity\AggregateRoot;
+
 use App\Organizations\Entity\OrganizationInterface;
 
 /**
- * Class User
- * @package App\Users\Entity
+ * Class User.
  */
-class User extends AggregateRoot implements UserInterface
+class User implements UserInterface, \JsonSerializable
 {
     /**
      * User id.
@@ -80,13 +79,13 @@ class User extends AggregateRoot implements UserInterface
     /**
      * User constructor.
      *
-     * @param UserId $id
+     * @param UserId                $id
      * @param OrganizationInterface $organization
      * @param $username
      * @param $email
-     * @param null $pass
+     * @param null  $pass
      * @param array $roles
-     * @param null $salt
+     * @param null  $salt
      */
     public function __construct(
         UserId $id,
@@ -96,8 +95,7 @@ class User extends AggregateRoot implements UserInterface
         $pass = null,
         array $roles = [],
         $salt = null
-    )
-    {
+    ) {
         $this->id = $id;
 
         if (empty($username)) {
@@ -140,7 +138,7 @@ class User extends AggregateRoot implements UserInterface
     }
 
     /**
-     * Get User email
+     * Get User email.
      *
      * @return mixed
      */
@@ -191,18 +189,58 @@ class User extends AggregateRoot implements UserInterface
     }
 
     /**
-     * Specify data which should be serialized to JSON
+     * Task created datetime.
+     *
+     * @return \DateTimeInterface
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Task updated datetime.
+     *
+     * @return \DateTimeInterface
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     *  Set created at.
+     */
+    public function setCreatedAt()
+    {
+        $this->createdAt = new \DateTime();
+    }
+
+    /**
+     * Set updated at.
+     */
+    public function setUpdatedAt()
+    {
+        $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * Specify data which should be serialized to JSON.
+     *
      * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     *
      * @return mixed data which can be serialized by <b>json_encode</b>,
-     * which is a value of any type other than a resource.
+     *               which is a value of any type other than a resource.
+     *
      * @since 5.4.0
      */
     public function jsonSerialize()
     {
         return [
             'id' => (string) $this->id(),
+            'organization' => $this->organization->getName(),
             'username' => $this->username,
-            'email' => $this->email
+            'email' => $this->email,
         ];
     }
 }

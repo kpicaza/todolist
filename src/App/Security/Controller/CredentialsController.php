@@ -13,12 +13,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 
 /**
- * Class CredentialsController
- * @package App\Security\Controller
+ * Class CredentialsController.
  */
 class CredentialsController
 {
@@ -54,9 +52,9 @@ class CredentialsController
      * CredentialsController constructor.
      *
      * @param EventDispatcherInterface $eventDispatcher
-     * @param UserProviderInterface $provider
+     * @param UserProviderInterface    $provider
      * @param PasswordEncoderInterface $encoder
-     * @param array $options
+     * @param array                    $options
      */
     public function __construct(
         EventDispatcherInterface $eventDispatcher,
@@ -74,6 +72,7 @@ class CredentialsController
      * Request Authorization Credentials.
      *
      * @param Request $request
+     *
      * @return JsonResponse
      */
     public function postAction(Request $request)
@@ -107,10 +106,10 @@ class CredentialsController
 
             $response = new JsonResponse([
                 'access_token' => $authorizationProvider->createToken($user),
-                'uuid' => $user->id()
+                'uuid' => $user->id(),
             ], Response::HTTP_OK);
         } catch (\RuntimeException $e) {
-            return new JsonResponse('', Response::HTTP_UNAUTHORIZED);
+            return new JsonResponse($e->getMessage(), Response::HTTP_UNAUTHORIZED);
         }
 
         return $response;

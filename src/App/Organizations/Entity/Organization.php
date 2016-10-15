@@ -5,13 +5,11 @@
  */
 
 namespace App\Organizations\Entity;
-use App\Common\Entity\AggregateRoot;
 
 /**
- * Class Organization
- * @package App\Organizations\Entity
+ * Class Organization.
  */
-class Organization extends AggregateRoot implements OrganizationInterface
+class Organization implements OrganizationInterface, \JsonSerializable
 {
     /**
      * Organization unique identifier.
@@ -74,17 +72,56 @@ class Organization extends AggregateRoot implements OrganizationInterface
     }
 
     /**
-     * Specify data which should be serialized to JSON
+     * Task created datetime.
+     *
+     * @return \DateTimeInterface
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Task updated datetime.
+     *
+     * @return \DateTimeInterface
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     *  Set created at.
+     */
+    public function setCreatedAt()
+    {
+        $this->createdAt = new \DateTime();
+    }
+
+    /**
+     * Set updated at.
+     */
+    public function setUpdatedAt()
+    {
+        $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * Specify data which should be serialized to JSON.
+     *
      * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     *
      * @return mixed data which can be serialized by <b>json_encode</b>,
-     * which is a value of any type other than a resource.
+     *               which is a value of any type other than a resource.
+     *
      * @since 5.4.0
      */
     public function jsonSerialize()
     {
         return [
             'id' => (string) $this->id,
-            'name' => $this->name
+            'name' => $this->name,
         ];
     }
 }

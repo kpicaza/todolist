@@ -18,8 +18,7 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 
 /**
- * Class JwsAuthenticator
- * @package App\Security\Authenticator
+ * Class JwsAuthenticator.
  */
 class JwsAuthenticator extends AbstractGuardAuthenticator
 {
@@ -52,7 +51,7 @@ class JwsAuthenticator extends AbstractGuardAuthenticator
     /**
      * {@inheritdoc}
      *
-     * @param Request $request
+     * @param Request                      $request
      * @param AuthenticationException|null $authException
      *
      * @return JsonResponse
@@ -90,7 +89,7 @@ class JwsAuthenticator extends AbstractGuardAuthenticator
     /**
      * {@inheritdoc}
      *
-     * @param mixed $credentials
+     * @param mixed                 $credentials
      * @param UserProviderInterface $userProvider
      *
      * @return \App\Users\Entity\User|void
@@ -119,7 +118,7 @@ class JwsAuthenticator extends AbstractGuardAuthenticator
     /**
      * {@inheritdoc}
      *
-     * @param mixed $credentials
+     * @param mixed         $credentials
      * @param UserInterface $user
      *
      * @return bool
@@ -132,7 +131,7 @@ class JwsAuthenticator extends AbstractGuardAuthenticator
     /**
      * {@inheritdoc}
      *
-     * @param Request $request
+     * @param Request                 $request
      * @param AuthenticationException $exception
      *
      * @return JsonResponse
@@ -152,10 +151,9 @@ class JwsAuthenticator extends AbstractGuardAuthenticator
     /**
      * {@inheritdoc}
      *
-     * @param Request $request
+     * @param Request        $request
      * @param TokenInterface $token
-     *
-     * @param string $providerKey
+     * @param string         $providerKey
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {

@@ -12,8 +12,7 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping\ClassMetadata;
 
 /**
- * Class Gateway
- * @package App\Common\Gateway
+ * Class Gateway.
  */
 abstract class Gateway extends EntityRepository implements GatewayInterface
 {
@@ -21,7 +20,7 @@ abstract class Gateway extends EntityRepository implements GatewayInterface
      * TaskGateway constructor.
      *
      * @param \Doctrine\ORM\EntityManager $em
-     * @param ClassMetadata $class
+     * @param ClassMetadata               $class
      */
     public function __construct($em, ClassMetadata $class)
     {

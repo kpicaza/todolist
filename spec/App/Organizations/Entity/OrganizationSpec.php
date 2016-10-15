@@ -35,6 +35,28 @@ class OrganizationSpec extends ObjectBehavior
         $this->getName()->shouldBe(self::NAME);
     }
 
+    function it_has_created_at_date_time()
+    {
+        $this->beConstructedWith(
+            OrganizationId::fromString(Uuid::uuid4()),
+            self::NAME
+        );
+
+        $this->setCreatedAt();
+        $this->getCreatedAt()->shouldBeAnInstanceOf(\DateTimeInterface::class);
+    }
+
+    function it_has_updated_at_date_time()
+    {
+        $this->beConstructedWith(
+            OrganizationId::fromString(Uuid::uuid4()),
+            self::NAME
+        );
+
+        $this->setUpdatedAt();
+        $this->getUpdatedAt()->shouldBeAnInstanceOf(\DateTimeInterface::class);
+    }
+
     function it_should_be_json_serializable()
     {
         $this->beConstructedWith(

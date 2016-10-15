@@ -15,8 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class PostController
- * @package App\Users\Controller
+ * Class PostController.
  */
 class PostController
 {
@@ -35,7 +34,7 @@ class PostController
     private $repository;
 
     /**
-     * Organization Factory
+     * Organization Factory.
      *
      * @var OrganizationFactoryInterface
      */
@@ -44,16 +43,15 @@ class PostController
     /**
      * PostController constructor.
      *
-     * @param EventDispatcherInterface $eventDispatcher
-     * @param UserRepository $repository
+     * @param EventDispatcherInterface     $eventDispatcher
+     * @param UserRepository               $repository
      * @param OrganizationFactoryInterface $organizationFactory
      */
     public function __construct(
         EventDispatcherInterface $eventDispatcher,
         UserRepository $repository,
         OrganizationFactoryInterface $organizationFactory
-    )
-    {
+    ) {
         $this->dispatcher = $eventDispatcher;
         $this->repository = $repository;
         $this->organizationFactory = $organizationFactory;
@@ -86,6 +84,7 @@ class PostController
                     'Password cannot be empty.'
                 );
             }
+
             if (!array_key_exists('organization', $data)) {
                 throw new \InvalidArgumentException(
                     'Organization cannot be empty.'
@@ -101,7 +100,7 @@ class PostController
 
             $this->repository->save($user);
         } catch (\InvalidArgumentException $e) {
-            return new JsonResponse(null, Response::HTTP_BAD_REQUEST);
+            return new JsonResponse($e->getMessage(), Response::HTTP_BAD_REQUEST);
         }
 
         return new JsonResponse(null, Response::HTTP_NO_CONTENT);

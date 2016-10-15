@@ -9,11 +9,8 @@ namespace App\Organizations\Entity;
 use App\Common\Entity\AggregateRootId;
 
 /**
- * Class OrganizationId
- *
- * @package App\Organizations\Entity
+ * Class OrganizationId.
  */
 class OrganizationId extends AggregateRootId
 {
-
 }

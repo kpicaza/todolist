@@ -5,12 +5,11 @@
  */
 
 namespace App\Organizations\Entity;
+
 use Ramsey\Uuid\Uuid;
 
 /**
- * Class OrganizationFactory
- *
- * @package App\Organizations\Entity
+ * Class OrganizationFactory.
  */
 class OrganizationFactory implements OrganizationFactoryInterface
 {

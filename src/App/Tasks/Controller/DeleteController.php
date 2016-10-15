@@ -11,8 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Class DeleteController
- * @package App\Tasks\Controller
+ * Class DeleteController.
  */
 class DeleteController
 {
@@ -38,16 +37,15 @@ class DeleteController
      *
      * @param Request $request
      * @param $id
+     *
      * @return JsonResponse
      */
     public function deleteAction(Request $request, $id)
     {
         try {
-
             if (false === $this->repository->delete($id)) {
                 throw new \InvalidArgumentException();
             }
-
         } catch (\InvalidArgumentException $e) {
             return new JsonResponse('', 404);
         }

@@ -10,9 +10,7 @@ use App\Organizations\Entity\OrganizationInterface;
 use Symfony\Component\Security\Core\User\UserInterface as BaseUser;
 
 /**
- * Interface UserInterface
- *
- * @package App\Users\Entity
+ * Interface UserInterface.
  */
 interface UserInterface extends BaseUser
 {
