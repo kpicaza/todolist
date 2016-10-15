@@ -16,8 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Guard\Token\PostAuthenticationGuardToken;
 
 /**
- * Class PostController
- * @package App\Tasks\Controller
+ * Class PostController.
  */
 class PostController
 {
@@ -46,14 +45,13 @@ class PostController
      * TaskController constructor.
      *
      * @param EventDispatcherInterface $eventDispatcher
-     * @param TaskRepository $repository
+     * @param TaskRepository           $repository
      */
     public function __construct(
         EventDispatcherInterface $eventDispatcher,
         TaskRepository $repository,
         PostAuthenticationGuardToken $security
-    )
-    {
+    ) {
         $this->dispatcher = $eventDispatcher;
         $this->repository = $repository;
         $this->security = $security;

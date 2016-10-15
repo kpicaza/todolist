@@ -2,6 +2,8 @@
 
 namespace spec\App\Tasks\Controller;
 
+use App\Organizations\Entity\Organization;
+use App\Organizations\Entity\OrganizationId;
 use App\Tasks\Controller\PostController;
 use App\Tasks\Entity\TaskFactory;
 use App\Tasks\Event\Events;
@@ -21,12 +23,15 @@ use Tests\Gateway\FakeGateway;
 class PostControllerSpec extends ObjectBehavior
 {
     const NAME = 'Some task description';
+    const ORGANIZATION = 'Foo Bar';
 
     private $dispatcher;
 
     private $repository;
 
     private $prophet;
+
+    private $organization;
 
     function let()
     {
@@ -36,13 +41,23 @@ class PostControllerSpec extends ObjectBehavior
             new TaskFactory(),
             new FakeGateway()
         );
+
+        $this->organization = new Organization(
+            OrganizationId::fromString(Uuid::uuid4()),
+            self::ORGANIZATION
+        );
     }
 
     function it_can_create_new_task_giving_a_description()
     {
         $security = $this->prophet->prophesize(PostAuthenticationGuardToken::class);
         $security->getUser()->willReturn(
-            new User(UserId::fromString(Uuid::uuid4()), 'paco', 'test@test.mail')
+            new User(
+                UserId::fromString(Uuid::uuid4()),
+                $this->organization,
+                'paco',
+                'test@test.mail'
+            )
         );
 
         $this->beConstructedWith(
@@ -54,7 +69,7 @@ class PostControllerSpec extends ObjectBehavior
         $request = new Request();
         $request->request->add(['description' => self::NAME]);
 
-        $response  =$this->postAction($request);
+        $response = $this->postAction($request);
         $response->shouldBeAnInstanceOf(JsonResponse::class);
         $response->getStatusCode()->shouldBe(204);
     }
@@ -63,7 +78,12 @@ class PostControllerSpec extends ObjectBehavior
     {
         $security = $this->prophet->prophesize(PostAuthenticationGuardToken::class);
         $security->getUser()->willReturn(
-            new User(UserId::fromString(Uuid::uuid4()), 'paco', 'test@test.mail')
+            new User(
+                UserId::fromString(Uuid::uuid4()),
+                $this->organization,
+                'paco',
+                'test@test.mail'
+            )
         );
 
         $this->beConstructedWith(

@@ -6,6 +6,8 @@
 
 namespace App\Users\Controller;
 
+use App\Organizations\Entity\OrganizationFactory;
+use App\Organizations\Entity\OrganizationFactoryInterface;
 use App\Users\Repository\UserRepository;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -13,8 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class PostController
- * @package App\Users\Controller
+ * Class PostController.
  */
 class PostController
 {
@@ -33,15 +34,27 @@ class PostController
     private $repository;
 
     /**
-     * User PostController constructor.
+     * Organization Factory.
      *
-     * @param EventDispatcherInterface $eventDispatcher
-     * @param UserRepository           $repository
+     * @var OrganizationFactoryInterface
      */
-    public function __construct(EventDispatcherInterface $eventDispatcher, UserRepository $repository)
-    {
+    private $organizationFactory;
+
+    /**
+     * PostController constructor.
+     *
+     * @param EventDispatcherInterface     $eventDispatcher
+     * @param UserRepository               $repository
+     * @param OrganizationFactoryInterface $organizationFactory
+     */
+    public function __construct(
+        EventDispatcherInterface $eventDispatcher,
+        UserRepository $repository,
+        OrganizationFactoryInterface $organizationFactory
+    ) {
         $this->dispatcher = $eventDispatcher;
         $this->repository = $repository;
+        $this->organizationFactory = $organizationFactory;
     }
 
     /**
@@ -72,7 +85,14 @@ class PostController
                 );
             }
 
+            if (!array_key_exists('organization', $data)) {
+                throw new \InvalidArgumentException(
+                    'Organization cannot be empty.'
+                );
+            }
+
             $user = $this->repository->nextIdentity(
+                $this->organizationFactory->make(null, $data['organization']),
                 $data['username'],
                 $data['email'],
                 $data['password']
@@ -80,7 +100,7 @@ class PostController
 
             $this->repository->save($user);
         } catch (\InvalidArgumentException $e) {
-            return new JsonResponse(null, Response::HTTP_BAD_REQUEST);
+            return new JsonResponse($e->getMessage(), Response::HTTP_BAD_REQUEST);
         }
 
         return new JsonResponse(null, Response::HTTP_NO_CONTENT);

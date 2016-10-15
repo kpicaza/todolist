@@ -11,8 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class IndexController
- * @package App\Tasks\Controller
+ * Class IndexController.
  */
 class IndexController
 {

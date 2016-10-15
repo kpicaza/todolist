@@ -35,6 +35,8 @@ Based on xp123.com [user stories examples](http://xp123.com/articles/user-story-
 
 ### Users Updates
 
+* As Anonimous User, I can create an company account.
+* As a User with role MANAGER, I can create new Users part of my company.
 * As a User, I form part of some group groups []
 * As a User, I can Reset Password if i forget it. []
 * As a User, I can Update User Settings []

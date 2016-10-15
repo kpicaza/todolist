@@ -7,12 +7,10 @@
 namespace App\Tasks\Entity;
 
 use App\Common\Entity\ProgressInterface;
-use App\Users\Entity\User;
 use App\Users\Entity\UserId;
 
 /**
- * Class Task
- * @package App\Tasks\Entity
+ * Class Task.
  */
 class Task implements TaskInterface, \JsonSerializable
 {
@@ -61,8 +59,8 @@ class Task implements TaskInterface, \JsonSerializable
     /**
      * Task constructor.
      *
-     * @param TaskId $taskId
-     * @param UserId $authorId
+     * @param TaskId            $taskId
+     * @param UserId            $authorId
      * @param ProgressInterface $progress
      * @param $description
      */
@@ -92,7 +90,7 @@ class Task implements TaskInterface, \JsonSerializable
     }
 
     /**
-     * Get Author id
+     * Get Author id.
      *
      * @return string
      */
@@ -142,7 +140,7 @@ class Task implements TaskInterface, \JsonSerializable
     }
 
     /**
-     * Set Task created datetime.
+     *  Set created at.
      */
     public function setCreatedAt()
     {
@@ -150,7 +148,7 @@ class Task implements TaskInterface, \JsonSerializable
     }
 
     /**
-     * Sey Task updated datetime.
+     * Set updated at.
      */
     public function setUpdatedAt()
     {

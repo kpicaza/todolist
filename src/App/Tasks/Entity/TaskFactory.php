@@ -11,8 +11,7 @@ use App\Users\Entity\UserId;
 use Ramsey\Uuid\Uuid;
 
 /**
- * Class TaskFactory
- * @package App\Tasks\Entity
+ * Class TaskFactory.
  */
 class TaskFactory
 {

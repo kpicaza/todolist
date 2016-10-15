@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of TodoList\tasks package.
+ * This file is part of TodoList\Common package.
  */
 
 namespace App\Common\Entity;
@@ -9,7 +9,7 @@ namespace App\Common\Entity;
 /**
  * Class AggregateRootId.
  */
-class AggregateRootId
+abstract class AggregateRootId
 {
     /**
      * Id.

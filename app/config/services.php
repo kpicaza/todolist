@@ -91,7 +91,8 @@ $app['tasks.delete.controller'] = function () use ($app) {
  */
 $app['users.factory'] = function () use ($app) {
     return new \App\Users\Entity\UserFactory(
-        $app['security.default_encoder']
+        $app['security.default_encoder'],
+        $app['organizations.factory']
     );
 };
 
@@ -142,7 +143,8 @@ $app['users.get.controller'] = function () use ($app) {
 $app['users.post.controller'] = function () use ($app) {
     return new \App\Users\Controller\PostController(
         $app['dispatcher'],
-        $app['users.repository']
+        $app['users.repository'],
+        $app['organizations.factory']
     );
 };
 
@@ -156,6 +158,10 @@ $app['jws.authenticator'] = function () use ($app, $config) {
     );
 };
 
+/**
+ * User Credentials Controller.
+ * @return \App\Security\Controller\CredentialsController
+ */
 $app['users.credentials.controller'] = function () use ($app, $config) {
     return new \App\Security\Controller\CredentialsController(
         $app['dispatcher'],
@@ -166,4 +172,12 @@ $app['users.credentials.controller'] = function () use ($app, $config) {
             'private.key.phrase' => $config['jws']['private.key.phrase']
         ]
     );
+};
+
+/**
+ * Organization Factory.
+ * @return \App\Organizations\Entity\OrganizationFactory
+ */
+$app['organizations.factory'] = function () use ($app) {
+    return new \App\Organizations\Entity\OrganizationFactory();
 };

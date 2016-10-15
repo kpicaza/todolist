@@ -1,0 +1,19 @@
+App\Organizations\Entity\Organization:
+    repositoryClass: App\Organizations\Gateway\OrganizationGateway
+    type: entity
+    table: Organizations
+    id:
+        id:
+            type: guid
+    fields:
+        name:
+            type: string
+            length: 255
+        createdAt:
+            type: datetime
+        updatedAt:
+            type: datetime
+            nullable: true
+    lifecycleCallbacks:
+        prePersist: [ setCreatedAt ]
+        preUpdate: [ setUpdatedAt ]

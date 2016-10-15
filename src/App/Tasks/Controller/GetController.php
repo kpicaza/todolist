@@ -12,8 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class GetController
- * @package App\Tasks\Controller
+ * Class GetController.
  */
 class GetController
 {

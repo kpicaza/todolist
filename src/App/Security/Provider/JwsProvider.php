@@ -10,8 +10,7 @@ use Namshi\JOSE\SimpleJWS;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Class JwsProvider
- * @package App\Security\Provider
+ * Class JwsProvider.
  */
 class JwsProvider
 {

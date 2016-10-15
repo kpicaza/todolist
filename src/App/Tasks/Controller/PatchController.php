@@ -13,14 +13,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class PatchController
- * @package App\Tasks\Controller
+ * Class PatchController.
  */
 class PatchController
 {
     const VALID_COMMANDS = [
         'saveDescription',
-        'saveProgress'
+        'saveProgress',
     ];
 
     /**
@@ -41,7 +40,7 @@ class PatchController
      * TaskController constructor.
      *
      * @param EventDispatcherInterface $eventDispatcher
-     * @param TaskRepository $repository
+     * @param TaskRepository           $repository
      */
     public function __construct(EventDispatcherInterface $eventDispatcher, TaskRepository $repository)
     {
@@ -72,7 +71,7 @@ class PatchController
 
             if (!in_array($command, self::VALID_COMMANDS, true)) {
                 throw new \InvalidArgumentException(
-                    'replace command must be one of .' . implode(',', self::VALID_COMMANDS)
+                    'replace command must be one of .'.implode(',', self::VALID_COMMANDS)
                 );
             }
 
@@ -84,7 +83,6 @@ class PatchController
 
             $tasks = $this->repository->findBy(['id' => $id]);
 
-
             if (!$tasks) {
                 throw new \InvalidArgumentException(
                     'Id must have valid Task id.'
@@ -92,7 +90,6 @@ class PatchController
             }
 
             $this->repository->$command($tasks[0], $data['value']);
-
         } catch (\InvalidArgumentException $e) {
             return new JsonResponse($e->getMessage(), Response::HTTP_BAD_REQUEST);
         }

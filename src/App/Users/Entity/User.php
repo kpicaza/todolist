@@ -6,11 +6,10 @@
 
 namespace App\Users\Entity;
 
-use Symfony\Component\Security\Core\User\UserInterface;
+use App\Organizations\Entity\OrganizationInterface;
 
 /**
- * Class User
- * @package App\Users\Entity
+ * Class User.
  */
 class User implements UserInterface, \JsonSerializable
 {
@@ -57,6 +56,13 @@ class User implements UserInterface, \JsonSerializable
     private $password;
 
     /**
+     * User Organization.
+     *
+     * @var OrganizationInterface
+     */
+    private $organization;
+
+    /**
      * User created at.
      *
      * @var \DateTimeInterface
@@ -73,15 +79,23 @@ class User implements UserInterface, \JsonSerializable
     /**
      * User constructor.
      *
-     * @param UserId $id
+     * @param UserId                $id
+     * @param OrganizationInterface $organization
      * @param $username
      * @param $email
      * @param null  $pass
      * @param array $roles
      * @param null  $salt
      */
-    public function __construct(UserId $id, $username, $email, $pass = null, array $roles = array(), $salt = null)
-    {
+    public function __construct(
+        UserId $id,
+        OrganizationInterface $organization,
+        $username,
+        $email,
+        $pass = null,
+        array $roles = [],
+        $salt = null
+    ) {
         $this->id = $id;
 
         if (empty($username)) {
@@ -90,6 +104,7 @@ class User implements UserInterface, \JsonSerializable
             );
         }
 
+        $this->organization = $organization;
         $this->username = $username;
 
         if (empty($email)) {
@@ -123,7 +138,7 @@ class User implements UserInterface, \JsonSerializable
     }
 
     /**
-     * Get User email
+     * Get User email.
      *
      * @return mixed
      */
@@ -157,6 +172,16 @@ class User implements UserInterface, \JsonSerializable
     }
 
     /**
+     * Get User Organization.
+     *
+     * @return OrganizationInterface
+     */
+    public function getOrganization()
+    {
+        return $this->organization;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function eraseCredentials()
@@ -164,7 +189,7 @@ class User implements UserInterface, \JsonSerializable
     }
 
     /**
-     * Get created at.
+     * Task created datetime.
      *
      * @return \DateTimeInterface
      */
@@ -174,7 +199,7 @@ class User implements UserInterface, \JsonSerializable
     }
 
     /**
-     * Get updated at.
+     * Task updated datetime.
      *
      * @return \DateTimeInterface
      */
@@ -200,18 +225,22 @@ class User implements UserInterface, \JsonSerializable
     }
 
     /**
-     * Specify data which should be serialized to JSON
+     * Specify data which should be serialized to JSON.
+     *
      * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     *
      * @return mixed data which can be serialized by <b>json_encode</b>,
-     * which is a value of any type other than a resource.
+     *               which is a value of any type other than a resource.
+     *
      * @since 5.4.0
      */
     public function jsonSerialize()
     {
         return [
             'id' => (string) $this->id(),
+            'organization' => $this->organization->getName(),
             'username' => $this->username,
-            'email' => $this->email
+            'email' => $this->email,
         ];
     }
 }

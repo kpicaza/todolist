@@ -10,8 +10,7 @@ use App\Tasks\Entity\TaskInterface;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
- * Class TaskAdded
- * @package App\Tasks\Event
+ * Class TaskAdded.
  */
 class TaskAdded extends Event
 {
