@@ -17,6 +17,8 @@ use Symfony\Component\HttpFoundation\Response;
 class GetController
 {
     /**
+     * Task repository.
+     *
      * @var TaskRepository
      */
     private $repository;

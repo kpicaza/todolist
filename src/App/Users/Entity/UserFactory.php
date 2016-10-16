@@ -23,12 +23,18 @@ class UserFactory
      */
     private $encoder;
 
+    /**
+     * Organization factory.
+     *
+     * @var OrganizationFactoryInterface
+     */
     private $organizationFactory;
 
     /**
      * UserFactory constructor.
-     *
-     * @param PasswordEncoderInterface $encoder
+     * 
+     * @param PasswordEncoderInterface     $encoder
+     * @param OrganizationFactoryInterface $organizationFactory
      */
     public function __construct(PasswordEncoderInterface $encoder, OrganizationFactoryInterface $organizationFactory)
     {
@@ -39,11 +45,12 @@ class UserFactory
     /**
      * Create a User.
      *
-     * @param $id
-     * @param $username
-     * @param $email
-     * @param $password
-     * @param array $roles
+     * @param string                $id
+     * @param OrganizationInterface $organization
+     * @param string                $username
+     * @param string                $email
+     * @param string                $password
+     * @param array                 $roles
      *
      * @return UserInterface
      */

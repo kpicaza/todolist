@@ -14,11 +14,15 @@ use InFw\Range\Range;
 interface Size
 {
     /**
+     * Get size.
+     *
      * @return int
      */
     public function get();
 
     /**
+     * Get size range.
+     *
      * @return Range
      */
     public function getRange();

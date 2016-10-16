@@ -14,11 +14,15 @@ use InFw\Range\Range;
 class BaseSize implements Size
 {
     /**
+     * Size.
+     *
      * @var int
      */
     private $size;
 
     /**
+     * Size range.
+     *
      * @var Range
      */
     private $range;
@@ -49,6 +53,8 @@ class BaseSize implements Size
     }
 
     /**
+     * Get size as a number.
+     *
      * @return int
      */
     public function get()
@@ -57,6 +63,8 @@ class BaseSize implements Size
     }
 
     /**
+     * Get size range.
+     *
      * @return Range
      */
     public function getRange()

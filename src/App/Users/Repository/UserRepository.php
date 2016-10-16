@@ -45,10 +45,11 @@ class UserRepository
     /**
      * Get net User identity.
      *
-     * @param $username
-     * @param $email
-     * @param $pass
-     * @param array $roles
+     * @param OrganizationInterface $organization
+     * @param string                $username
+     * @param string                $email
+     * @param string                $pass
+     * @param array                 $roles
      *
      * @return UserInterface
      */

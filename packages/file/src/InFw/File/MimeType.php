@@ -12,13 +12,18 @@ namespace InFw\File;
 interface MimeType
 {
     /**
-     * @param $mimeType
+     * Check if file mime is in valid mime types.
+     *
+     * @param $filePath
+     * @param array $validMimeTypes
      *
      * @return bool
      */
-    static public function isValid($mimeType, array $validMimeTypes);
+    public static function isValid($filePath, array $validMimeTypes);
 
     /**
+     * Get mime type.
+     *
      * @return string
      */
     public function get();

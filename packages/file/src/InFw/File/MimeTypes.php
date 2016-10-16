@@ -7,8 +7,7 @@
 namespace InFw\File;
 
 /**
- * Class MimeTypes
- * @package InFw\File
+ * Class MimeTypes.
  */
 class MimeTypes
 {

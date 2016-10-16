@@ -42,10 +42,10 @@ abstract class AbstractFile implements File
     /**
      * AbstractFile constructor.
      *
-     * @param string $name
+     * @param string   $name
      * @param MimeType $mimeType
-     * @param Size   $size
-     * @param string $tmpName
+     * @param Size     $size
+     * @param string   $tmpName
      */
     public function __construct($name, MimeType $mimeType, Size $size, $tmpName)
     {
@@ -55,7 +55,7 @@ abstract class AbstractFile implements File
 
         if (false === file_exists($tmpName)) {
             throw new \InvalidArgumentException(
-                'File ' . $tmpName . ' does not exists.'
+                'File '.$tmpName.' does not exists.'
             );
         }
 

@@ -1,25 +1,26 @@
 <?php
+
 /**
- * Created by PhpStorm.
- * User: kpicaza
- * Date: 15/10/16
- * Time: 23:34
+ * This file is part of InFw\File package.
  */
 
 namespace InFw\File;
 
 /**
- * Class BaseMimeType
- * @package InFw\File
+ * Class BaseMimeType.
  */
 class BaseMimeType implements MimeType
 {
     /**
-     * @var string
+     * Contains valid mime types.
+     *
+     * @var array
      */
     protected $validMimeTypes;
 
     /**
+     * Mime type.
+     *
      * @var string
      */
     protected $mime;
@@ -27,8 +28,8 @@ class BaseMimeType implements MimeType
     /**
      * BaseMimeType constructor.
      *
-     * @param $mimeType
-     * @param $group
+     * @param string $mimeType
+     * @param array  $validMimeTypes
      */
     public function __construct($mimeType, array $validMimeTypes)
     {
@@ -58,12 +59,14 @@ class BaseMimeType implements MimeType
     }
 
     /**
-     * @param $filePath
-     * @param array $validMimeTypes
+     * Check if file mime is in valid mime types.
+     *
+     * @param string $filePath
+     * @param array  $validMimeTypes
      *
      * @return bool
      */
-    static public function isValid($filePath, array $validMimeTypes)
+    public static function isValid($filePath, array $validMimeTypes)
     {
         return true === in_array(
             mime_content_type($filePath),
@@ -73,6 +76,8 @@ class BaseMimeType implements MimeType
     }
 
     /**
+     * Get mime type.
+     *
      * @return string
      */
     public function get()
