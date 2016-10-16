@@ -3,6 +3,7 @@
 namespace spec\InFw\File;
 
 use InFw\File\BaseMimeType;
+use InFw\File\BaseMimeTypeFactory;
 use InFw\File\BaseSize;
 use InFw\File\BaseSizeFactory;
 use InFw\File\File;
@@ -26,8 +27,7 @@ class GenericFileFactorySpec extends ObjectBehavior
 
     function let()
     {
-        $this->mime = new BaseMimeType(
-            self::MIME_TYPE,
+        $this->mime = new BaseMimeTypeFactory(
             MimeTypes::IMAGES
         );
 
@@ -40,13 +40,13 @@ class GenericFileFactorySpec extends ObjectBehavior
     function it_can_create_new_file_objects()
     {
         $this->beConstructedWith(
-            $this->size,
-            MimeTypes::IMAGES
+            $this->mime,
+            $this->size
         );
 
         $file = new GenericFile(
             self::NAME,
-            $this->mime,
+            $this->mime->make(self::MIME_TYPE),
             $this->size->make(self::SIZE),
             self::TMP_NAME
         );

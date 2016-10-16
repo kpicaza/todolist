@@ -11,6 +11,12 @@ namespace InFw\File;
  */
 class GenericFileFactory implements FileFactory
 {
+    /**
+     * Mime type Factory.
+     *
+     * @var MimeTypeFactory
+     */
+    private $mimeType;
 
     /**
      * Size Factory.
@@ -20,22 +26,18 @@ class GenericFileFactory implements FileFactory
     private $size;
 
     /**
-     * Valid mime types.
-     *
-     * @var array
-     */
-    private $validMimeTypes;
-
-    /**
      * GenericFileFactory constructor.
      *
-     * @param SizeFactory $sizeFactory
-     * @param array $validMimeTypes
+     * @param MimeTypeFactory $mimeTypeFactory
+     * @param SizeFactory     $sizeFactory
      */
-    public function __construct(SizeFactory $sizeFactory, array $validMimeTypes)
+    public function __construct(
+        MimeTypeFactory $mimeTypeFactory,
+        SizeFactory $sizeFactory
+    )
     {
+        $this->mimeType = $mimeTypeFactory;
         $this->size = $sizeFactory;
-        $this->validMimeTypes = $validMimeTypes;
     }
 
     /**
@@ -52,7 +54,7 @@ class GenericFileFactory implements FileFactory
     {
         return new GenericFile(
             $name,
-            new BaseMimeType($mimeType, $this->validMimeTypes),
+            $this->mimeType->make($mimeType),
             $this->size->make($size),
             $filePath
         );

@@ -10,7 +10,7 @@ use InFw\Range\BaseRange;
 use InFw\Range\Range;
 
 /**
- * Class BaseSizeFactory
+ * Class BaseSizeFactory.
  */
 class BaseSizeFactory implements SizeFactory
 {

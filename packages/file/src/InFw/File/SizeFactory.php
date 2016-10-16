@@ -6,11 +6,8 @@
 
 namespace InFw\File;
 
-use InFw\Range\BaseRange;
-use InFw\Range\Range;
-
 /**
- * Class BaseSizeFactory
+ * Class BaseSizeFactory.
  */
 interface SizeFactory
 {
