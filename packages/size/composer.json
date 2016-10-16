@@ -1,5 +1,5 @@
 {
-  "name": "infw/file",
+  "name": "infw/size",
   "authors": [
     {
       "name": "kpicaza"
@@ -7,7 +7,7 @@
   ],
   "license": "MIT",
   "type": "library",
-  "description": "File Object for In Framework",
+  "description": "Size Object for In Framework",
   "repositories": [
     {
       "type": "path",
@@ -16,12 +16,11 @@
   ],
   "autoload": {
     "psr-4": {
-      "InFw\\File\\": "src/InFw/File"
+      "InFw\\Size\\": "src/InFw/Size"
     }
   },
   "require": {
     "infw/range": "@dev",
-    "infw/size": "@dev",
     "php": "^5.6"
   },
   "require-dev": {

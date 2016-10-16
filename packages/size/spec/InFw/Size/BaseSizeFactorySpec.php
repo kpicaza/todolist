@@ -1,9 +1,9 @@
 <?php
 
-namespace spec\InFw\File;
+namespace spec\InFw\Size;
 
-use InFw\File\BaseSize;
-use InFw\File\Size;
+use InFw\Size\BaseSize;
+use InFw\Size\Size;
 use InFw\Range\BaseRange;
 use InFw\Range\Range;
 use PhpSpec\ObjectBehavior;

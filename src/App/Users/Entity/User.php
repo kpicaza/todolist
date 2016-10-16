@@ -81,11 +81,11 @@ class User implements UserInterface, \JsonSerializable
      *
      * @param UserId                $id
      * @param OrganizationInterface $organization
-     * @param $username
-     * @param $email
-     * @param null  $pass
-     * @param array $roles
-     * @param null  $salt
+     * @param string                $username
+     * @param string                $email
+     * @param null                  $pass
+     * @param array                 $roles
+     * @param null                  $salt
      */
     public function __construct(
         UserId $id,

@@ -4,7 +4,7 @@
  * This file is part of InFw\File package.
  */
 
-namespace InFw\File;
+namespace InFw\Size;
 
 use InFw\Range\Range;
 

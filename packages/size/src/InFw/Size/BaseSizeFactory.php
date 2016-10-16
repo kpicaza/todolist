@@ -1,10 +1,10 @@
 <?php
 
 /**
- * This file is part of InFw\File package.
+ * This file is part of InFw\Size package.
  */
 
-namespace InFw\File;
+namespace InFw\Size;
 
 use InFw\Range\BaseRange;
 use InFw\Range\Range;
@@ -42,7 +42,7 @@ class BaseSizeFactory implements SizeFactory
      * @param int $minSize
      * @param int $maxSize
      *
-     * @return BaseSize
+     * @return Size
      */
     public function make($size)
     {

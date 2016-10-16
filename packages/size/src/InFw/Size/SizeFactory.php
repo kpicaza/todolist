@@ -1,10 +1,10 @@
 <?php
 
 /**
- * This file is part of InFw\File package.
+ * This file is part of InFw\Size package.
  */
 
-namespace InFw\File;
+namespace InFw\Size;
 
 /**
  * Class BaseSizeFactory.

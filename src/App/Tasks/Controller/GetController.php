@@ -37,7 +37,7 @@ class GetController
      * Get a Task.
      *
      * @param Request $request
-     * @param $id
+     * @param string  $id
      *
      * @return JsonResponse
      */

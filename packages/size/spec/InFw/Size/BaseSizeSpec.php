@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\InFw\File;
+namespace spec\InFw\Size;
 
 use InFw\Range\BaseRange;
 use PhpSpec\ObjectBehavior;

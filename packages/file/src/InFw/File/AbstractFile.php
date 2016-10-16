@@ -6,6 +6,8 @@
 
 namespace InFw\File;
 
+use InFw\Size\Size;
+
 /**
  * Class AbstractFile.
  */

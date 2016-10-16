@@ -2,14 +2,11 @@
 
 namespace spec\InFw\File;
 
-use InFw\File\BaseMimeType;
 use InFw\File\BaseMimeTypeFactory;
-use InFw\File\BaseSize;
-use InFw\File\BaseSizeFactory;
+use InFw\Size\BaseSizeFactory;
 use InFw\File\File;
 use InFw\File\GenericFile;
 use InFw\File\MimeTypes;
-use InFw\Range\BaseRange;
 use PhpSpec\ObjectBehavior;
 
 class GenericFileFactorySpec extends ObjectBehavior

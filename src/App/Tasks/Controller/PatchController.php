@@ -52,7 +52,7 @@ class PatchController
      * Update a Task.
      *
      * @param Request $request
-     * @param $id
+     * @param string  $id
      *
      * @return JsonResponse
      */

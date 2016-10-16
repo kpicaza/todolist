@@ -42,6 +42,7 @@
         "symfony/asset": "^3.1",
         "jdesrosiers/silex-cors-provider": "~1.0",
         "infw/range": "@dev",
+        "infw/size": "@dev",
         "infw/file": "@dev"
     },
     "require-dev": {

@@ -3,7 +3,7 @@
 namespace spec\InFw\File;
 
 use InFw\File\BaseMimeType;
-use InFw\File\BaseSize;
+use InFw\Size\BaseSize;
 use InFw\File\MimeTypes;
 use InFw\Range\BaseRange;
 use PhpSpec\ObjectBehavior;

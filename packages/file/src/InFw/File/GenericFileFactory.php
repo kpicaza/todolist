@@ -6,6 +6,8 @@
 
 namespace InFw\File;
 
+use InFw\Size\SizeFactory;
+
 /**
  * Class GenericFileFactory.
  */
@@ -34,8 +36,7 @@ class GenericFileFactory implements FileFactory
     public function __construct(
         MimeTypeFactory $mimeTypeFactory,
         SizeFactory $sizeFactory
-    )
-    {
+    ) {
         $this->mimeType = $mimeTypeFactory;
         $this->size = $sizeFactory;
     }
