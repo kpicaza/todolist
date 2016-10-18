@@ -13,7 +13,8 @@ class GenericFileSpec extends ObjectBehavior
     const SIZE = 340000;
     const NAME = 'my.pdf';
     const TMP_NAME = '/../../../../../web/assets/img/fsf-logo.jpg';
-    const MIME_TYPE = 'application/pdf';
+    const INVALID_MIME_TYPE = 'application/pdf';
+    const MIME_TYPE = 'image/jpeg';
     const MIN_SIZE = 230;
     const MAX_SIZE = 740000;
 
@@ -31,7 +32,7 @@ class GenericFileSpec extends ObjectBehavior
     {
         $this->mime = new BaseMimeType(
             self::MIME_TYPE,
-            MimeTypes::PDFS
+            MimeTypes::IMAGES
         );
 
         $this->size = new BaseSize(
@@ -91,7 +92,7 @@ class GenericFileSpec extends ObjectBehavior
         $this->getMimeType()->shouldBe(self::MIME_TYPE);
     }
 
-    function it_should_thrown_exception_when_file_does_not_eist()
+    function it_should_thrown_exception_when_file_does_not_exist()
     {
         $this->beConstructedWith(
             self::NAME,
@@ -115,5 +116,24 @@ class GenericFileSpec extends ObjectBehavior
         );
 
         $this->jsonSerialize()->shouldBe(self::FILE);
+    }
+
+    function it_should_thrown_exception_when_tmp_file_mime_and_given_mime_type_dont_match()
+    {
+        $mime = new BaseMimeType(
+            self::INVALID_MIME_TYPE,
+            MimeTypes::PDFS
+        );
+
+        $this->beConstructedWith(
+            self::NAME,
+            $mime,
+            $this->size,
+            __DIR__ . self::TMP_NAME
+        );
+
+        $this->shouldThrow(
+            \InvalidArgumentException::class
+        )->duringInstantiation();
     }
 }
