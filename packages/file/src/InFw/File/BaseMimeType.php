@@ -51,7 +51,7 @@ class BaseMimeType implements MimeType
 
         if (false === in_array($mimeType, $this->validMimeTypes, true)) {
             throw new \InvalidArgumentException(
-                'Mime type is not one of valid mime types.'
+                'Mime type is not one of valid mime types.' . $mimeType
             );
         }
 

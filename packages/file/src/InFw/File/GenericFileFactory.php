@@ -45,18 +45,20 @@ class GenericFileFactory implements FileFactory
      * Make instances of GenericFile.
      *
      * @param string $name
-     * @param string $mimeType
-     * @param int    $size
      * @param string $filePath
      *
-     * @return GenericFile
+     * @return File
      */
-    public function make($name, $mimeType, $size, $filePath)
+    public function make($name, $filePath)
     {
         return new GenericFile(
             $name,
-            $this->mimeType->make($mimeType),
-            $this->size->make($size),
+            $this->mimeType->make(
+                mime_content_type($filePath)
+            ),
+            $this->size->make(
+                filesize($filePath)
+            ),
             $filePath
         );
     }

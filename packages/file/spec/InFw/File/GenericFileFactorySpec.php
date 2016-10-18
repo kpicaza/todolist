@@ -43,12 +43,16 @@ class GenericFileFactorySpec extends ObjectBehavior
 
         $file = new GenericFile(
             self::NAME,
-            $this->mime->make(self::MIME_TYPE),
-            $this->size->make(self::SIZE),
+            $this->mime->make(
+                mime_content_type(self::TMP_NAME)
+            ),
+            $this->size->make(
+                filesize(self::TMP_NAME)
+            ),
             self::TMP_NAME
         );
 
-        $new = $this->make(self::NAME, self::MIME_TYPE, self::SIZE, self::TMP_NAME);
+        $new = $this->make(self::NAME, self::TMP_NAME);
 
         $new->shouldBeAnInstanceOf(File::class);
         $new->getName()->shouldBe($file->getName());
