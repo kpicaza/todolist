@@ -5,8 +5,10 @@ extensions:
       - html
       - clover
     whitelist:
+      - packages/file/src/
+      - packages/range/src/
+      - packages/size/src/
       - src/
-      - packages/
     output:
       html: web/coverage
       clover: coverage.clover
@@ -23,3 +25,8 @@ suites:
         namespace: 'InFw\Range'
         src_path: packages/range/src
         spec_path: packages/range
+
+    size:
+        namespace: 'InFw\Size'
+        src_path: packages/size/src
+        spec_path: packages/size
