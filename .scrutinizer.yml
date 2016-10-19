@@ -39,4 +39,4 @@ build:
     dependencies:
         before:
             - cp app/config/parameters.php.dist app/config/parameters.php
-            - cp composer.lock.dist.scrutinizer composer.lock
+            - cp composer.lock.scrutinizer.dist composer.lock
