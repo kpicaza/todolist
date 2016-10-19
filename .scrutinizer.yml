@@ -31,9 +31,9 @@ build:
     tests:
         override:
             -
-                command: 'phpunit --coverage-clover=clover.xml'
+                command: './bin/phpspec run'
                 coverage:
-                    file: 'clover.xml'
+                    file: 'coverage.clover'
                     format: 'clover'
 
     dependencies:
