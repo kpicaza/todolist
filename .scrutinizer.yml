@@ -40,3 +40,14 @@ build:
         before:
             - cp app/config/parameters.php.dist app/config/parameters.php
             - cp composer.lock.scrutinizer.dist composer.lock
+            - mkdir -p ./var/logs
+            - chmod -R 777 ./var/logs
+            - mkdir -p ./var/cache
+            - chmod -R 777 ./var/cache
+            - mkdir -p ./var/jws
+            - openssl genrsa -aes256  -passout pass:foobar -out ./var/jws/private.pem 4096
+            - openssl rsa -passin pass:foobar -pubout -in ./var/jws/private.pem -out ./var/jws/public.pem
+            - cp app/config/parameters.php.dist app/config/parameters.php
+            - cp phpspec.yml.dist phpspec.yml
+            - composer self-update
+
