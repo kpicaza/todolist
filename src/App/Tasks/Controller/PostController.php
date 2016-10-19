@@ -42,10 +42,11 @@ class PostController
     private $security;
 
     /**
-     * TaskController constructor.
+     * PostController constructor.
      *
-     * @param EventDispatcherInterface $eventDispatcher
-     * @param TaskRepository           $repository
+     * @param EventDispatcherInterface     $eventDispatcher
+     * @param TaskRepository               $repository
+     * @param PostAuthenticationGuardToken $security
      */
     public function __construct(
         EventDispatcherInterface $eventDispatcher,

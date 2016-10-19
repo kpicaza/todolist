@@ -1,0 +1,24 @@
+{
+  "name": "infw/range",
+  "authors": [
+    {
+      "name": "kpicaza"
+    }
+  ],
+  "license": "MIT",
+  "type": "library",
+  "description": "Range Object for In Framework",
+  "autoload": {
+    "psr-4": {
+      "InFw\\Range\\": "src/InFw/Range"
+    }
+  },
+  "require": {
+    "php": "^5.6"
+  },
+  "require-dev": {
+    "memio/spec-gen": "^0.6",
+    "phpspec/phpspec": "^3.0",
+    "henrikbjorn/phpspec-code-coverage": "^3.0"
+  }
+}

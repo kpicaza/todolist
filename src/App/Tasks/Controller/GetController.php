@@ -17,6 +17,8 @@ use Symfony\Component\HttpFoundation\Response;
 class GetController
 {
     /**
+     * Task repository.
+     *
      * @var TaskRepository
      */
     private $repository;
@@ -35,7 +37,7 @@ class GetController
      * Get a Task.
      *
      * @param Request $request
-     * @param $id
+     * @param string  $id
      *
      * @return JsonResponse
      */

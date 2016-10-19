@@ -1,0 +1,31 @@
+{
+  "name": "infw/size",
+  "authors": [
+    {
+      "name": "kpicaza"
+    }
+  ],
+  "license": "MIT",
+  "type": "library",
+  "description": "Size Object for In Framework",
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../*"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "InFw\\Size\\": "src/InFw/Size"
+    }
+  },
+  "require": {
+    "infw/range": "@dev",
+    "php": "^5.6"
+  },
+  "require-dev": {
+    "memio/spec-gen": "^0.6",
+    "phpspec/phpspec": "^3.0",
+    "henrikbjorn/phpspec-code-coverage": "^3.0"
+  }
+}

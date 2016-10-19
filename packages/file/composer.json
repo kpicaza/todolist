@@ -1,0 +1,32 @@
+{
+  "name": "infw/file",
+  "authors": [
+    {
+      "name": "kpicaza"
+    }
+  ],
+  "license": "MIT",
+  "type": "library",
+  "description": "File Object for In Framework",
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../*"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "InFw\\File\\": "src/InFw/File"
+    }
+  },
+  "require": {
+    "infw/range": "@dev",
+    "infw/size": "@dev",
+    "php": "^5.6"
+  },
+  "require-dev": {
+    "memio/spec-gen": "^0.6",
+    "phpspec/phpspec": "^3.0",
+    "henrikbjorn/phpspec-code-coverage": "^3.0"
+  }
+}

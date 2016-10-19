@@ -18,9 +18,10 @@ class TaskFactory
     /**
      * Create Tasks.
      *
-     * @param $taskId
-     * @param $name
-     * @param int $progress
+     * @param string $taskId
+     * @param string $userId
+     * @param string $name
+     * @param int    $progress
      *
      * @return Task
      */
