@@ -16,6 +16,11 @@ extensions:
 suites:
     default: ~
 
+    file-manager:
+        namespace: 'InFw\FileManager'
+        src_path: packages/file-manager/src
+        spec_path: packages/file-manager
+
     file:
         namespace: 'InFw\File'
         src_path: packages/file/src

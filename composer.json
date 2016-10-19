@@ -43,7 +43,8 @@
         "jdesrosiers/silex-cors-provider": "~1.0",
         "infw/range": "@dev",
         "infw/size": "@dev",
-        "infw/file": "@dev"
+        "infw/file": "@dev",
+        "infw/file-manager": "@dev"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.4",
