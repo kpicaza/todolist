@@ -48,5 +48,5 @@ build:
             - openssl genrsa -aes256  -passout pass:foobar -out ./var/jws/private.pem 4096
             - openssl rsa -passin pass:foobar -pubout -in ./var/jws/private.pem -out ./var/jws/public.pem
             - cp app/config/parameters.php.dist app/config/parameters.php
-            - composer install --optimize-autoloader --no-interaction
+            - composer install --prefer-source --no-interaction --dev --optimize-autoloader
             - cp phpspec.yml.dist phpspec.yml
