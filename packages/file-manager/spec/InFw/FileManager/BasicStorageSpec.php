@@ -8,6 +8,7 @@ use InFw\File\GenericFile;
 use InFw\File\MimeTypes;
 use InFw\Size\BaseSizeFactory;
 use PhpSpec\ObjectBehavior;
+use Prophecy\Prophet;
 
 class BasicStorageSpec extends ObjectBehavior
 {
@@ -58,5 +59,71 @@ class BasicStorageSpec extends ObjectBehavior
         $new->getMimeType()->shouldBe($this->file->getMimeType());
         $new->getSize()->shouldBe($this->file->getSize());
         $new->getTmpName()->shouldBe($this->file->getTmpName());
+
+        $realFilePath = self::ROOT_FOLDER . $this->file->getName();
+        if (file_exists($realFilePath)) {
+            unlink($realFilePath);
+        }
     }
+
+    function it_can_add_sub_paths_to_root_folder()
+    {
+        $this->beConstructedWith(
+            self::ROOT_FOLDER
+        );
+
+        $this->addSubFolder(self::SUB_FOLDER);
+
+        $this->getFolder()->shouldBe(self::ROOT_FOLDER.self::SUB_FOLDER);
+    }
+
+    function it_should_thrown_an_exception_when_sub_folder_not_exist()
+    {
+        $this->beConstructedWith(
+            self::ROOT_FOLDER
+        );
+
+        $this->addSubFolder('some/fake/path/');
+
+        $this->shouldThrow(
+            \InvalidArgumentException::class
+        )->during('addSubFolder', ['some/fake/path/']);
+    }
+
+    function it_should_thrown_an_exception_when_root_folder_not_exist()
+    {
+        $this->beConstructedWith(
+            '/some/fake/path'
+        );
+
+        $this->shouldThrow(
+            \InvalidArgumentException::class
+        )->duringInstantiation();
+    }
+
+    function it_should_throw_an_exception_when_it_cannot_persist_file_on_a_filestem()
+    {
+        $file = (new Prophet())->prophesize(File::class);
+        $file->getName()->willReturn(self::NAME);
+        $file->getTmpName()->willReturn(self::TMP_NAME.'fakefake');
+
+        if (!is_dir('/tmp/fake/')) {
+            mkdir('/tmp/fake/');
+        }
+
+        $this->beConstructedWith(
+            self::ROOT_FOLDER
+        );
+
+        $this->addSubFolder('fake/');
+
+        if (file_exists('/tmp/fake/')) {
+            rmdir('/tmp/fake/');
+        }
+
+        $this->shouldThrow(
+            \InvalidArgumentException::class
+        )->during('save', [$file]);
+    }
+
 }

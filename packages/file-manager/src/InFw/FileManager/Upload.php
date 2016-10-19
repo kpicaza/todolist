@@ -9,9 +9,9 @@ namespace InFw\FileManager;
 use InFw\File\File;
 
 /**
- * Interface Upload
+ * Interface Upload.
  */
-Interface Upload
+interface Upload
 {
     /**
      * Save file at file system.

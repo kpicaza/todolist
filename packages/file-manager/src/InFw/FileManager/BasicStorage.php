@@ -9,7 +9,7 @@ namespace InFw\FileManager;
 use InFw\File\File;
 
 /**
- * Class BasicStorage
+ * Class BasicStorage.
  */
 class BasicStorage implements Storage
 {
@@ -25,7 +25,7 @@ class BasicStorage implements Storage
      *
      * @var string
      */
-    private $subPath;
+    private $subFolder;
 
     /**
      * BasicStorage constructor.
@@ -34,7 +34,7 @@ class BasicStorage implements Storage
      */
     public function __construct($rootFolder)
     {
-        if (false === file_exists($rootFolder)) {
+        if (false === is_dir($rootFolder)) {
             throw new \InvalidArgumentException(
                 'Given folder ' . $rootFolder . ' does not exist.'
             );
@@ -46,19 +46,19 @@ class BasicStorage implements Storage
     /**
      * Add sub-path to root.
      *
-     * @param string $subPath
+     * @param string $subFolder
      */
-    public function addSubPath($subPath = '')
+    public function addSubFolder($subFolder = '')
     {
-        $path = $this->root . $this->subPath;
+        $path = $this->root . $this->subFolder;
 
-        if (false === file_exists($path)) {
+        if (false === is_dir($path)) {
             throw new \InvalidArgumentException(
                 'Given folder ' . $path . ' does not exist.'
             );
         }
 
-        $this->subPath = $subPath;
+        $this->subFolder = $subFolder;
     }
 
     /**
@@ -70,17 +70,28 @@ class BasicStorage implements Storage
      */
     public function save(File $file)
     {
-        if (
-            false === file_put_contents(
-                $this->root . $this->subPath . $file->getName(),
-                $file->getTmpName()
-            )
+        if (false === file_exists($file->getTmpName())
         ) {
-            throw new \RuntimeException(
+            throw new \InvalidArgumentException(
                 'Cannot upload file to given folder.'
             );
         }
 
+        file_put_contents(
+            $this->root . $this->subFolder . $file->getName(),
+            $file->getTmpName()
+        );
+
         return $file;
+    }
+
+    /**
+     * Get Folder.
+     *
+     * @return string
+     */
+    public function getFolder()
+    {
+        return $this->root . $this->subFolder;
     }
 }

@@ -5,11 +5,12 @@
  */
 
 namespace InFw\FileManager;
+
 use InFw\File\File;
 use InFw\File\FileFactory;
 
 /**
- * Class UploadToStorage
+ * Class UploadToStorage.
  */
 class UploadToStorage implements Upload
 {
@@ -30,7 +31,7 @@ class UploadToStorage implements Upload
     /**
      * UploadToStorage constructor.
      *
-     * @param Storage $storage
+     * @param Storage     $storage
      * @param FileFactory $factory
      */
     public function __construct(Storage $storage, FileFactory $factory)
@@ -42,13 +43,17 @@ class UploadToStorage implements Upload
     /**
      * Send a file to storage.
      *
-     * @param $path
-     * @param $name
+     * @param string $path
+     * @param string $name
      *
      * @return File
      */
     public function sendToStorage($path, $name)
     {
-        return $this->factory->make($name, $path);
+        $file = $this->factory->make($name, $path);
+
+        $this->storage->save($file);
+
+        return $file;
     }
 }

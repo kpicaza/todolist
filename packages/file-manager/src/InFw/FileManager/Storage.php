@@ -9,7 +9,7 @@ namespace InFw\FileManager;
 use InFw\File\File;
 
 /**
- * Interface Storage
+ * Interface Storage.
  */
 interface Storage
 {
